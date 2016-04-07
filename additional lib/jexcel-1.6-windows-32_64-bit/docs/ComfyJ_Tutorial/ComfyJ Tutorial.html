@@ -1,0 +1,835 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>ComfyJ Tutorial</TITLE
+><style type="text/css"><!--
+.note {border: 1px solid white; background-color: white; padding: 0pt;}
+.important {border: 1px solid white; background-color: white; padding: 0pt;}
+.note table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.note td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.TOC { font-family: Verdana, Sans-Serif; font-size: 12px;}
+.filename { font-family: courier, monospace; font-size: 14px;}
+.parameter {FONT-WEIGHT: bold;}
+.methodname { font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.classname { color: #204E80; font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.programlisting{border: 1px solid #AEBDCC; background-color: #F3F5F7; padding: 5pt; FONT-FAMILY:  courier, monospace; FONT-SIZE: 12px}
+.title{color: white; text-align: center; border: 1pt solid #7B8798; background-color: #A9BAD1; padding: 5pt; FONT-FAMILY:  Verdana, Sans-Serif; FONT-SIZE: 22px}
+FONT {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+TD {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+BODY {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+P {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+H1 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 22px; FONT-WEIGHT: bold;}
+H2 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 18px; FONT-WEIGHT: bold;}--></style
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#204E80"
+VLINK="#204E80"
+ALINK="#204E89" background="images/bg.png"><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td
+><table border="0" cellpadding="1" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#788598"
+><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#ffffff"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><P></P><H1
+CLASS="title"
+><A
+NAME="AEN1"
+></A
+>ComfyJ Tutorial</H1
+><HR size=1 noshadow color=#0066CC
+><SPAN
+CLASS="releaseinfo"
+>Version: 2.10<BR></SPAN
+><SPAN
+CLASS="date"
+>Last Updated: November 16, 2012<BR></SPAN
+><P
+CLASS="copyright"
+>Copyright &copy; 2002-2012 TeamDev Ltd. </P
+> </DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+></B><P></P><B>Table of Contents</B><HR size=1 noshadow color=#0066CC
+></DT
+><DT
+><A
+HREF="#AEN8"
+>Introduction</A
+></DT
+><DT
+>1. <A
+HREF="#AEN20"
+>Setting Up</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="#AEN22"
+>Environment Configuration</A
+></DT
+><DT
+>1.2. <A
+HREF="#AEN59"
+>Creating Application Class</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="#AEN66"
+>Generating COM Integration Code</A
+></DT
+><DT
+>3. <A
+HREF="#AEN83"
+>Writing Planner Class</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="#AEN85"
+>Outlining Planner Functionality</A
+></DT
+><DT
+>3.2. <A
+HREF="#AEN95"
+>COM Support Initialization and Shutdown</A
+></DT
+><DT
+>3.3. <A
+HREF="#AEN105"
+>Performing Login</A
+></DT
+><DT
+>3.4. <A
+HREF="#AEN130"
+>Accessing Tasks and Calendar Folders</A
+></DT
+><DT
+>3.5. <A
+HREF="#AEN138"
+>Creating a New Task</A
+></DT
+><DT
+>3.6. <A
+HREF="#AEN146"
+>Creating a New Appointment</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="#AEN152"
+>Conclusion</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="preface"
+> <P></P><H1
+><A
+NAME="AEN8"
+></A
+>Introduction</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Welcome to the ComfyJ Tutorial. This document will guide you through
+    the process of creating a small application that interacts with COM
+    objects. We will go through the things you need to know to develop Java
+    applications that communicate with COM objects.</P
+><P
+>The first task in this tutorial is project environment
+    configuration. After that we will generate wrapper classes for selected
+    COM objects using the CodeGenerator application. Then, we will come to the
+    actual programming: using the generated API, we will create a Task and an
+    Appointment in Microsoft Outlook.</P
+><P
+>The tutorial assumes that you are familiar with JNIWrapper and COM
+    integration features described in the ComfyJ <I
+CLASS="emphasis"
+>Programmer's
+    Guide</I
+>. You can find it in your ComfyJ installation and on the
+    product site. If you have some difficulties in doing the tutorial tasks,
+    please refer to the ComfyJ <I
+CLASS="emphasis"
+>Programmer's Guide</I
+> and
+    JNIWrapper <I
+CLASS="emphasis"
+>Programmer's Guide</I
+> for help.</P
+><P
+>The complete sample code is available in the full distribution
+    package of ComfyJ and can be obtained on the product site.</P
+><DIV
+CLASS="note"
+><P
+></P
+><TABLE
+CLASS="note"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="images/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>This tutorial assumes that ComfyJ is installed on
+      <TT
+CLASS="filename"
+>C:\ComfyJ</TT
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN20"
+></A
+>Chapter 1. Setting Up</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN22"
+></A
+>1.1. Environment Configuration</H2
+><P
+>First off, we need to set up the working environment. We will call
+      the program Planner to illustrate its main tasks. Create a folder with
+      this name for our project. In this tutorial, we assume that this folder
+      is created under <TT
+CLASS="filename"
+>C:\ComfyJ\samples</TT
+>.</P
+><P
+>Under the project folder, we will need the following
+      subfolders:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>bin</TT
+> - This folder is for native code
+          files.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>lib</TT
+> - This folder will contain JAR
+          files.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>src </TT
+>- This folder will store our Java
+          code.</P
+></LI
+></UL
+><P
+>Now we need to copy necessary files from your ComfyJ installation
+      to the above folders.</P
+><P
+>Copy the native code DLL (<TT
+CLASS="filename"
+>jniwrap.dll</TT
+>) from
+      the installation <TT
+CLASS="filename"
+>bin</TT
+> folder and the run-time
+      license files (<TT
+CLASS="filename"
+>jniwrap.lic</TT
+> and
+      <TT
+CLASS="filename"
+>comfyj.lic</TT
+>) from run-time
+      <TT
+CLASS="filename"
+>key.zip</TT
+> subdirectory to
+      <TT
+CLASS="filename"
+>Planner\bin</TT
+>. Also copy
+      <TT
+CLASS="filename"
+>comfyj.jar</TT
+>, <TT
+CLASS="filename"
+>jniwrap.jar</TT
+> and
+      <TT
+CLASS="filename"
+>winpack.jar</TT
+> to the <TT
+CLASS="filename"
+>lib</TT
+>
+      folder.</P
+><P
+>At this point you should have the following structure:</P
+><PRE
+CLASS="programlisting"
+>Planner\
+    bin\
+        jniwrap.dll
+        jniwrap.lic
+        comfyj.lic
+    lib\
+        comfyj.jar 
+        jniwrap.jar
+        winpack.jar
+    src\</PRE
+><P
+>The above folder layout is not mandatory, and you can arrange your
+      project as you wish. If you do, please update the references to the
+      paths in your environment accordingly.</P
+><P
+>Note that the <TT
+CLASS="filename"
+>comfyj.jar</TT
+>,
+      <TT
+CLASS="filename"
+>jniwrap.jar</TT
+> and <TT
+CLASS="filename"
+>winpack.jar</TT
+>
+      libraries much be present in <TT
+CLASS="filename"
+>CLASSPATH</TT
+> of your
+      development environment. Also, make sure that
+      <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> can be accessible to your JVM. If you
+      are not sure how to do that, please refer to the JNIWrapper
+      <I
+CLASS="emphasis"
+>Programmer's Guide</I
+>.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN59"
+></A
+>1.2. Creating Application Class</H2
+><P
+>Now let's create a class for the application and run it before
+      moving to the actual coding. As we already decided, we will call it
+      Planner.</P
+><P
+>Put the following code into
+      <TT
+CLASS="filename"
+>Planner.java</TT
+>:</P
+><PRE
+CLASS="programlisting"
+>package com.jniwrapper.samples.planner;
+
+public class Planner
+{
+    public static void main(String[] args)
+    {
+        System.out.println("The Planner is running");
+        System.exit(0);
+    }
+}</PRE
+><P
+>Compile and run the class to see if your configuration is correct.
+      If you can see the output string in the console, jump to the next
+      tutorial step.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN66"
+></A
+>Chapter 2. Generating COM Integration Code</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To communicate with Microsoft Outlook, we will generate Java code
+    for Microsoft Office Outlook Type Library <TT
+CLASS="filename"
+>MSOUTL.OLB</TT
+>.
+    We can do this using CodeGenerator supplied with ComfyJ. This application
+    requires GUID, version, folder for generated code, and destination
+    package. If you're not familiar with this application, please refer to the
+    ComfyJ <I
+CLASS="emphasis"
+>Programmer's Guide</I
+>.</P
+><P
+>The GUID of the Microsoft Office Outlook Type Library is:</P
+><PRE
+CLASS="programlisting"
+>        {00062FFF-0000-0000-C000-000000000046}</PRE
+><P
+>The version number we need is 9.2.</P
+><P
+>The command line for code generation should look like this:</P
+><PRE
+CLASS="programlisting"
+>C:\ComfyJ\bin&#62;CodegenForComfyJ.bat guid {00062FFF-0000-0000-C000-000000000046} 9.2 
+  C:/ComfyJ/samples/Planner/src com.jniwrapper.win32.samples.planner</PRE
+><P
+>Note that this command should be started from the
+    <TT
+CLASS="filename"
+>bin</TT
+> folder of ComfyJ installation.</P
+><P
+>The value of the destination folder parameter in the example above
+    means that generated sources will be placed in the
+    <TT
+CLASS="filename"
+>C:\ComfyJ\samples\Planner\src</TT
+> folder. Replace this
+    path with the one you want to generate stubs to.</P
+><P
+>After code generation is complete, you should get two subpackages
+    called <TT
+CLASS="filename"
+>office</TT
+> and <TT
+CLASS="filename"
+>outlook</TT
+>. Their
+    names are automatically taken by CodeGenerator from the COM
+    library.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN83"
+></A
+>Chapter 3. Writing Planner Class</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN85"
+></A
+>3.1. Outlining Planner Functionality</H2
+><P
+>Let's define the structure of our application. First, as the
+      ComfyJ <I
+CLASS="emphasis"
+>Programmer's Guide</I
+> suggests, we need to
+      initialize COM support for our application. Then, we should log in to
+      MAPI profile to be able to work with Outlook folders. After that, we get
+      the Tasks folder and create a sample task in this folder. Next, we do
+      the same for the Calendar folder to create an appointment.</P
+><P
+>The general structure of our application is shown below.</P
+><PRE
+CLASS="programlisting"
+>package com.jniwrapper.samples.planner;
+
+import com.jniwrapper.UInt32;
+import com.jniwrapper.win32.ole.OleFunctions;
+import com.jniwrapper.win32.com.types.*;
+
+
+public class Planner
+{
+    public static void main(String args[])
+    {
+        Planner p = new Planner();
+        int result = p.execute();
+        System.exit(result);
+    }
+
+    private int execute()
+    {
+        init();
+        try
+        {
+            login();
+
+            MAPIFolder tasksFolder = getTasksFolder();
+            createTask(tasksFolder);
+
+            MAPIFolder calendarFolder = getCalendarFolder();
+            createAppointment(calendarFolder);
+            return 0;
+        }
+        catch(ComException e)
+        {
+            System.out.println( "Unable to access Outlook profile.");
+            e.printStackTrace();
+            return -1;
+        }
+        finally
+        {
+            shutdown();
+        }
+    }
+}</PRE
+><P
+>At this stage, all the methods that our
+      <TT
+CLASS="methodname"
+>main()</TT
+> function calls do nothing and return
+      nulls.</P
+><P
+>You may also notice that we don't handle errors for login and each
+      object is created separately. We do this again for brevity.</P
+><P
+>Now that we have the application structure defined, let's put
+      necessary code for initialization and clean-up.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN95"
+></A
+>3.2. COM Support Initialization and Shutdown</H2
+><P
+>As the ComfyJ <I
+CLASS="emphasis"
+>Programmer's Guide</I
+> instructs,
+      each Java thread that works with COM must initialize a COM library at
+      the beginning and uninitialize at the end of its lifecycle.</P
+><P
+>Since in our sample application we use only one thread, we will
+      use the <TT
+CLASS="methodname"
+>OleFunctions.oleInitialize()</TT
+> and
+      <TT
+CLASS="methodname"
+>OleFunctions.oleUninitialize()</TT
+> methods for
+      initialization and uninitialization, respectively. Since we are not
+      performing other initialization and clean-up tasks for our application,
+      the <TT
+CLASS="methodname"
+>init() </TT
+>and
+      <TT
+CLASS="methodname"
+>shutdown()</TT
+> methods will look like this:</P
+><PRE
+CLASS="programlisting"
+>    private void init()
+    {
+        OleFunctions.oleInitialize();
+    }
+
+    private void shutdown()
+    {
+        OleFunctions.oleUninitialize();
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN105"
+></A
+>3.3. Performing Login</H2
+><P
+>Login to Outlook is performed by invoking the
+      <TT
+CLASS="methodname"
+>logon()</TT
+> method of the
+      <TT
+CLASS="classname"
+>_NameSpace</TT
+> class. The method takes the following
+      parameters:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="parameter"
+><I
+>profile</I
+></TT
+> - MAPI profile to log
+          in.</P
+></LI
+><LI
+><P
+><TT
+CLASS="parameter"
+><I
+>password</I
+></TT
+> - a string representing the
+          password.</P
+></LI
+><LI
+><P
+><TT
+CLASS="parameter"
+><I
+>showDialog</I
+></TT
+> - a boolean value that
+          indicates whether the dialog should be shown.</P
+></LI
+><LI
+><P
+><TT
+CLASS="parameter"
+><I
+>newSession </I
+></TT
+>- a boolean value that
+          indicates whether a new session should be started.</P
+></LI
+></UL
+><P
+>The namespace we need is "MAPI" and we will keep the reference to
+      it as a static field of our class that will be used in other
+      methods:</P
+><PRE
+CLASS="programlisting"
+>public class Planner 
+{
+    <B
+CLASS="emphasis"
+>private _NameSpace _mapiNS = null;</B
+>
+    ...</PRE
+><P
+>The implementation of the <TT
+CLASS="methodname"
+>login()</TT
+> method
+      is shown below:</P
+><PRE
+CLASS="programlisting"
+>    private void login()
+    {
+        _Application application = Application.create(ClsCtx.LOCAL_SERVER);
+        _mapiNS = application.getNamespace(new BStr("MAPI"));
+        _mapiNS.logon(new Variant("Outlook"), 
+                new Variant(""), 
+                new Variant(false), 
+                new Variant(false)); 
+    }</PRE
+><P
+>We use "Outlook" profile name with an empty password. Change these
+      parameters to the values specific to your environment.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN130"
+></A
+>3.4. Accessing Tasks and Calendar Folders</H2
+><P
+>Any Outlook folder can be accessed with the
+      <TT
+CLASS="classname"
+>MAPIFolder</TT
+> class. The necessary folder should be
+      obtained from the <TT
+CLASS="classname"
+>_NameSpace</TT
+> class
+      instance.</P
+><P
+>All available folders in Outlook are represented by the
+      <TT
+CLASS="classname"
+>OlDefaultFolders</TT
+> class as appropriate constants.
+      Methods for accessing required folders are listed below:</P
+><PRE
+CLASS="programlisting"
+>    private MAPIFolder getTasksFolder() throws ComException
+    {
+        MAPIFolder result = _mapiNS.getDefaultFolder(
+                new OlDefaultFolders(OlDefaultFolders.olFolderTasks));
+        return result;
+    }
+    private MAPIFolder getCalendarFolder() throws ComException
+    {
+        MAPIFolder result = _mapiNS.getDefaultFolder(
+                new OlDefaultFolders(OlDefaultFolders.olFolderCalendar));
+        return result;
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN138"
+></A
+>3.5. Creating a New Task</H2
+><P
+>Now that we have access to the necessary Outlook folder, we can
+      add new items to it.</P
+><P
+>For the Tasks folder, this item is a task. Tasks for Outlook are
+      represented by the <TT
+CLASS="classname"
+>_TaskItem</TT
+> class. It should be
+      instantiated like shown in the sample below. Note that we are using the
+      generated implementation class <TT
+CLASS="classname"
+>_TaskItemImpl</TT
+> to
+      create an instance of the <TT
+CLASS="classname"
+>_TaskItem</TT
+>
+      interface.</P
+><PRE
+CLASS="programlisting"
+>    public void createTask(MAPIFolder tasksFolder)
+    {
+        final Variant itemType = new Variant(OlItemType.olTaskItem);
+        final IDispatch task = tasksFolder.getItems().add(itemType);
+        _TaskItem newTask = TaskItem.queryInterface(task);
+
+        //set up some properties for the new task
+        newTask.setSubject(new BStr("This is a test"));
+        newTask.setBody(new BStr("How are you doing today?"));
+
+        //assign the current time for it
+        Date current = new Date(new java.util.Date());
+        newTask.setStartDate(current);
+        newTask.setDueDate(current);
+
+        //and finally save it
+        newTask.save();
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN146"
+></A
+>3.6. Creating a New Appointment</H2
+><P
+>Adding an appointment is similar to adding a task to the Tasks
+      folder:</P
+><PRE
+CLASS="programlisting"
+>    public void createAppointment(MAPIFolder calendarFolder)
+    {
+        final Variant itemType = new Variant(OlItemType.olAppointmentItem);
+        final IDispatch appointment = calendarFolder.getItems().add(itemType);
+
+        _AppointmentItem newAppt = AppointmentItem.queryInterface(appointment);
+
+        //sep up some properties
+        newAppt.setSubject(new BStr("Another Test"));
+        newAppt.setBody(new BStr("Hello! Again!"));
+
+        Calendar calendar = Calendar.getInstance();
+        Date current = new Date(calendar.getTime());
+        calendar.add(Calendar.MINUTE, 30);
+        Date tmEnd = new Date(calendar.getTime());
+        newAppt.setStart(current);
+        newAppt.setEnd(tmEnd);
+
+        newAppt.setAllDayEvent(new VariantBool(false));
+        newAppt.setLocation(new BStr("LPB"));
+
+        //and finally save it
+        newAppt.save();
+    }</PRE
+><P
+>After inserting the above code into the
+      <TT
+CLASS="classname"
+>Planner</TT
+> class, compile and run it. You should
+      have two new items in your Outlook.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN152"
+></A
+>Chapter 4. Conclusion</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>This is the end of the tutorial. Here you learned how to create a
+    simple application that creates a task and an appointment in Microsoft
+    Outlook profile. Although the application is rather simple, it shows the
+    basics for building COM integration applications based on ComfyJ and can
+    serve as a template for such applications.</P
+></DIV
+></DIV
+><P></P></td></tr></tbody></table><table valign="top" border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td><td bgcolor=#A9BAD1 width="100%" align=center><font face ="Verdana, Tahoma,  Sans-Serif" size=3 color=white><b>Copyright &copy; 2002-2012 TeamDev Ltd.</b></font></td><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></BODY
+></HTML
+>

@@ -1,0 +1,6 @@
+All the samples in this folder and subfolders use Excel native peer. 
+So to run these examples you need to substitute jexcel.jar in your 
+project by jexcel-full.jar with complete set of MS Excel wrappers.
+The library can be downloaded from olur hofixes page on following link:
+
+https://sites.google.com/a/teamdev.com/jexcel-support/hotfixes

@@ -1,0 +1,4138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>JExcel Programmer's Guide</TITLE
+><style type="text/css"><!--
+.note {border: 1px solid white; background-color: white; padding: 0pt;}
+.important {border: 1px solid white; background-color: white; padding: 0pt;}
+.note table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.note td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.TOC { font-family: Verdana, Sans-Serif; font-size: 12px;}
+.filename { font-family: courier, monospace; font-size: 14px;}
+.parameter {FONT-WEIGHT: bold;}
+.methodname { font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.classname { color: #204E80; font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.programlisting{border: 1px solid #AEBDCC; background-color: #F3F5F7; padding: 5pt; FONT-FAMILY:  courier, monospace; FONT-SIZE: 12px}
+.title{color: white; text-align: center; border: 1pt solid #7B8798; background-color: #A9BAD1; padding: 5pt; FONT-FAMILY:  Verdana, Sans-Serif; FONT-SIZE: 22px}
+FONT {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+TD {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+BODY {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+P {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+H1 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 22px; FONT-WEIGHT: bold;}
+H2 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 18px; FONT-WEIGHT: bold;}--></style
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#204E80"
+VLINK="#204E80"
+ALINK="#204E89" background="images/bg.png"><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td
+><table border="0" cellpadding="1" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#788598"
+><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#ffffff"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><P></P><H1
+CLASS="title"
+><A
+NAME="AEN1"
+></A
+>JExcel Programmer's Guide</H1
+><HR size=1 noshadow color=#0066CC
+><SPAN
+CLASS="releaseinfo"
+>Version: 1.6<BR></SPAN
+><SPAN
+CLASS="date"
+>Last Updated: November 22, 2012<BR></SPAN
+><P
+CLASS="copyright"
+>Copyright &copy; 2002-2012 TeamDev Ltd. </P
+> </DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+></B><P></P><B>Table of Contents</B><HR size=1 noshadow color=#0066CC
+></DT
+><DT
+>1. <A
+HREF="#AEN8"
+>Introduction</A
+></DT
+><DT
+>2. <A
+HREF="#AEN17"
+>System Requirements</A
+></DT
+><DT
+>3. <A
+HREF="#AEN26"
+>JExcel Overview</A
+></DT
+><DT
+>4. <A
+HREF="#AEN48"
+>Excel Automation Basics</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="#AEN66"
+>Creating a New Application</A
+></DT
+><DT
+>4.2. <A
+HREF="#AEN81"
+>Creating a New Workbook</A
+></DT
+><DT
+>4.3. <A
+HREF="#AEN89"
+>Opening an Existing Workbook</A
+></DT
+><DT
+>4.4. <A
+HREF="#AEN104"
+>Saving a Workbook</A
+></DT
+><DT
+>4.5. <A
+HREF="#AEN125"
+>Obtaining and Modifying Workbook Additional Information</A
+></DT
+><DT
+>4.6. <A
+HREF="#AEN144"
+>Managing Worksheets</A
+></DT
+><DT
+>4.7. <A
+HREF="#AEN182"
+>Working with Workbook Windows</A
+></DT
+><DT
+>4.8. <A
+HREF="#AEN208"
+>Working with a List of Recently Opened Files</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="#AEN220"
+>Event Listening and Handling</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="#AEN233"
+>Application Events</A
+></DT
+><DT
+>5.2. <A
+HREF="#AEN249"
+>Workbook Events</A
+></DT
+><DD
+><DL
+><DT
+>5.2.1. <A
+HREF="#AEN268"
+>Listening to Workbook Events</A
+></DT
+><DT
+>5.2.2. <A
+HREF="#AEN284"
+>Handling Workbook Events</A
+></DT
+></DL
+></DD
+><DT
+>5.3. <A
+HREF="#AEN304"
+>Worksheet Events</A
+></DT
+><DD
+><DL
+><DT
+>5.3.1. <A
+HREF="#AEN325"
+>Listening to Worksheet Events</A
+></DT
+><DT
+>5.3.2. <A
+HREF="#AEN337"
+>Handling Worksheet Events</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>6. <A
+HREF="#AEN355"
+>Working with Cells</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="#AEN357"
+>Referencing Cells</A
+></DT
+><DT
+>6.2. <A
+HREF="#AEN383"
+>Setting New Values</A
+></DT
+><DT
+>6.3. <A
+HREF="#AEN398"
+>Obtaining Existing Values</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="#AEN434"
+>Working with Ranges</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="#AEN436"
+>Referencing Ranges</A
+></DT
+><DT
+>7.2. <A
+HREF="#AEN458"
+>Converting a Cell to a Range and Vice Versa</A
+></DT
+><DT
+>7.3. <A
+HREF="#AEN472"
+>Finding Values in Ranges</A
+></DT
+><DT
+>7.4. <A
+HREF="#AEN527"
+>Sorting a Range</A
+></DT
+><DT
+>7.5. <A
+HREF="#AEN543"
+>Obtaining Ranges Intersection</A
+></DT
+><DT
+>7.6. <A
+HREF="#AEN554"
+>Merging and Unmerging Cells of a Range</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="#AEN566"
+>Reading and writing bulk operations</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="#AEN571"
+>Reading bulk operation</A
+></DT
+><DT
+>8.2. <A
+HREF="#AEN578"
+>Writing bulk operation</A
+></DT
+></DL
+></DD
+><DT
+>9. <A
+HREF="#AEN591"
+>Customizing Cells and Ranges</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="#AEN597"
+>Changing a Number Format</A
+></DT
+><DT
+>9.2. <A
+HREF="#AEN611"
+>Customizing Text Alignment and Orientation</A
+></DT
+><DD
+><DL
+><DT
+>9.2.1. <A
+HREF="#AEN613"
+>Changing Text Alignment</A
+></DT
+><DT
+>9.2.2. <A
+HREF="#AEN647"
+>Changing Text Orientation</A
+></DT
+></DL
+></DD
+><DT
+>9.3. <A
+HREF="#AEN664"
+>Customizing Text Font</A
+></DT
+><DT
+>9.4. <A
+HREF="#AEN724"
+>Changing Background Pattern and Color in Cells</A
+></DT
+><DT
+>9.5. <A
+HREF="#AEN750"
+>Border Customization</A
+></DT
+></DL
+></DD
+><DT
+>10. <A
+HREF="#AEN775"
+>Integrating a Workbook into a Java Swing Application</A
+></DT
+><DD
+><DL
+><DT
+>10.1. <A
+HREF="#AEN786"
+>Opening and Saving an Embedded Workbook</A
+></DT
+><DT
+>10.2. <A
+HREF="#AEN794"
+>Printing an Embedded Workbook</A
+></DT
+><DT
+>10.3. <A
+HREF="#AEN807"
+>Displaying a Workbook in Static Mode</A
+></DT
+><DT
+>10.4. <A
+HREF="#AEN812"
+>Listening to JWorkbook Events</A
+></DT
+><DT
+>10.5. <A
+HREF="#AEN837"
+>Multiple JWorkbook instances</A
+></DT
+><DT
+>10.6. <A
+HREF="#AEN845"
+>JWorkbook objects handling on application exit</A
+></DT
+></DL
+></DD
+><DT
+>11. <A
+HREF="#AEN852"
+>Working with Native Peers and Thread Issues</A
+></DT
+><DT
+>12. <A
+HREF="#AEN874"
+>Support</A
+></DT
+><DD
+><DL
+><DT
+>12.1. <A
+HREF="#AEN890"
+>JExcel Forum</A
+></DT
+><DT
+>12.2. <A
+HREF="#AEN896"
+>Reporting Problems</A
+></DT
+><DT
+>12.3. <A
+HREF="#AEN904"
+>Troubleshooting</A
+></DT
+></DL
+></DD
+><DT
+>13. <A
+HREF="#AEN913"
+>Where to Get a New Version</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN8"
+></A
+>Chapter 1. Introduction</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>There are lots of programming tasks that deal with generating
+    reports in the tabular format. Usually such documents should be designed
+    for reviewing by people who are not closely familiar with different
+    technologies and prefer to obtain reports in a usual format. For Microsoft
+    Windows users, the most common office solution is Microsoft Office, and
+    when talking about electronic worksheets, it is undoubtedly Microsoft
+    Excel.</P
+><P
+>The JExcel library allows Java programmers for Windows to easily
+    create, modify or display Microsoft Excel files. Using this library, you
+    can work with workbook files, print a workbook, worksheet or even a
+    specific range of cells, and modify cell values, cell number formats, etc.
+    Also, there is an ability to customize cell appearance, including text
+    font, cell background and border, text alignment and orientation,
+    etc.</P
+><P
+>JExcel can be used for solving different tasks from simple display
+    of a workbook in a standalone Excel application to handling Excel events
+    and embedding a workbook into Java Swing applications. The use of the
+    library is very simple and doesn't require from a Java programmer specific
+    knowledge of Microsoft Office programming.</P
+><P
+>In the JExcel distribution you can view a demo application
+    (JExcelDemo) showing how to embed an Excel workbook in a Java Swing
+    application using the <TT
+CLASS="classname"
+>JWorkbook</TT
+> component.</P
+><P
+>Each chapter below contains samples which you can also find in the
+    <TT
+CLASS="filename"
+>samples\Guide</TT
+> folder of the JExcel
+    distribution.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN17"
+></A
+>Chapter 2. System Requirements</H1
+><HR size=1 noshadow color=#0066CC
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Microsoft Windows 2003/XP/Vista or higher with x86 arch;</P
+></LI
+><LI
+><P
+>Microsoft Excel 2000 or later;</P
+></LI
+><LI
+><P
+>Java 2 SDK/JRE 1.4.x or higher.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN26"
+></A
+>Chapter 3. JExcel Overview</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>The JExcel functionality can be divided into the following
+    parts:</P
+><P
+></P
+><UL
+><LI
+><P
+>Automation of an Excel application, workbooks, worksheets,
+        etc.</P
+><P
+>This is the core functionality of the JExcel library which
+        allows you to work with Excel applications, workbooks, worksheets,
+        ranges and cells.</P
+></LI
+><LI
+><P
+>Embedding a workbook in a Java Swing application.</P
+><P
+>JExcel provides the <TT
+CLASS="classname"
+>JWorkbook</TT
+> component
+        that allows embedding an Excel workbook in a Java Swing application as
+        an ordinary Swing component.</P
+></LI
+><LI
+><P
+>Listening to workbook or worksheet events.</P
+><P
+><TT
+CLASS="classname"
+>Workbook</TT
+> and
+        <TT
+CLASS="classname"
+>Worksheet</TT
+> JExcel classes allow adding listeners
+        of events generated by a workbook or worksheet respectively.</P
+></LI
+><LI
+><P
+>Handling workbook and worksheet events.</P
+><P
+>Unlike event listeners, event handlers allow you not only to
+        obtain events, but also affect the application behavior.</P
+></LI
+><LI
+><P
+>Working with native peers.</P
+><P
+>Native peers are provided to allow you to add custom
+        functionality based on JExcel.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN48"
+></A
+>Chapter 4. Excel Automation Basics</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>This chapter discusses the functionality of the following JExcel
+    classes:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="classname"
+>Application</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="classname"
+>Workbook</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="classname"
+>Worksheet</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="classname"
+>Window</TT
+></P
+></LI
+></UL
+><P
+>All these classes reside in the
+    <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+> package.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN66"
+></A
+>4.1. Creating a New Application</H2
+><P
+>Your work with Excel starts with the creation of a new Excel
+      application. The JExcel library includes the
+      <TT
+CLASS="classname"
+>Application</TT
+> class that represents an Excel
+      application and provides related functionality. A new application is
+      created by calling the <TT
+CLASS="classname"
+>Application</TT
+>
+      constructor:</P
+><PRE
+CLASS="programlisting"
+>        Application application = new Application();</PRE
+><P
+>When the Excel application is created, it is not visible. To make
+      the application visible, the
+      <TT
+CLASS="methodname"
+>Application.setVisible()</TT
+> method should be
+      called:</P
+><PRE
+CLASS="programlisting"
+>        if (!application.isVisible())
+        {
+            application.setVisible(true);
+        }</PRE
+><P
+>Similarly, the following call hides the application, but doesn't
+      close it:</P
+><PRE
+CLASS="programlisting"
+>        application.setVisible(false);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/ApplicationSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN81"
+></A
+>4.2. Creating a New Workbook</H2
+><P
+>To create a new workbook, call the
+      <TT
+CLASS="methodname"
+>Application.createWorkbook()</TT
+> method which
+      returns a newly created workbook:</P
+><PRE
+CLASS="programlisting"
+>        Workbook workbook = application.createWorkbook("Custom title");</PRE
+><P
+>The <TT
+CLASS="parameter"
+><I
+>title</I
+></TT
+> parameter can be
+      <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN89"
+></A
+>4.3. Opening an Existing Workbook</H2
+><P
+>The <TT
+CLASS="methodname"
+>Application.openWorkbook()</TT
+> method
+      allows you to open a workbook of any format supported by the current
+      version of Excel. If a workbook requires a password, it should be passed
+      to the <TT
+CLASS="parameter"
+><I
+>password</I
+></TT
+> parameter. Set the
+      <TT
+CLASS="parameter"
+><I
+>readOnly</I
+></TT
+> parameter to <TT
+CLASS="constant"
+>true</TT
+>
+      to prevent an opened workbook from modifying.</P
+><PRE
+CLASS="programlisting"
+>        File xlsFile = new File("C:\\Workbook.xls");
+        Workbook workbook = application.openWorkbook(xlsFile, true, "password");</PRE
+><P
+>The sample above opens the <TT
+CLASS="filename"
+>Workbook.xls</TT
+> file
+      protected with the password <TT
+CLASS="parameter"
+><I
+>"password"</I
+></TT
+> in
+      read-only mode.</P
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/WorkbookSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN104"
+></A
+>4.4. Saving a Workbook</H2
+><P
+>A workbook can be saved in any format supported by the current
+      version of Excel. The <TT
+CLASS="classname"
+>FileFormat</TT
+> class from the
+      <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+> package is an
+      enumeration of all file formats supported by Excel version 9.0. The
+      default Excel file format is
+      <TT
+CLASS="classname"
+>FileFormat.WORKBOOKNORMAL</TT
+>. All changes in an
+      opened workbook can be saved by calling the
+      <TT
+CLASS="methodname"
+>Workbook.save()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        workbook.save();</PRE
+><P
+>The <TT
+CLASS="methodname"
+>Workbook.save()</TT
+> method should be
+      called only if the workbook was opened not in read-only mode, or was
+      created and saved before.</P
+><P
+>To save a newly created workbook or to save a workbook to another
+      file or format, call the <TT
+CLASS="methodname"
+>Workbook.saveAs()</TT
+>
+      method:</P
+><PRE
+CLASS="programlisting"
+>        //Saving the workbook to a new file in the default Excel format
+        File newXlsFile = new File("C:\\Workbook2.xls");
+        workbook.saveAs(newXlsFile, FileFormat.WORKBOOKNORMAL, true);
+
+        //Saving the workbook to a new file in the XML format
+        File newXmlFile = new File("C:\\Workbook2.xml");
+        workbook.saveAs(newXmlFile, FileFormat.XMLSPREADSHEET, true);</PRE
+><P
+>The <TT
+CLASS="methodname"
+>Workbook.saveAs()</TT
+> method saves a
+      workbook to a different file and makes it active in Excel. To make the
+      current workbook active after saving its copy, use the
+      <TT
+CLASS="methodname"
+>Workbook.saveCopyAs()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Saving a copy of the workbook
+        File workbookCopy = new File("C:\\WorkbookCopy.xls");
+        workbook.saveCopyAs(workbookCopy);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/WorkbookSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN125"
+></A
+>4.5. Obtaining and Modifying Workbook Additional Information</H2
+><P
+>The <TT
+CLASS="classname"
+>Workbook</TT
+> class provides functionality
+      for obtaining a workbook name, title, author, and file path:</P
+><PRE
+CLASS="programlisting"
+>        String fileName = workbook.getFile().getAbsolutePath();
+        String name = workbook.getName();
+        String title = workbook.getTitle();
+        String author = workbook.getAuthor();</PRE
+><P
+>The <TT
+CLASS="methodname"
+>Workbook.getHasPassword()</TT
+> method
+      allows you to know whether a workbook is protected by a password:</P
+><PRE
+CLASS="programlisting"
+>        if (workbook.getHasPassword())
+        {
+            System.out.println("The workbook is protected with a password");
+        }
+        else
+        {
+            System.out.println("The workbook is not protected with a password");
+        }</PRE
+><P
+>To know whether a workbook is opened in read-only mode, call the
+      <TT
+CLASS="methodname"
+>Workbook.isReadOnly()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        if (workbook.isReadOnly())
+        {
+            System.out.println("Read-only mode");
+        }</PRE
+><P
+>All the workbook attributes mentioned above, except the workbook
+      name, can be modified by calling the appropriate methods of the
+      <TT
+CLASS="classname"
+>Workbook</TT
+> class:</P
+><PRE
+CLASS="programlisting"
+>        workbook.setTitle("New title");
+        workbook.setPassword("xxx001");
+        workbook.setAuthor("John Smith");</PRE
+><P
+>The workbook name is the workbook file name which is modified
+      automatically with the file name change.</P
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/WorkbookSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN144"
+></A
+>4.6. Managing Worksheets</H2
+><P
+>JExcel allows you to manage worksheets by different ways.</P
+><P
+>A worksheet can be obtained via its name or index using the
+      <TT
+CLASS="methodname"
+>Workbook.getWorksheet()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Obtaining a worksheet by its name
+        Worksheet customSheet = workbook.getWorksheet("Custom sheet");
+        
+        //Obtaining a worksheet by its index
+        int lastIndex = workbook.getWorksheetsCount();
+        Worksheet lastWorksheet = workbook.getWorksheet(lastIndex);</PRE
+><P
+>To add a new worksheet to the workbook, use the
+      <TT
+CLASS="methodname"
+>Workbook.addWorksheet()</TT
+> method. This method
+      allows you to add a new worksheet after the specified worksheet and
+      assign the name of the new worksheet:</P
+><PRE
+CLASS="programlisting"
+>        Worksheet sheet2 = workbook.getWorksheet("Sheet2");
+        workbook.addWorksheet(sheet2, "Custom sheet");</PRE
+><P
+>To add a new worksheet to the beginning of the worksheet list,
+      pass <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+> in place of the worksheet parameter or
+      use the <TT
+CLASS="methodname"
+>Workbook.addWorksheet()</TT
+> method with a
+      single <TT
+CLASS="parameter"
+><I
+>name</I
+></TT
+> parameter. The following function
+      calls are equal:</P
+><PRE
+CLASS="programlisting"
+>        {
+            Worksheet worksheet1 = workbook.addWorksheet("New sheet 1");
+        }
+        {
+            Worksheet worksheet1 = workbook.addWorksheet(null, "New sheet 1");
+        }</PRE
+><P
+>The <TT
+CLASS="methodname"
+>Workbook.getWorksheets()</TT
+> method
+      allows you to get a list of all workbook worksheets :</P
+><PRE
+CLASS="programlisting"
+>        List worksheets = workbook.getWorksheets();
+
+        for (int i = 0; i &#60; worksheets.size(); i++)
+        {
+            Worksheet worksheet = (Worksheet)worksheets.get(i);
+            //Some action
+        }</PRE
+><P
+>A worksheet also can be moved to a specified position using the
+      <TT
+CLASS="methodname"
+>Workbook.moveWorksheet()</TT
+> method. method. The
+      method takes <TT
+CLASS="methodname"
+>worksheet</TT
+> instance for moving and
+      another <TT
+CLASS="methodname"
+>after</TT
+> worksheet reference after which,
+      the moved worksheet will be placed. If <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+> is
+      passed to the <TT
+CLASS="parameter"
+><I
+>after</I
+></TT
+> parameter, the worksheet will
+      be moved to the beginning of the worksheet list:</P
+><PRE
+CLASS="programlisting"
+>        //Moving customSheet to the end of the worksheet list
+        workbook.moveWorksheet(customSheet, lastWorksheet);
+
+        if (customSheet.getIndex() == workbook.getWorksheetsCount())
+        {
+            System.out.println(customSheet.getName() + " is the last worksheet.");
+        }
+
+        //Moving customSheet to the beginning of the worksheet list 
+        workbook.moveWorksheet(customSheet, null);
+
+        if (customSheet.getIndex() == 1)
+        {
+            System.out.println(customSheet.getName() + " is the first worksheet.");
+        }</PRE
+><P
+>In the same way you can copy worksheets using
+      <TT
+CLASS="methodname"
+>copyWorksheet()</TT
+> method as inside single
+      workbook and between different workbooks:</P
+><PRE
+CLASS="programlisting"
+>        GenericWorkbook workbook = application.createWorkbook(null);
+        GenericWorkbook anotherWorkbook = application.createWorkbook(null);
+
+        Worksheet worksheet = workbook.addWorksheet(null, null);
+        //Here we copy worksheet as a last worksheet
+        anotherWorkbook.copyWorksheet(worksheet, null, anotherWorkbook.getWorksheet(3));
+        //Here we insert worksheet copy before second worksheet
+        anotherWorkbook.copyWorksheet(worksheet, anotherWorkbook.getWorksheet(2), null);</PRE
+><P
+>High level <TT
+CLASS="methodname"
+>mergeWorkbook()</TT
+> method allows
+      copying all worksheets from the specified workbook into another workbook
+      instance:</P
+><PRE
+CLASS="programlisting"
+>        GenericWorkbook firstWorkbook = application.createWorkbook(null);
+        GenericWorkbook secondWorkbook = application.createWorkbook(null);
+        
+        //Merging workbook instances
+        firstWorkbook.mergeWorkbook(secondWorkbook);
+        //Merging workbook with workbook file
+        firstWorkbook.mergeWorkbook(new File("c:/test.xls"));</PRE
+><P
+>Please note that this method copies only worksheets but skips VBA
+      scripts.</P
+><P
+>To remove a worksheet from a workbook, call the
+      <TT
+CLASS="methodname"
+>Workbook.removeWorksheet()</TT
+> method. Note that a
+      workbook must contain at least one worksheet, so the last worksheet
+      cannot be removed.</P
+><PRE
+CLASS="programlisting"
+>        //Removing customSheet
+        workbook.removeWorksheet(customSheet);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/WorksheetSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN182"
+></A
+>4.7. Working with Workbook Windows</H2
+><P
+>Every Excel workbook is displayed in a separate window. The JExcel
+      library provides the <TT
+CLASS="classname"
+>Window</TT
+> class for obtaining
+      and modifying window properties. This class resides in the
+      <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+> package.</P
+><P
+>The <TT
+CLASS="methodname"
+>Application.getWindows()</TT
+> method
+      allows you to get all windows belonging to the application:</P
+><PRE
+CLASS="programlisting"
+>        List windows = application.getWindows();
+        for (int i = 0; i &#60; windows.size(); i++)
+        {
+            Window window = (Window)windows.get(i);
+            //Some action
+        }</PRE
+><P
+>A window can also be obtained for a single workbook:</P
+><PRE
+CLASS="programlisting"
+>        Window window = workbook.getWindow();</PRE
+><P
+>The <TT
+CLASS="classname"
+>Window</TT
+> class allows you to get and
+      modify the window caption, size, zoom and window state. To work with
+      window states, JExcel provides the <TT
+CLASS="classname"
+>Window.State</TT
+>
+      class, which is an enumeration of <TT
+CLASS="classname"
+>MINIMIZED</TT
+>,
+      <TT
+CLASS="classname"
+>MAXIMIZED</TT
+> and <TT
+CLASS="classname"
+>NORMAL</TT
+>
+      constants. The following sample demonstrates how to get the window
+      properties:</P
+><PRE
+CLASS="programlisting"
+>        Window window = workbook.getWindow();
+
+        System.out.println("Caption: " + window.getCaption());
+        System.out.println("Width: " + window.getWidth());
+        System.out.println("Height: " + window.getHeight());
+        System.out.println("State: " + printState(window));
+        System.out.println("Zoom: " + window.getZoom());
+        System.out.println("Index: " + window.getIndex());</PRE
+><P
+>All the window properties, except the index, can be
+      modified:</P
+><PRE
+CLASS="programlisting"
+>        Window window = workbook.getWindow();        
+        
+        window.setCaption("New window caption");
+        window.setState(Window.State.NORMAL);
+        window.setHeight(450);
+        window.setWidth(600);
+        window.setZoom(150.0);</PRE
+><P
+>To know what workbook is currently displayed in the window, call
+      the <TT
+CLASS="methodname"
+>Window.getWorkbook()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        Workbook workbook = window.getWorkbook();</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/WindowsSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN208"
+></A
+>4.8. Working with a List of Recently Opened Files</H2
+><P
+>The <TT
+CLASS="classname"
+>Application</TT
+> class allows you to obtain
+      a list of recently opened Excel files:</P
+><PRE
+CLASS="programlisting"
+>        List files = application.getRecentFiles();
+        for (int i = 0; i &#60; files.size(); i++)
+        {
+            File file = (File)files.get(i);
+            //Some action
+        }</PRE
+><P
+>If a workbook is opened or saved, it doesn't fall into the list of
+      recently opened files automatically. The
+      <TT
+CLASS="methodname"
+>Application.addToRecentFiles()</TT
+> method allows
+      you to add a file to the recently opened files list manually:</P
+><PRE
+CLASS="programlisting"
+>        File file = new File("C:\\Workbook.xls");
+        application.addToRecentFiles(file);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/ApplicationSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN220"
+></A
+>Chapter 5. Event Listening and Handling</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Excel sends notifications about its various events. JExcel provides
+    the <TT
+CLASS="classname"
+>ApplicationEventListener</TT
+>,
+    <TT
+CLASS="classname"
+>WorksheetEventListener</TT
+> and
+    <TT
+CLASS="classname"
+>WorkbookEventListener</TT
+> interfaces for the events
+    related to applications, worksheets, and workbooks respectively.</P
+><P
+>Excel also generate some controlled events that can affect a
+    workbook or worksheet behavior. Note that listeners and adapters allow you
+    just to obtain notifications. To hande such events, there are also the
+    <TT
+CLASS="classname"
+>WorkbookEventHandler</TT
+> and
+    <TT
+CLASS="classname"
+>WorksheetEventHandler</TT
+> interfaces provided. A
+    notification about a controlled event is sent to event listeners
+    <I
+CLASS="emphasis"
+>after</I
+> it is processed by a handler, because the
+    handler can forbid processing the event and in this case listeners don't
+    obtain the notification. Instances of <TT
+CLASS="classname"
+>Application</TT
+>,
+    <TT
+CLASS="classname"
+>Workbook</TT
+> and <TT
+CLASS="classname"
+>Worksheet</TT
+> can
+    have several listeners, however each instance cannot have more than one
+    event handler.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN233"
+></A
+>5.1. Application Events</H2
+><P
+>Excel sends notifications about the following application
+      events:</P
+><P
+></P
+><UL
+><LI
+><P
+>A new workbook is created.</P
+></LI
+><LI
+><P
+>A workbook is opened.</P
+></LI
+></UL
+><P
+>JExcel provides the
+      <TT
+CLASS="interfacename"
+>ApplicationEventListener</TT
+> interface for
+      obtaining notifications about application events. This interface resides
+      in the <TT
+CLASS="filename"
+>com.jniwrapper.win32.jexcel</TT
+> package. The
+      following sample demonstrates how to add a listener of application
+      events:</P
+><PRE
+CLASS="programlisting"
+>        Application application = new Application();
+        application.addApplicationEventListener(new ApplicationEventListener()
+        {
+            public void newWorkbook(ApplicationEventObject eventObject)
+            {
+                System.out.println(eventObject.getWorkbook().getName() + " workbook is created.");
+            }
+
+            public void openWorkbook(ApplicationEventObject eventObject)
+            {
+                System.out.println(eventObject.getWorkbook().getName() + " workbook is opened.");
+            }
+        });</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/ApplicationEventsSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN249"
+></A
+>5.2. Workbook Events</H2
+><P
+>Excel sends notifications about the following workbook
+      events:</P
+><P
+></P
+><UL
+><LI
+><P
+>A workbook is activated.</P
+></LI
+><LI
+><P
+>A workbook is deactivated.</P
+></LI
+><LI
+><P
+>A new worksheet is added to a workbook.</P
+></LI
+><LI
+><P
+>Before a workbook is saved.</P
+></LI
+><LI
+><P
+>Before a workbook is closed.</P
+></LI
+></UL
+><P
+>To obtain notifications about workbook events, JExcel provides the
+      <TT
+CLASS="interfacename"
+>WorkbookEventListener</TT
+> interface and
+      <TT
+CLASS="classname"
+>WorkbookEventAdapter</TT
+> class which is added as a
+      convenience for creating listener objects. To handle controlled events,
+      use the <TT
+CLASS="classname"
+>WorkbookEventHandler</TT
+> interface of the
+      JExcel library. All these classes and interfaces reside in the
+      <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+> package.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN268"
+></A
+>5.2.1. Listening to Workbook Events</H3
+><P
+>JExcel provides the
+        <TT
+CLASS="interfacename"
+>WorkbookEventListener</TT
+> interface and the
+        <TT
+CLASS="classname"
+>WorkbookEventAdapter</TT
+> class. The
+        <TT
+CLASS="classname"
+>WorkbookEventListener</TT
+> interface allows you to
+        obtain a notification, but doesn't provide an ability to affect the
+        workbook's behavior. The <TT
+CLASS="classname"
+>WorkbookEventAdapter</TT
+>
+        class implements the <TT
+CLASS="classname"
+>WorkbookListener</TT
+> interface
+        and contains empty method bodies. This class allows you to implement
+        not all methods of the
+        <TT
+CLASS="interfacename"
+>WorkbookEventListener</TT
+> interface, but to
+        extend the <TT
+CLASS="classname"
+>WorkbookEventAdapter</TT
+> class and
+        implement only necessary methods.</P
+><P
+>The following sample demonstrates how to add a listener of the
+        workbook activation and deactivation events:</P
+><PRE
+CLASS="programlisting"
+>        workbook.addWorkbookEventListener(new WorkbookEventAdapter()
+        {
+            public void activate(WorkbookEventObject eventObject)
+            {
+                System.out.println("\"" + eventObject.getWorkbook().getName() + "\" is activated.");    
+            }
+    
+            public void deactivate(WorkbookEventObject eventObject)
+            {
+                System.out.println("\"" + eventObject.getWorkbook().getName() + "\" is deactivated.");
+            }
+        });</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/EventListenersSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN284"
+></A
+>5.2.2. Handling Workbook Events</H3
+><P
+>To handle controlled events, use the
+        <TT
+CLASS="classname"
+>WorkbookEventHandler</TT
+> interface provided. The
+        methods of this interface are called when events that can be handled
+        occur and the result affects the workbook's behavior.</P
+><P
+>The <TT
+CLASS="methodname"
+>WorkbookEventHandler.beforeSave()</TT
+>
+        method is called before processing the save operation. The handler can
+        forbid the save operation by returning <TT
+CLASS="parameter"
+><I
+>false</I
+></TT
+>.
+        In this case the workbook will not be saved and the workbook event
+        listeners will not obtain a notification about the
+        <TT
+CLASS="methodname"
+>beforeSave</TT
+> event. To allow saving the
+        workbook, the handler should return
+        <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+>.</P
+><P
+>The <TT
+CLASS="methodname"
+>WorkbookEventHandler.beforeClose()</TT
+>
+        method is called before processing the workbook's close operation. To
+        forbid the workbook closing, the handler should return
+        <TT
+CLASS="parameter"
+><I
+>false</I
+></TT
+>, otherwise the return value should be
+        <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+>. If the operation is forbidden, listeners
+        will not obtain a notification about the
+        <TT
+CLASS="methodname"
+>beforeClose</TT
+> event.</P
+><P
+>The following sample demonstrates how to set up a workbook event
+        handler:</P
+><PRE
+CLASS="programlisting"
+>        workbook.setEventHandler(new WorkbookEventHandler()
+        {
+            public boolean beforeClose(WorkbookEventObject eventObject)
+            {
+                //Allow closing any workbooks
+                return true;
+            }
+    
+            public boolean beforeSave(WorkbookEventObject eventObject)
+            {
+                //Forbid saving any workbooks
+                return false;
+            }
+        });</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/EventHandlersSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN304"
+></A
+>5.3. Worksheet Events</H2
+><P
+>Excel sends notifications about the following worksheet
+      events:</P
+><P
+></P
+><UL
+><LI
+><P
+>A worksheet is activated.</P
+></LI
+><LI
+><P
+>A worksheet is deactivated.</P
+></LI
+><LI
+><P
+>A cell range of values is changed.</P
+></LI
+><LI
+><P
+>Selection in a worksheet is changed.</P
+></LI
+><LI
+><P
+>Before processing a double-click event.</P
+></LI
+><LI
+><P
+>Before processing a right-click event.</P
+></LI
+></UL
+><P
+>The JExcel library provides the
+      <TT
+CLASS="classname"
+>WorksheetEventListener</TT
+> interface and the
+      <TT
+CLASS="classname"
+>WorksheetEventAdapter</TT
+> class for listening to
+      worksheet events and the <TT
+CLASS="classname"
+>WorksheetEventHandler</TT
+>
+      for handling controlled events. All these classes and interfaces reside
+      in the <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+>
+      package.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN325"
+></A
+>5.3.1. Listening to Worksheet Events</H3
+><P
+>The <TT
+CLASS="classname"
+>WorksheetEventListener</TT
+> interface
+        allows you to obtain notifications about worksheet events. The
+        <TT
+CLASS="classname"
+>WorksheetEventAdapter</TT
+> class is an empty
+        implementation of the <TT
+CLASS="classname"
+>WorksheetEventListener</TT
+>
+        interface and it is provided for more convenient implementation of
+        some part of the interface.</P
+><P
+>The following sample demonstrates how to add a worksheet
+        listener of activation, deactivation and worksheet changed
+        events:</P
+><PRE
+CLASS="programlisting"
+>        worksheet.addWorksheetEventListener(new WorksheetEventAdapter()
+        {
+            public void changed(WorksheetEventObject eventObject)
+            {
+                System.out.println(eventObject.getRange().getAddress() + " is changed.");
+            }
+    
+            public void activated(WorksheetEventObject eventObject)
+            {
+                System.out.println("\"" + eventObject.getWorksheet().getName() + "\" is activated.");
+            }
+    
+            public void deactivated(WorksheetEventObject eventObject)
+            {
+                System.out.println("\"" + eventObject.getWorksheet().getName() + "\" is deactivated.");
+            }
+        });  </PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/EventListenersSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN337"
+></A
+>5.3.2. Handling Worksheet Events</H3
+><P
+>JExcel lets you handle controlled events via the
+        <TT
+CLASS="classname"
+>WorksheetEventHandler</TT
+> interface.</P
+><P
+>The
+        <TT
+CLASS="methodname"
+>WorksheetEventHandler.beforeRightClick()</TT
+>
+        method is called when the user right-clicks in a worksheet, but before
+        processing the event. The handler can forbid the event processing by
+        returning <TT
+CLASS="parameter"
+><I
+>false</I
+></TT
+>. In this case neither listeners
+        will obtain the notification, nor Excel will process the event (Excel
+        usually shows a pop-up menu). Return <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+> to
+        allow processing the right-click event.</P
+><P
+>The
+        <TT
+CLASS="methodname"
+>WorksheetEventHandler.beforeDoubleClick()</TT
+>
+        method is called when the user double-clicks a cell, but before
+        processing the event. Return <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+> to allow
+        processing the double-click event, or <TT
+CLASS="parameter"
+><I
+>false</I
+></TT
+> to
+        forbid it.</P
+><P
+>The sample below demonstrates how to set up a worksheet event
+        handler:</P
+><PRE
+CLASS="programlisting"
+>        worksheet.setEventHandler(new WorksheetEventHandler()
+        {
+            public boolean beforeDoubleClick(WorksheetEventObject eventObject)
+            {
+                //Forbid double-clicking on "A1" cell
+                if (eventObject.getCell().equals(eventObject.getWorksheet().getCell("A1")))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+    
+            public boolean beforeRightClick(WorksheetEventObject eventObject)
+            {
+                //Allow right-clicking only on "A1" cell
+                if (eventObject.getRange().equals(eventObject.getWorksheet().getRange("A1")))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }); </PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>basics/EventHandlersSample.java</TT
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN355"
+></A
+>Chapter 6. Working with Cells</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN357"
+></A
+>6.1. Referencing Cells</H2
+><P
+>JExcel allows you to reference cells by coordinates, address or
+      name. The <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+> package
+      includes the <TT
+CLASS="classname"
+>Cell</TT
+> class which provides
+      cell-related functionality. To obtain an instance of the
+      <TT
+CLASS="classname"
+>Cell</TT
+> class, call the
+      <TT
+CLASS="methodname"
+>Worksheet.getCell()</TT
+> method.</P
+><P
+>The sample below demonstrates how to obtain cells by address and
+      coordinates:</P
+><PRE
+CLASS="programlisting"
+>        //Obtaining a cell by its address
+        Cell cell = worksheet.getCell("A1");
+        
+        //Obtaining the forth cell in the third row by coordinates
+        Cell cell2 = worksheet.getCell(3, 4);</PRE
+><P
+>The <TT
+CLASS="classname"
+>Cell</TT
+> class has the
+      <TT
+CLASS="methodname"
+>getRow()</TT
+> and
+      <TT
+CLASS="methodname"
+>getColumn()</TT
+> methods that let you know the
+      cell's coordinates. To know the cell's address, call the
+      <TT
+CLASS="methodname"
+>Cell.getAddress()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        String cellAddress = cell.getAddress();</PRE
+><P
+>The <TT
+CLASS="methodname"
+>Cell.setName()</TT
+> method is used for
+      creating named cells. To know whether the cell is named, call the
+      <TT
+CLASS="methodname"
+>Cell.getName()</TT
+> method. If the return value is
+      <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+>, the cell is not named, otherwise the method
+      returns the cell's name.</P
+><PRE
+CLASS="programlisting"
+>        if (cell.getName() == null)
+        {
+            System.out.println(cell.getAddress() + " name is not set up.");
+            cell.setName("Profit");
+        }
+        else
+        {
+            System.out.println(cell.getAddress() + " name is \"" + cell.getName() + "\"");
+        }</PRE
+><P
+>Referencing named cells is done in the same way as passing the
+      cell name instead of its address:</P
+><PRE
+CLASS="programlisting"
+>        //Obtaining a cell by its name
+        Cell cell = worksheet.getCell("Profit");</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>cell/NamedCellsSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN383"
+></A
+>6.2. Setting New Values</H2
+><P
+>The current version of the JExcel library allows you to assign
+      values of four types: <TT
+CLASS="type"
+>double</TT
+>, <TT
+CLASS="type"
+>long</TT
+>,
+      <TT
+CLASS="type"
+>String</TT
+> and <TT
+CLASS="type"
+>java.util.Date</TT
+>. The
+      <TT
+CLASS="classname"
+>Cell</TT
+> class has the
+      <TT
+CLASS="methodname"
+>setValue()</TT
+> method which takes a value of any of
+      the mentioned types.</P
+><P
+>The sample below demonstrates the way of setting cell
+      values:</P
+><PRE
+CLASS="programlisting"
+>        Cell cell = worksheet.getCell("A1");
+        //Setting a string value
+        cell.setValue("String value");
+
+        cell = worksheet.getCell("A2");
+        //Setting a long value
+        cell.setValue(220);
+
+        cell = worksheet.getCell("A3");
+        //Setting a double value
+        cell.setValue(122.1);
+
+        cell = worksheet.getCell("A4");
+        //Setting a Date value
+        cell.setValue(new Date());
+
+        //Setting a formula
+        cell.setValue("=SUM(A1:B12)");</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>cell/SettingValuesSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN398"
+></A
+>6.3. Obtaining Existing Values</H2
+><P
+>The <TT
+CLASS="classname"
+>Cell</TT
+> class provides several methods for
+      obtaining values of different types:</P
+><P
+></P
+><UL
+><LI
+><P
+>The <TT
+CLASS="methodname"
+>Cell.getNumber()</TT
+> method returns a
+          numeric value as an instance of the
+          <TT
+CLASS="classname"
+>java.lang.Number</TT
+> class. If the cell value
+          cannot be converted to a number, <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+> is
+          returned.</P
+></LI
+><LI
+><P
+>The <TT
+CLASS="methodname"
+>Cell.getDate()</TT
+> method returns a
+          date value as an instance of the
+          <TT
+CLASS="classname"
+>java.util.Date</TT
+> class. If the cell value
+          cannot be converted to the date format, <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+>
+          is returned.</P
+></LI
+><LI
+><P
+>The <TT
+CLASS="methodname"
+>Cell.getString()</TT
+> method returns a
+          cell value in the string format.</P
+></LI
+></UL
+><PRE
+CLASS="programlisting"
+>        //Getting a string value
+        cell = worksheet.getCell("A3");
+        String strValue = cell.getString();
+        System.out.println("A3 string value: " + strValue);
+
+        //Getting a double value
+        cell = worksheet.getCell("C2");
+        Number numValue = cell.getNumber();
+        double doubleValue = numValue.doubleValue();
+        System.out.println("C2 double value: " + doubleValue);
+
+        //Getting a Date value
+        cell = worksheet.getCell("D1");
+        Date dateValue = cell.getDate();
+        System.out.println("D1 date value: " + dateValue);</PRE
+><P
+>If a cell contains a formula, methods for getting a cell value
+      return a calculated result. To know whether the cell value is calculable
+      or not, call the <TT
+CLASS="methodname"
+>Cell.hasFormula()</TT
+> method,
+      which returns <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+> if the cell value is
+      calculable or <TT
+CLASS="methodname"
+>false</TT
+> if otherwise. The
+      <TT
+CLASS="methodname"
+>Cell.getFormula()</TT
+> method allows to obtain a
+      cell's formula in the string format:</P
+><PRE
+CLASS="programlisting"
+>        //Getting cell's formula and value
+        cell = worksheet.getCell("B5");
+        
+        if (cell.hasFormula())
+        {
+            String formula = cell.getFormula();
+            System.out.println("B5 formula: " + formula);
+        }
+        long value = cell.getNumber().longValue();
+        System.out.println("B5 value: " + value);</PRE
+><P
+>Also, the <TT
+CLASS="classname"
+>Cell</TT
+> class provides functions
+      letting you to know whether a cell is empty (the
+      <TT
+CLASS="methodname"
+>Cell.isEmpty()</TT
+> method), whether a cell contains
+      a text value (the <TT
+CLASS="methodname"
+>Cell.isText()</TT
+> method), or a
+      numeric one (the <TT
+CLASS="methodname"
+>Cell.isNumber()</TT
+> method) or an
+      error value (the <TT
+CLASS="methodname"
+>Cell.isError()</TT
+> method). All
+      these methods return a <TT
+CLASS="parameter"
+><I
+>boolean</I
+></TT
+> value.</P
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>cell/GettingValuesSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN434"
+></A
+>Chapter 7. Working with Ranges</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN436"
+></A
+>7.1. Referencing Ranges</H2
+><P
+>JExcel provides the <TT
+CLASS="classname"
+>Range</TT
+> class for working
+      with ranges of cells. To obtain an instance of the
+      <TT
+CLASS="classname"
+>Range</TT
+> class, the <TT
+CLASS="classname"
+>Worksheet</TT
+>
+      class has the <TT
+CLASS="methodname"
+>Workbook.getRange()</TT
+> method. This
+      method takes a string representation of a necessary range of cells in
+      any format supported by Excel. Despite this fact, it is recommended to
+      refer to only simple ranges like "A1:V1" or "B23:AA45" and avoid
+      referencing a range like "A1:B4;A7;D12:G45", because compound ranges use
+      a separator (in the example it is the ';' symbol) which differs
+      depending on Excel settings. So an application that uses compound range
+      references may work incorrectly if Excel has another separator
+      settings.</P
+><PRE
+CLASS="programlisting"
+>        //Referencing the range "A1:G12
+        Range simpleRange = worksheet.getRange("A1:G12");
+        
+        //Not recommended
+        Range compoundRange = worksheet.getRange("B1:B4;D11;H1:H13");</PRE
+><P
+>For creating compound ranges, the <TT
+CLASS="classname"
+>Range</TT
+>
+      class provides the <TT
+CLASS="methodname"
+>Range.include()</TT
+> method which
+      takes a range to be included as an instance of the
+      <TT
+CLASS="classname"
+>Range</TT
+> class or its string representation. The
+      <TT
+CLASS="methodname"
+>Range.include()</TT
+> method returns a
+      <TT
+CLASS="classname"
+>Range</TT
+> class instance that represents the extended
+      range. This makes it possible to create a compound range using a chain
+      of method calls:</P
+><PRE
+CLASS="programlisting"
+>        //Creating compound ranges
+        {
+            Range range = worksheet.getRange("B1:B4");
+            range.include("D11");
+            range.include("H1:H13");
+        }
+        //More convenient way
+        {
+            Range range = worksheet.getRange("B1:B4").include("D11").include("H1:H13");
+        }</PRE
+><P
+>To know the range's address, call the
+      <TT
+CLASS="methodname"
+>Range.getAddress()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        String rangeAddress = range.getAddress();</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/ReferencingRangesSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN458"
+></A
+>7.2. Converting a Cell to a Range and Vice Versa</H2
+><P
+>The <TT
+CLASS="classname"
+>Range</TT
+> class has a public constructor
+      <TT
+CLASS="methodname"
+>Range(Cell)</TT
+> that allows you to convert a cell
+      to an appropriate range.</P
+><P
+>The following sample demonstrates this technique:</P
+><PRE
+CLASS="programlisting"
+>        Cell cell = worksheet.getCell("A1");
+        
+        //Converting a cell to a range
+        Range range = new Range(cell);</PRE
+><P
+>To obtain a list of range cells, call the
+      <TT
+CLASS="methodname"
+>Range.getCells()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Converting a range to cells
+        Range range = worksheet.getRange("B12:D12");
+        List cells = range.getCells();
+        for (int i = 0; i &#60; cells.size(); i++)
+        {
+            Cell cellFromRange = (Cell)cells.get(i);
+            //Some action
+        }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/ReferencingRangesSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN472"
+></A
+>7.3. Finding Values in Ranges</H2
+><P
+>The <TT
+CLASS="classname"
+>Range</TT
+> class provides two methods
+      <TT
+CLASS="classname"
+>Range.find()</TT
+> and
+      <TT
+CLASS="classname"
+>Range.findNext()</TT
+> for finding a value in a range.
+      The <TT
+CLASS="classname"
+>Range.find()</TT
+> method finds a first occurrence
+      of the value. The <TT
+CLASS="methodname"
+>Range.findNext()</TT
+> method
+      doesn't take any parameters and returns the location of the next
+      occurrence of the value passed to the previous call of
+      <TT
+CLASS="methodname"
+>Range.find()</TT
+>. JExcel allows you to find values
+      of four types: <TT
+CLASS="type"
+>double</TT
+>, <TT
+CLASS="type"
+>long</TT
+>,
+      <TT
+CLASS="type"
+>String</TT
+> and <TT
+CLASS="type"
+>java.util.Date</TT
+>. The
+      <TT
+CLASS="methodname"
+>Range.find()</TT
+> method may take any of these
+      types.</P
+><P
+>The <TT
+CLASS="methodname"
+>Range.find()</TT
+> method allows to specify
+      search attributes by passing an instance of the <TT
+CLASS="classname"
+>Range.Search
+      Attributes</TT
+> class to the function call. The
+      <TT
+CLASS="classname"
+>Range.SearchAttributes</TT
+> class provides
+      functionality for specifying the following settings:</P
+><P
+></P
+><UL
+><LI
+><P
+>Case-sensitive search.</P
+><P
+>To specify whether the search is case-sensitive or not, call
+          the
+          <TT
+CLASS="methodname"
+>Range.SearchAttributes.setCaseSensitive()</TT
+>
+          method passing <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+> or
+          <TT
+CLASS="constant"
+>false</TT
+> respectively. By default, the search is
+          case-insensitive.</P
+></LI
+><LI
+><P
+>Forward or backward search direction.</P
+><P
+>Call the
+          <TT
+CLASS="methodname"
+>Range.SearchAttributes.setForwardDirection()</TT
+>
+          method passing <TT
+CLASS="constant"
+>true</TT
+> to set forward direction
+          search or <TT
+CLASS="constant"
+>false</TT
+> if otherwise. By default,
+          search is performed in forward direction.</P
+></LI
+><LI
+><P
+>Searching for the whole phrase.</P
+><P
+>To set search for the whole phrase, call the
+          <TT
+CLASS="methodname"
+>Range.SearchAttributes.setFindWholePhrase()</TT
+>
+          method passing <TT
+CLASS="constant"
+>true</TT
+>, otherwise Excel will try
+          to find the value as part of a phrase (the default setting).</P
+></LI
+><LI
+><P
+>Type of information to be searched for.</P
+><P
+>Search can be performed in values, formulas or comments. To
+          specify the type of information to be searched, call the
+          <TT
+CLASS="methodname"
+>Range.SearchAttributes.setLookIn()</TT
+> method
+          which takes one of the predefined instances of the
+          <TT
+CLASS="classname"
+>Range.FindLookIn</TT
+> class:
+          <TT
+CLASS="classname"
+>Range.FindLookIn.VALUES</TT
+>,
+          <TT
+CLASS="classname"
+>Range.FindLookIn.COMMENTS</TT
+> or
+          <TT
+CLASS="classname"
+>Range.FindLookIn.FORMULAS</TT
+>. The default value
+          is <TT
+CLASS="classname"
+>Range.FindLookIn.VALUES</TT
+>.</P
+></LI
+></UL
+><P
+>If a value is found in the range, the
+      <TT
+CLASS="methodname"
+>Range.find()</TT
+> method returns the cell where the
+      value was found, otherwise the method returns
+      <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+>. The
+      <TT
+CLASS="methodname"
+>Range.findNext()</TT
+> works similarly.</P
+><P
+>The sample below demonstrates the technique of searching for
+      values of different types:</P
+><PRE
+CLASS="programlisting"
+>        //Getting a necessary range
+        Range range = worksheet.getRange("A1:C5").include("D1");
+
+        //Specifying search attributes
+        Range.SearchAttributes searchAttributes = new Range.SearchAttributes();
+        searchAttributes.setCaseSensetive(true);
+        searchAttributes.setLookIn(Range.FindLookIn.VALUES);
+        searchAttributes.setForwardDirection(true);
+
+        //Looking for a string value
+        String strValue = "Grapefruit";
+        Cell cell = range.find(strValue, searchAttributes);
+        if (cell == null)
+        {
+            System.out.println("\"" + strValue + "\" was not found.");
+        }
+        else
+        {
+            System.out.println("\"" + strValue + "\" was found in " + cell.getAddress());
+        }
+        cell = range.findNext();
+        if (cell == null)
+        {
+            System.out.println("\"" + strValue + "\" was not found.");
+        }
+        else
+        {
+            System.out.println("\"" + strValue + "\" was found in " + cell.getAddress());
+        }
+
+        //Looking for a long calculated value
+        long longValue = 39;
+        cell = range.find(longValue, searchAttributes);
+        if (cell == null)
+        {
+            System.out.println(longValue + " was not found.");
+        }
+        else
+        {
+            System.out.println(longValue + " was found in " + cell.getAddress());
+        }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/FindValuesSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN527"
+></A
+>7.4. Sorting a Range</H2
+><P
+>JExcel provides functionality for sorting rows or columns in a
+      range of cells. For this purpose, use the
+      <TT
+CLASS="methodname"
+>Range.sort()</TT
+> method. It takes a column name
+      (for example, "A", "D", "AB") for sorting rows by the values of the
+      specified column and a row number (for example, 1, 4, 100) for sorting
+      columns by the values of the specified row.</P
+><P
+>For sorting values in the ascending order, set the
+      <TT
+CLASS="parameter"
+><I
+>ascending</I
+></TT
+> argument to <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+>
+      (or <TT
+CLASS="parameter"
+><I
+>false</I
+></TT
+> if otherwise). If the
+      <TT
+CLASS="parameter"
+><I
+>caseSensitive</I
+></TT
+> argument is
+      <TT
+CLASS="parameter"
+><I
+>true</I
+></TT
+>, case-sensitive sorting will be done.</P
+><P
+>The following sample demonstrates the technique of sorting
+      ranges:</P
+><PRE
+CLASS="programlisting"
+>        //Getting a necessary range
+        Range range = worksheet.getRange("A1:D5");
+
+        //Sorting the range by column "A", in the ascending order, case-sensitive
+        range.sort("A", true, true);
+
+        //Sorting the range by the third row, in the descending order, case-sensitive
+        range.sort(3, false, true);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>range/SortValuesSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN543"
+></A
+>7.5. Obtaining Ranges Intersection</H2
+><P
+>The <TT
+CLASS="classname"
+>Range</TT
+> class has two methods for working
+      with range intersections: the
+      <TT
+CLASS="methodname"
+>Range.intersects(Range)</TT
+> method allows you to
+      know whether the current range intersects the specified one, and the
+      <TT
+CLASS="methodname"
+>Range.getIntersection(Range)</TT
+> method returns the
+      range of common cells of the current range and the specified one:</P
+><PRE
+CLASS="programlisting"
+>        //Getting necessary ranges
+        Range range1 = worksheet.getRange("A1:B3");
+        Range range2 = worksheet.getRange("A2:C5");
+
+        //Checking intersections
+        if (range1.intersects(range2))
+        {
+            Range commonRange = range1.getIntersection(range2);
+            System.out.println(range1 + " intersects " + range2 + ". The common range is " + commonRange);
+        }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/IntersectionSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN554"
+></A
+>7.6. Merging and Unmerging Cells of a Range</H2
+><P
+>The <TT
+CLASS="methodname"
+>Range.merge()</TT
+> method allows you to
+      merge cells of a range. Note that all data in the merged cell will be
+      lost in this case.</P
+><PRE
+CLASS="programlisting"
+>        //Getting the necessary range
+        Range range1 = worksheet.getRange("A1:B3");
+
+        //Merging cells of range1
+        range1.merge();</PRE
+><P
+>To unmerge cells of a range, call the
+      <TT
+CLASS="methodname"
+>Range.unmerge()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Unmerging cells of range1
+        range1.unmerge();</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>range/IntersectionSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN566"
+></A
+>Chapter 8. Reading and writing bulk operations</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>This chapter describes the technique of reading and writing bulk
+    operations, which allows improve the performance of data exchange with
+    Excel worksheets. MS Excel has <TT
+CLASS="methodname"
+>setValue2</TT
+> and
+    <TT
+CLASS="methodname"
+>getValue2</TT
+> interfaces for these operations.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN571"
+></A
+>8.1. Reading bulk operation</H2
+><P
+>If you try to iterate over cells in range to read cell values the
+      performance will be extremely low. Such result is predictable because
+      each cell reading operation produces several COM interface related Java
+      objects, which allocate some physical memory and will not be immediately
+      removed from memory after interface call. Large numbers of the objects
+      can result out of memory. To avoid it and improve reading performance
+      you can use <TT
+CLASS="methodname"
+>getValues()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Getting a values from range 
+        Range range = worksheet.getRange("A1:A3");
+        Variant[][] results = range.getValues();</PRE
+><P
+>The method wraps <TT
+CLASS="methodname"
+>getValue2</TT
+> interface of
+      MS Excel and improves reading performance in several times.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN578"
+></A
+>8.2. Writing bulk operation</H2
+><P
+>Like <TT
+CLASS="methodname"
+>getValues()</TT
+> method, a coherent
+      writing bulk operation <TT
+CLASS="methodname"
+>fillWithArray()</TT
+> method
+      in <TT
+CLASS="methodname"
+>Worksheet</TT
+> class resolves the same issues.
+      Using this method, you can insert the data from a Java array into the
+      worksheet:</P
+><PRE
+CLASS="programlisting"
+>        //Here we create 2d String array and fill according range
+        final int ARRAY_SIZE = 10;
+        int count = 0;
+        final String string_array[][] = new String[ARRAY_SIZE][ARRAY_SIZE] ;
+        for (int i = 0; i &#60; ARRAY_SIZE; i++)
+        {
+            for (int j = 0; j &#60; ARRAY_SIZE ; j++)
+            {
+                string_array[i][j] = "result: "+Integer.toString(count);
+                count++;
+            }
+        }
+        sheet.fillWithArray("A1:J10", string_array);</PRE
+><P
+>The method wraps <TT
+CLASS="methodname"
+>setValue2</TT
+> interface of
+      MS Excel and improves writing performance in several times.</P
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>range/RangFillingSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN591"
+></A
+>Chapter 9. Customizing Cells and Ranges</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>This chapter discusses both <TT
+CLASS="classname"
+>Cell</TT
+> and
+    <TT
+CLASS="classname"
+>Range</TT
+> classes. The functionality for customizing a
+    cell or a range is identical, so the code samples below demonstrate
+    techniques only for the <TT
+CLASS="classname"
+>Range</TT
+> class.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN597"
+></A
+>9.1. Changing a Number Format</H2
+><P
+>The range number format reflects the way of displaying numeric
+      data. For instance, a double value can be represented as an integer or
+      as a date. A number format in Excel is set by a string pattern in a
+      specific locale-dependent format. For detailed specification of the
+      number format, please refer to appropriate articles on Excel.</P
+><P
+>JExcel allows you to obtain the current number format of a range
+      as a string. For this purpose, use the
+      <TT
+CLASS="methodname"
+>Range.getNumberFormat()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Getting a range number format
+        Range range = worksheet.getRange("A1:A3");
+        String numberFormat = range.getNumberFormat();
+        System.out.println("A1:A3 number format is " + numberFormat);</PRE
+><P
+>The
+      <TT
+CLASS="classname"
+>Range</TT
+>.<TT
+CLASS="methodname"
+>setNumberFormat(String)</TT
+>
+      method changes the number format of a range:</P
+><PRE
+CLASS="programlisting"
+>        //Setting a custom number format
+        String newNumberFormat = "0,00%";
+        range.setNumberFormat(newNumberFormat);
+        System.out.println("A1:A3 new number format is " + range.getNumberFormat());</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file:</I
+></P
+><P
+><TT
+CLASS="filename"
+>range/CustomizationSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN611"
+></A
+>9.2. Customizing Text Alignment and Orientation</H2
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="AEN613"
+></A
+>9.2.1. Changing Text Alignment</H3
+><P
+>JExcel provides the <TT
+CLASS="classname"
+>TextAlignment</TT
+> class,
+        which is an enumeration of all alignment types supported by Excel. The
+        <TT
+CLASS="classname"
+>Range</TT
+> (<TT
+CLASS="classname"
+>Cell</TT
+>) class
+        enables you to obtain and modify both horizontal and vertical text
+        alignment.</P
+><P
+>The <TT
+CLASS="methodname"
+>Range.getHorizontalAlignment()</TT
+>
+        method returns the current horizontal text alignment as an instance of
+        the <TT
+CLASS="classname"
+>TextAlignment</TT
+> class. The possible values
+        are <TT
+CLASS="constant"
+>TextAlignment.CENTER</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.DISTRIBUTED</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.FILL</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.GENERAL</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.JUSTIFY</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.LEFT</TT
+> and
+        <TT
+CLASS="constant"
+>TextAlignment.RIGHT</TT
+>. If the range cells have
+        mixed horizontal alignment, the return value is
+        <TT
+CLASS="constant"
+>null</TT
+>. To change horizontal alignment of a range,
+        call the <TT
+CLASS="methodname"
+>Range.setHorizontalAlignment()</TT
+>
+        method:</P
+><PRE
+CLASS="programlisting"
+>        //Setting custom horizontal text alignment
+        range.setHorizontalAlignment(TextAlignment.RIGHT);
+
+        //Checking horizontal text alignment
+        if (range.getHorizontalAlignment().equals(TextAlignment.RIGHT))
+        {
+            System.out.println("A1:A3 range: new horizontal text alignment was applied successfully.");
+        }
+        else
+        {
+            System.out.println("Horizontal text alignment failed to be applied.");
+        }</PRE
+><P
+>Working with vertical text alignment is similar to horizontal
+        alignment: the <TT
+CLASS="methodname"
+>Range.setVerticalAlignment()</TT
+>
+        method sets a new value and the
+        <TT
+CLASS="methodname"
+>Range.getVerticalAlignment()</TT
+> returns the
+        current setting as an instance of the
+        <TT
+CLASS="classname"
+>TextAlignment</TT
+> class. The possible values are
+        <TT
+CLASS="classname"
+>TextAlignment.BOTTOM</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.CENTER</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.DISTRIBUTED</TT
+>,
+        <TT
+CLASS="constant"
+>TextAlignment.TOP</TT
+> and
+        <TT
+CLASS="constant"
+>TextAlignment.JUSTIFY</TT
+>. If the range cells have
+        mixed vertical alignment, the return value is
+        <TT
+CLASS="constant"
+>null</TT
+>.</P
+><PRE
+CLASS="programlisting"
+>        //Setting custom vertical text alignment
+        range.setVerticalAlignment(TextAlignment.TOP);
+
+        //Checking vertical text alignment
+        if (range.getVerticalAlignment().equals(TextAlignment.TOP))
+        {
+            System.out.println("A1:A3 range: new vertical text alignment was applied successfully.");
+        }
+        else
+        {
+            System.out.println("Vertical text alignment failed to be applied.");
+        }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/CustomizationSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN647"
+></A
+>9.2.2. Changing Text Orientation</H3
+><P
+>For working with a range (cell) text orientation, JExcel
+        provides the <TT
+CLASS="classname"
+>TextOrientation</TT
+> class. This class
+        is an enumeration of all supported text orientation types. The
+        <TT
+CLASS="methodname"
+>Range.getTextOrientation()</TT
+> method returns the
+        current text orientation setting as an instance of the
+        <TT
+CLASS="classname"
+>TextOrientation</TT
+> class. The possible values are
+        <TT
+CLASS="constant"
+>TextOrientation.DOWNWARD</TT
+>,
+        <TT
+CLASS="constant"
+>TextOrientation.HORIZONTAL</TT
+>,
+        <TT
+CLASS="constant"
+>TextOrientation.UPWARD</TT
+> and
+        <TT
+CLASS="constant"
+>TextOrientation.VERTICAL</TT
+>. If the range cells have
+        mixed text orientation, the return value is <TT
+CLASS="constant"
+>null</TT
+>.
+        To change text orientation, call the
+        <TT
+CLASS="methodname"
+>Range.setTextOrientation()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        //Setting up custom text orientation
+        range.setTextOrientation(TextOrientation.UPWARD);
+
+        //Checking text orientation
+        if (range.getTextOrientation().equals(TextOrientation.UPWARD))
+        {
+            System.out.println("A1:A3 range: new text orientation was applied successfully.");
+        }
+        else
+        {
+            System.out.println("Text orientation failed to be changed.");
+        }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+        file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/CustomizationSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN664"
+></A
+>9.3. Customizing Text Font</H2
+><P
+>The <TT
+CLASS="classname"
+>Font</TT
+> class from the
+      <TT
+CLASS="methodname"
+>com.jniwrapper.win32.jexcel</TT
+> package provides
+      the ability to customize fonts in Excel.</P
+><P
+>The following font attributes can be obtained or modified:</P
+><P
+></P
+><UL
+><LI
+><P
+>Font name</P
+><P
+>Call the <TT
+CLASS="methodname"
+>Font.getName()</TT
+> method to get
+          the font name, and the <TT
+CLASS="methodname"
+>Font.setName(String)</TT
+>
+          method to specify the font name.</P
+></LI
+><LI
+><P
+>Font size</P
+><P
+>Call the <TT
+CLASS="methodname"
+>Font.getSize()</TT
+> method to get
+          the font size, and the <TT
+CLASS="methodname"
+>Font.setSize()</TT
+>
+          method to specify the font size.</P
+></LI
+><LI
+><P
+>General font styles</P
+><P
+>The <TT
+CLASS="classname"
+>Font</TT
+> class allows you to specify
+          whether the font is bold, italic or strike-through.</P
+></LI
+><LI
+><P
+>Font underline style</P
+><P
+>The <TT
+CLASS="classname"
+>Font.UnderlineStyle</TT
+> class is an
+          enumeration of five underline styles supported by Excel:
+          <TT
+CLASS="classname"
+>UnderlineStyle.NONE</TT
+>,
+          <TT
+CLASS="classname"
+>UnderlineStyle.SINGLE</TT
+>,
+          <TT
+CLASS="classname"
+>UnderlineStyle.SINGLEACCOUNTING</TT
+>,
+          <TT
+CLASS="classname"
+>UnderlineStyle.DOUBLE</TT
+>, and
+          <TT
+CLASS="classname"
+>UnderlineStyle.DOUBLEACCOUNTING</TT
+>. The
+          <TT
+CLASS="methodname"
+>Font.getUnderlineStyle()</TT
+> method returns the
+          current underline style as an instance of the
+          <TT
+CLASS="classname"
+>Font.UnderlineStyle</TT
+> class. The return value
+          can be one of the predefined values listed above. To change an
+          underline style, call the
+          <TT
+CLASS="methodname"
+>Font.setUnderlineStyle()</TT
+> method.</P
+></LI
+><LI
+><P
+>Font color</P
+><P
+>Call the <TT
+CLASS="methodname"
+>Font.getColor()</TT
+> method to
+          get the currently set font color, and the
+          <TT
+CLASS="methodname"
+>Font.setColor()</TT
+> method to specify the font
+          color. A color value in both functions is an instance of the
+          <TT
+CLASS="classname"
+>java.awt.Color</TT
+> class.</P
+></LI
+><LI
+><P
+>Font alignment style</P
+><P
+>The <TT
+CLASS="classname"
+>Font</TT
+> class allows you to specify
+          whether the text is normally aligned, subscript or superscript using
+          the <TT
+CLASS="methodname"
+>Font.setAlignment()</TT
+> method. This method
+          takes one of the three predefined instances of the
+          <TT
+CLASS="classname"
+>Font.Alignment</TT
+> class:
+          <TT
+CLASS="classname"
+>Alingment.NORMAL</TT
+>,
+          <TT
+CLASS="classname"
+>Alignment.SUBSCRIPT</TT
+> or
+          <TT
+CLASS="classname"
+>Alignment.SUPERSCRIPT</TT
+>. To obtain the current
+          font alignment, call the
+          <TT
+CLASS="methodname"
+>Font.getAlignment()</TT
+> method.</P
+></LI
+></UL
+><P
+>The following sample demonstrates the technique of changing text
+      font:</P
+><PRE
+CLASS="programlisting"
+>        //Creating a new instance of the com.jniwrapper.win32.jexcel.Font class
+        Font font = new Font();
+
+        //Changing font name
+        font.setName("Courier New");
+
+        //Changing font styles
+        font.setBold(true);
+        font.setStrikethrough(true);
+        font.setUnderlineStyle(Font.UnderlineStyle.DOUBLE);
+
+        //Changing font color
+        font.setColor(Color.ORANGE);
+
+        //Applying new font setting
+        range.setFont(font);</PRE
+><P
+>To compare constant instances of the
+      <TT
+CLASS="classname"
+>Font.Alignment</TT
+> or
+      <TT
+CLASS="classname"
+>Font.UnderlineStyle</TT
+> classes, use the
+      <TT
+CLASS="methodname"
+>equals()</TT
+> method. For example:</P
+><PRE
+CLASS="programlisting"
+>    public String getAlignmentAsString(Font.Alignment alignment)
+    {
+        if (alignment.equals(Font.Alignment.SUBSCRIPT))
+        {
+            return "Subscript";
+        }
+        else if (alignment.equals(Font.Alignment.SUPERSCRIPT))
+        {
+            return "Superscript";
+        }
+        else
+        {
+            return "Normal";
+        }
+    }</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/FontOperationsSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN724"
+></A
+>9.4. Changing Background Pattern and Color in Cells</H2
+><P
+>The JExcel library provides the following ways to customize a
+      range (or cell) background:</P
+><P
+></P
+><UL
+><LI
+><P
+>Changing the background color.</P
+><P
+>Call the <TT
+CLASS="methodname"
+>Range.getInteriorColor()</TT
+>
+          method to obtain the background color and the
+          <TT
+CLASS="methodname"
+>Range.setInteriorColor()</TT
+> method to specify
+          the background color:</P
+><PRE
+CLASS="programlisting"
+>        //Getting the interior color 
+        java.awt.Color interiorColor = range.getInteriorColor();
+
+        //Changing the interior color
+        range.setInteriorColor(Color.BLUE);</PRE
+></LI
+><LI
+><P
+>Changing the background pattern.</P
+><P
+>Excel allows you to set up various kinds of background
+          patterns. JExcel provides the <TT
+CLASS="classname"
+>InteriorPattern</TT
+>
+          class which is an enumeration of all kinds of background patterns
+          supported by Excel version 1.5.</P
+><P
+>The following sample demonstrates how to get and set the
+          background pattern:</P
+><PRE
+CLASS="programlisting"
+>        //Getting the interior pattern
+        InteriorPattern interiorPattern = range.getInteriorPattern();
+
+        //Changing the interior pattern
+        range.setInteriorPattern(InteriorPattern.DOWN);</PRE
+></LI
+><LI
+><P
+>Changing the background pattern color.</P
+><P
+>Call the
+          <TT
+CLASS="methodname"
+>Range.getInteriorPatternColor()</TT
+> method to
+          obtain the background pattern color and the <TT
+CLASS="methodname"
+>Range.
+          setInteriorPatternColor()</TT
+> method to specify the
+          background pattern color:</P
+><PRE
+CLASS="programlisting"
+>        //Getting the interior pattern color
+        java.awt.Color interiorPatternColor = range.getInteriorPatternColor();
+
+        //Changing the interior pattern color setting
+        range.setInteriorPatternColor(Color.RED);</PRE
+></LI
+></UL
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/InteriorCustomizationSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN750"
+></A
+>9.5. Border Customization</H2
+><P
+>To customize a range or cell border, you need to specify the kind
+      of border to work with. There are several standard kinds of borders
+      which are provided in JExcel as instances of the
+      <TT
+CLASS="classname"
+>Border.Kind</TT
+> class. For example,
+      <TT
+CLASS="classname"
+>Border.Kind.EDGELEFT</TT
+> or
+      <TT
+CLASS="classname"
+>Border.Kind.EDGETOP</TT
+>.</P
+><P
+>The <TT
+CLASS="methodname"
+>Range.getBorder()</TT
+> method allows you
+      to obtain an instance of the <TT
+CLASS="classname"
+>Border</TT
+> class that
+      corresponds to some border kind. The <TT
+CLASS="classname"
+>Border</TT
+> class
+      resides in the <TT
+CLASS="classname"
+>com.jniwrapper.win32.jexcel</TT
+>
+      package.</P
+><P
+>The <TT
+CLASS="classname"
+>Border</TT
+> class provides functionality for
+      working with border color, line style and line weight. The line style is
+      set using the constants from the <TT
+CLASS="classname"
+>Border.LineStyle</TT
+>
+      class, such as <TT
+CLASS="classname"
+>LineStyle.CONTINUOUS</TT
+>,
+      <TT
+CLASS="classname"
+>LineStyle.DASHDOT</TT
+>, etc. The line weight is set
+      using the constants from the <TT
+CLASS="classname"
+>Border.LineWeight</TT
+>
+      class: <TT
+CLASS="classname"
+>LineWeight.HAIRLINE</TT
+>,
+      <TT
+CLASS="classname"
+>LineWeight.MEDIUM</TT
+>, etc.</P
+><P
+>The following sample demonstrates the technique of customizing the
+      range border:</P
+><PRE
+CLASS="programlisting"
+>        //Getting the top border
+        Border topBorder = range.getBorder(Border.Kind.EDGETOP);
+
+        //Getting the border style 
+        java.awt.Color borderColor = topBorder.getColor();
+        Border.LineStyle lineStyle = topBorder.getLineStyle();
+        Border.LineWeight lineWeight = topBorder.getWeight();
+
+        //Setting new border style
+        Border border = new Border();
+        border.setColor(Color.CYAN);
+        border.setLineStyle(Border.LineStyle.DASHDOT);
+        border.setWeight(Border.LineWeight.MEDIUM);
+
+        //Applying the border settings to the top border
+        range.setBorder(Border.Kind.EDGETOP, border);</PRE
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+      file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>range/BorderCustomizationSample.java</TT
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN775"
+></A
+>Chapter 10. Integrating a Workbook into a Java Swing Application</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>JExcel provides the <TT
+CLASS="classname"
+>JWorkbook</TT
+> class which
+    allows you to embed an Excel workbook into a Java Swing application as an
+    ordinary component. The <TT
+CLASS="classname"
+>JWorkbook</TT
+> component is an
+    OLE container for an Excel workbook and provides functionality for working
+    with its contents. However, an embedded workbook is a little less
+    functional than an ordinary one.</P
+><P
+>The sample below demonstrates the technique of embedding
+    <TT
+CLASS="classname"
+>JWorkbook</TT
+> into
+    <TT
+CLASS="classname"
+>JFrame</TT
+>:</P
+><PRE
+CLASS="programlisting"
+>        JFrame frame = new JFrame();
+        Container cp = frame.getContentPane();
+        cp.setLayout(new BorderLayout());
+        
+        //Creating a JWorkbook instance
+        JWorkbook jWorkbook = new JWorkbook();
+        
+        cp.add(jWorkbook);    </PRE
+><P
+>The <TT
+CLASS="methodname"
+>JWorkbook.close()</TT
+> method closes the
+    embedded workbook.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN786"
+></A
+>10.1. Opening and Saving an Embedded Workbook</H2
+><P
+>A workbook can be opened in the <TT
+CLASS="classname"
+>JWorkbook</TT
+>
+      component in two ways: using the
+      <TT
+CLASS="methodname"
+>JWorkbook(File)</TT
+>constructor or the
+      <TT
+CLASS="methodname"
+>JWorkbook.openWorkbook()</TT
+>method. An embedded
+      workbook can be saved by calling the
+      <TT
+CLASS="methodname"
+>JWorkbook.saveCopyAs(File)</TT
+> method.</P
+><PRE
+CLASS="programlisting"
+>        File workbookFile = new File("C:\\Workbook.xls");         
+        
+        //Opening the specified file in the JWorkbook component
+        JWorkbook jWorkbook = new JWorkbook(workbookFile);
+
+        //Some actions...
+        File newWorkbook = new File("C:\\NewWorkbook.xls");         
+        jWorkbook.saveCopyAs(newWorkbook);         </PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN794"
+></A
+>10.2. Printing an Embedded Workbook</H2
+><P
+><TT
+CLASS="classname"
+>JWorkbook </TT
+>allows you to print an embedded
+      workbook by displaying the Print dialog or without it. If the Print
+      dialog appears, the printing process starts after the user clicks the
+      <B
+CLASS="guibutton"
+>"Print"</B
+> button. To display the Print dialog, call
+      the <TT
+CLASS="methodname"
+>JWorkbook.showPrintDialog()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        JWorkbook jWorkbook = new JWorkbook();
+        jWorkbook.showPrintDialog();</PRE
+><P
+>To print a workbook without displaying the Print dialog, call the
+      J<TT
+CLASS="methodname"
+>Workbook.print()</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        jWorkbook.print(1);</PRE
+><P
+>Also, the <TT
+CLASS="classname"
+>JWorkbook</TT
+> class lets you display
+      an embedded workbook in preview mode. For this purpose, call the
+      <TT
+CLASS="methodname"
+>JWorkbook.printPreview()</TT
+> method.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN807"
+></A
+>10.3. Displaying a Workbook in Static Mode</H2
+><P
+>A workbook can be displayed in static (read-only) or normal mode.
+      The normal mode is the default one. If it is necessary to display just a
+      workbook's snapshot and forbid any UI actions, switch to static mode. To
+      display a workbook in static mode, call the
+      <TT
+CLASS="methodname"
+>JWorkbook.setStaticMode(boolean)</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>        JWorkbook jWorkbook = new JWorkbook();
+        
+        //Setting up the static mode 
+        jWorkbook.setStaticMode(true);     </PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN812"
+></A
+>10.4. Listening to JWorkbook Events</H2
+><P
+>JExcel allows you to obtain notifications about the following
+      <TT
+CLASS="classname"
+>JWorkbook</TT
+> events:</P
+><P
+></P
+><UL
+><LI
+><P
+>A new workbook is created.</P
+></LI
+><LI
+><P
+>A workbook is opened.</P
+></LI
+><LI
+><P
+>A workbook is saved.</P
+></LI
+><LI
+><P
+>A workbook is closing.</P
+></LI
+><LI
+><P
+>A workbook is switched to print preview mode or back.</P
+></LI
+></UL
+><P
+>To listen to <TT
+CLASS="classname"
+>JWorkbook</TT
+> events, use the
+      <TT
+CLASS="interfacename"
+>JWorkbookEventListener</TT
+> interface or the
+      <TT
+CLASS="classname"
+>JWorkbookEventAdapter</TT
+> class.
+      <TT
+CLASS="classname"
+>JWorkbookEventAdapter</TT
+> is an empty implementation
+      of the <TT
+CLASS="interfacename"
+>JWorkbookEventListener</TT
+> interface.
+      The following sample demonstrates the technique of how to add a listener
+      of the <TT
+CLASS="classname"
+>JWorkbook</TT
+> events:</P
+><PRE
+CLASS="programlisting"
+>        _workbook.addJWorkbookEventListener(new JWorkbookEventAdapter()
+        {
+            public void newWorkbook(JWorkbookEventObject eventObject)
+            {
+                System.out.println("New workbook: " + eventObject.getWorkbook().getName() + ".");
+            }
+
+            public void workbookOpened(JWorkbookEventObject eventObject)
+            {
+                System.out.println("Opened workbook: " + eventObject.getWorkbook().getName() + ".");
+            }
+
+            public void beforeWorkbookClose(JWorkbookEventObject eventObject) throws JWorkbookInterruptException
+            {
+                System.out.println("Workbook \"" + eventObject.getWorkbook().getName() + "\" closed.");
+            }
+
+            public void printPreviewStateChanged(JWorkbookEventObject eventObject)
+            {
+                if (eventObject.getJWorkbook().isPrintPreview())
+                {
+                    printLog("Workbook \"" + eventObject.getWorkbook().getName() + "\" is in the print preview mode.");
+                }
+                else
+                {
+                    printLog("The print preview mode is closed.");
+                }
+            }
+        });</PRE
+><P
+><I
+CLASS="emphasis"
+>For more information please refer to the following:
+      JExcelDemo.java and JExcelDemo application</I
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN837"
+></A
+>10.5. Multiple JWorkbook instances</H2
+><P
+>Since JExcel ver.1.4 JWorkbook allows creating multiple embedded
+      MS Excel workbook instances in Swing applications. These instances are
+      connected to common MS Excel process. Such feature allows implementing
+      MDI applications and provides more flexible way for MS Excel documents
+      processing.</P
+><P
+>This feature is implemented without changes in JWorkbook public
+      interfaces so to achieve several JWorkbook instances you just need
+      instantiating several JWorkbook objects:</P
+><PRE
+CLASS="programlisting"
+>        JFrame frame = new JFrame("JWorkbooks on tabs");
+
+        frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Container cp = frame.getContentPane();
+        cp.setLayout(new BorderLayout());
+        JPanel panel = new JPanel();
+        cp.add(panel);
+        panel.setLayout(new BorderLayout());
+
+        JWorkbook workbook = new JWorkbook(false);
+        JWorkbook anotherWorkbook = new JWorkbook(false);
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        panel.add(tabbedPane, BorderLayout.CENTER);
+        tabbedPane.addTab("First JWorkbook", workbook);
+        tabbedPane.addTab("Second JWorkbook", anotherWorkbook);
+
+        frame.setBounds(100, 100, 500, 500);
+        frame.setVisible(true);</PRE
+><P
+>This code demonstrates creating two JWorkbook objects on tabbed
+      interface.</P
+><P
+><I
+CLASS="emphasis"
+>For more information please refer to corresponding
+      samples in JExcel package.</I
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN845"
+></A
+>10.6. JWorkbook objects handling on application exit</H2
+><P
+>If you are using JWorkbook objects in different JFrames you need
+      correctly handling application exit closing all JWorkbook instances.
+      This issue is due by JWorkbook native resource releasing requirement.
+      When you close the main window using EXIT_ON_CLOSE flag, JVM doesn't
+      send the corresponding window close event to all opened JFrames and
+      JWorkbook objects cannot be released automatically. Therefore in such
+      case JWorkbook related application produces exception on exit and hangs
+      up EXCEL process.</P
+><P
+>To avoid such issue, you need to call JWorkbook close() method for
+      all JWorkbook objects on application exit:</P
+><PRE
+CLASS="programlisting"
+>private java.util.List jworkbookList = new LinkedList();
+
+...
+
+//Add all JWorkbook references to jworkbookList
+JWorkbook jworkbook = new JWorkbook();
+jworkbookList.add(jworkbook);
+
+...
+
+//On application window close correctly release JWorkbook objects
+frame.addWindowListener(new WindowAdapter()
+{
+    public void windowClosing(WindowEvent e)
+    {
+      while (!jworkbookList.isEmpty())
+      {
+        JWorkbook jworkbook = (JWorkbook) jworkbookList.remove(0);
+        if (jworkbook != null &#38;&#38; !jworkbook.isClosed())
+        {
+            jworkbook.close();
+        }
+      }
+    }
+});</PRE
+><P
+><I
+CLASS="emphasis"
+>For the full sample code please refer to
+      MultipleJWorkbookWindows.java file in JExcel package.</I
+></P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN852"
+></A
+>Chapter 11. Working with Native Peers and Thread Issues</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>JExcel provides peers for the following classes:
+    <TT
+CLASS="classname"
+>Application</TT
+>, <TT
+CLASS="classname"
+>Workbook</TT
+>,
+    <TT
+CLASS="classname"
+>Worksheet</TT
+>, <TT
+CLASS="classname"
+>Range</TT
+>, and
+    <TT
+CLASS="classname"
+>Cell</TT
+>. The peers can be useful for implementation of
+    Excel functions that are not available in the current version of JExcel.
+    Excel controls are not thread-safe, therefore their functions should be
+    called from the same thread. For the JExcel library, it is the OLE message
+    loop. This is important when you are working with native peer objects,
+    namely when calling methods and querying the interface.</P
+><P
+>The following sample demonstrates the correct usage of the
+    <TT
+CLASS="classname"
+>Application</TT
+> native peer and the OLE message
+    loop:</P
+><PRE
+CLASS="programlisting"
+>        Runnable runnable = new Runnable()
+        {
+            public void run()
+            {
+                _Application nativeApp = application.getPeer();
+                BStr decSeparator = new BStr(newSeparator);
+                nativeApp.setDecimalSeparator(decSeparator);
+            }
+        };
+        application.getOleMessageLoop().doInvokeLater(runnable);       </PRE
+><P
+>The <TT
+CLASS="classname"
+>OleMessageLoop</TT
+> class provides two methods
+    for executing methods in this thread:
+    <TT
+CLASS="methodname"
+>doInvokeLater()</TT
+> and
+    <TT
+CLASS="methodname"
+>doInvokeAndWait()</TT
+>. The difference between them is
+    that the former returns immediately, and the latter blocks further
+    execution while the task defined by <TT
+CLASS="methodname"
+>Runnable</TT
+>
+    method parameter is being executed. Use the
+    <TT
+CLASS="methodname"
+>doInvokeLater()</TT
+> method in a Swing thread for
+    time-consuming tasks to prevent this thread from blocking.</P
+><P
+>NOTE: Native windows should be opened in the OleMessageLoop of
+    JWorkbook to correctly repaint objects.</P
+><P
+><I
+CLASS="emphasis"
+>For the complete sample, please refer to the following
+    file: </I
+></P
+><P
+><TT
+CLASS="filename"
+>NativePeerSample.java</TT
+></P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN874"
+></A
+>Chapter 12. Support</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>If you have any problems or questions regarding JExcel, please check
+    the documents listed below. The answer to your question may already be
+    there:</P
+><P
+><P
+></P
+><UL
+><LI
+><P
+>Installation instructions</P
+></LI
+><LI
+><P
+>Programmer's Guide</P
+></LI
+><LI
+><P
+>Frequently Asked Questions (FAQ) page at:</P
+><P
+><A
+HREF="http://www.teamdev.com/jexcel/faq.jsf "
+TARGET="_top"
+>http://www.teamdev.com/jexcel/faq.jsf</A
+></P
+></LI
+></UL
+>If none of the above resources contain the required
+    information, please e-mail us at:</P
+><A
+NAME="AEN887"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="mailto:jexcel-support@teamdev.com"
+TARGET="_top"
+>jexcel-support@teamdev.com</A
+></P
+></BLOCKQUOTE
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN890"
+></A
+>12.1. JExcel Forum</H2
+><P
+>If you want to discuss topics related to JExcel, please visit a
+      specialized forum on the TeamDev integrated customer support and
+      troubleshooting center at:<A
+NAME="AEN893"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://support.teamdev.com/category.jspa?categoryID=11"
+TARGET="_top"
+>http://support.teamdev.com/category.jspa?categoryID=11</A
+></P
+></BLOCKQUOTE
+></P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN896"
+></A
+>12.2. Reporting Problems</H2
+><P
+>If you find any bugs in JExcel, please submit the issue to us
+      using a special report form on the TeamDev integrated customer support
+      and troubleshooting center at:</P
+><A
+NAME="AEN899"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://support.teamdev.com/forms/reportForm.jsf"
+TARGET="_top"
+><A
+HREF="http://support.teamdev.com/"
+TARGET="_top"
+>http://support.teamdev.com/</A
+></A
+></P
+></BLOCKQUOTE
+><P
+>The form will help you provide all necessary information.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN904"
+></A
+>12.3. Troubleshooting</H2
+><P
+>To find a solution to your problem, please visit the
+      Troubleshooting page at:</P
+><A
+NAME="AEN907"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.teamdev.com/jexcel/tshoot.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jexcel/tshoot.jsf</A
+></P
+></BLOCKQUOTE
+><P
+>This page is regularly updated using information from support
+      requests.</P
+><P
+>If you don't find a solution, please e-mail us at <A
+HREF="mailto:jexcel-support@teamdev.com"
+TARGET="_top"
+>jexcel-support@teamdev.com</A
+>
+      or report the problem as described in the previous section.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN913"
+></A
+>Chapter 13. Where to Get a New Version</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To get the latest version of JExcel, please visit:</P
+><A
+NAME="AEN916"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.teamdev.com/jexcel/downloads.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jexcel/downloads.jsf</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+><P></P></td></tr></tbody></table><table valign="top" border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td><td bgcolor=#A9BAD1 width="100%" align=center><font face ="Verdana, Tahoma,  Sans-Serif" size=3 color=white><b>Copyright &copy; 2002-2012 TeamDev Ltd.</b></font></td><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></BODY
+></HTML
+>

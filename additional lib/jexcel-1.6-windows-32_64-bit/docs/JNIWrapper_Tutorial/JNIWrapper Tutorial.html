@@ -1,0 +1,1742 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>JNIWrapper Tutorial</TITLE
+><style type="text/css"><!--
+.note {border: 1px solid white; background-color: white; padding: 0pt;}
+.important {border: 1px solid white; background-color: white; padding: 0pt;}
+.note table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.note td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.TOC { font-family: Verdana, Sans-Serif; font-size: 12px;}
+.filename { font-family: courier, monospace; font-size: 14px;}
+.parameter {FONT-WEIGHT: bold;}
+.methodname { font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.classname { color: #204E80; font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.programlisting{border: 1px solid #AEBDCC; background-color: #F3F5F7; padding: 5pt; FONT-FAMILY:  courier, monospace; FONT-SIZE: 12px}
+.title{color: white; text-align: center; border: 1pt solid #7B8798; background-color: #A9BAD1; padding: 5pt; FONT-FAMILY:  Verdana, Sans-Serif; FONT-SIZE: 22px}
+FONT {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+TD {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+BODY {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+P {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+H1 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 22px; FONT-WEIGHT: bold;}
+H2 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 18px; FONT-WEIGHT: bold;}--></style
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#204E80"
+VLINK="#204E80"
+ALINK="#204E89" background="images/bg.png"><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td
+><table border="0" cellpadding="1" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#788598"
+><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#ffffff"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><P></P><H1
+CLASS="title"
+><A
+NAME="AEN1"
+></A
+>JNIWrapper Tutorial</H1
+><HR size=1 noshadow color=#0066CC
+><SPAN
+CLASS="releaseinfo"
+>Version: 3.8.4<BR></SPAN
+><SPAN
+CLASS="date"
+>Last Updated: November 08, 2012<BR></SPAN
+><P
+CLASS="copyright"
+>Copyright &copy; 2002-2012 TeamDev Ltd. </P
+> </DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+></B><P></P><B>Table of Contents</B><HR size=1 noshadow color=#0066CC
+></DT
+><DT
+><A
+HREF="#AEN8"
+>Introduction</A
+></DT
+><DT
+>1. <A
+HREF="#AEN16"
+>Setting Up</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="#AEN18"
+>Creating the Environment</A
+></DT
+><DT
+>1.2. <A
+HREF="#AEN31"
+>Creating the Application</A
+></DT
+></DL
+></DD
+><DT
+>2. <A
+HREF="#AEN44"
+>Working with Native Libraries</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="#AEN49"
+>Preparing a Search Path</A
+></DT
+><DT
+>2.2. <A
+HREF="#AEN60"
+>Loading Native Code Libraries</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="#AEN69"
+>Using Simple Types</A
+></DT
+><DT
+>4. <A
+HREF="#AEN86"
+>Invoking Functions</A
+></DT
+><DT
+>5. <A
+HREF="#AEN101"
+>Using Strings</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="#AEN105"
+>String Types</A
+></DT
+><DT
+>5.2. <A
+HREF="#AEN123"
+>Creating Mutex and Displaying a Message</A
+></DT
+><DT
+>5.3. <A
+HREF="#AEN155"
+>Passing Mutex Name Parameter</A
+></DT
+><DT
+>5.4. <A
+HREF="#AEN166"
+>Creating Locking Mutex</A
+></DT
+><DT
+>5.5. <A
+HREF="#AEN171"
+>Error Handling</A
+></DT
+><DT
+>5.6. <A
+HREF="#AEN176"
+>Finishing Iteration</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="#AEN183"
+>Using Callbacks</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="#AEN190"
+>Creating a Timer Callback</A
+></DT
+><DT
+>6.2. <A
+HREF="#AEN206"
+>Using a Callback in the Application</A
+></DT
+><DT
+>6.3. <A
+HREF="#AEN224"
+>Testing Results</A
+></DT
+><DT
+>6.4. <A
+HREF="#AEN232"
+>Improving Callback Code</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="#AEN251"
+>Using Structures</A
+></DT
+><DT
+>8. <A
+HREF="#AEN271"
+>Using Pointers</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="#AEN277"
+>Creating a Window Message Loop</A
+></DT
+><DT
+>8.2. <A
+HREF="#AEN298"
+>Pointers and Strings</A
+></DT
+><DT
+>8.3. <A
+HREF="#AEN304"
+>Using String Values in Structures</A
+></DT
+></DL
+></DD
+><DT
+>9. <A
+HREF="#AEN314"
+>Final Touch</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="preface"
+> <P></P><H1
+><A
+NAME="AEN8"
+></A
+>Introduction</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Welcome to JNIWrapper<sup
+>TM</sup
+> for Microsoft Windows
+    tutorial. It is designed to illustrate the creation of a simple
+    application with certain features not provided by the Java platform and to
+    demonstrate the basic concepts you need to know to develop successful
+    applications using JNIWrapper.</P
+><P
+>The program we are going to create will reveal JNIWrapper's
+    capabilities through simple Win32 API functions. The first thing we'll do
+    is to make some sounds using the system speaker. It's not very often that
+    you hear Java programs are capable of such functionality, so this is the
+    simplest way to make our application stand out. We'll call the program
+    "Buzzer" to reflect the sound effect it produces and also add other nice
+    features while going through the tutorial.</P
+><P
+>The code will evolve as new concepts are introduced. By following
+    the tutorial step by step and adding code, you will finally have a
+    complete working program.</P
+><P
+>The full Buzzer sample code is available for <A
+HREF="http://www.teamdev.com/downloads/jniwrapper/samples/Buzzer.java"
+TARGET="_top"
+>download</A
+>
+    from the JNIWrapper site.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN16"
+></A
+>Chapter 1. Setting Up</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN18"
+></A
+>1.1. Creating the Environment</H2
+><P
+>First things first. Let's set up the program working environment.
+      Create a directory for the program and call it Sample. We will store our
+      Java file, JNIWrapper library and any other resources here. It will also
+      be our working directory for the sample application. In the working
+      directory, let's create a directory for native files and call it
+      <TT
+CLASS="filename"
+>bin</TT
+>. Now copy the Java library
+      <TT
+CLASS="filename"
+>jniwrap-3.1.jar</TT
+> and
+      <TT
+CLASS="filename"
+>winpack-3.0.jar</TT
+> to the Sample directory, the native
+      DLL (<TT
+CLASS="filename"
+>jniwrap.dll</TT
+>) and license files
+      (<TT
+CLASS="filename"
+>jniwrap.lic</TT
+>) to the
+      <TT
+CLASS="filename"
+>Sample\bin</TT
+> directory. Create a Java application
+      file in the <TT
+CLASS="filename"
+>Sample</TT
+> directory and call it
+      <TT
+CLASS="filename"
+>Buzzer</TT
+>.</P
+><P
+>You should now have the following structure:</P
+><PRE
+CLASS="programlisting"
+>    Sample\
+           bin\
+               jniwrap.dll
+               jniwrap.lic
+           Buzzer.java
+           jniwrap-3.1.jar
+           winpack-3.0.jar</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN31"
+></A
+>1.2. Creating the Application</H2
+><P
+>Now let's set up the class of the application and run it before
+      moving to the actual JNIWrapper coding.</P
+><P
+>Put the following code into
+      <TT
+CLASS="filename"
+>Buzzer.java</TT
+>:</P
+><PRE
+CLASS="programlisting"
+>    import com.jniwrapper.*;
+
+    public class Buzzer
+    {
+        public Buzzer()
+        {
+        }
+        public static void main(String[] args)
+        {
+            System.out.println("The Buzzer is running");
+            Buzzer buzzer = new Buzzer();
+        }
+    }</PRE
+><P
+>Compile the class:</P
+><PRE
+CLASS="programlisting"
+>    javac -classpath jniwrap-3.1.jar;winpack-3.0.jar Buzzer.java</PRE
+><P
+>and run the application:</P
+><PRE
+CLASS="programlisting"
+>    java -classpath jniwrap-3.1.jar;winpack-3.0;. Buzzer</PRE
+><P
+>In this tutorial, compiling and running of the application should
+      be understood as two actions being performed. Remember that you need to
+      run the commands from the <TT
+CLASS="filename"
+>Sample</TT
+> directory for the
+      program to work.</P
+><P
+>OK, let's get to real work.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN44"
+></A
+>Chapter 2. Working with Native Libraries</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>As was mentioned earlier, the first thing we'll try in our program
+    is to make sounds using the system speaker. To do this, we'll use the
+    standard Win32 <TT
+CLASS="function"
+>Beep</TT
+> function. This function is
+    exported from <TT
+CLASS="filename"
+>kernel32.dll</TT
+>, so our application
+    requires this to be loaded. JNIWrapper provides a shortcut method for
+    calling a function that loads a library and invokes its method. But the
+    library itself provides a lot of interesting functions, so we'd better
+    load it once to get access to the full variety of functions that we may
+    choose to invoke.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN49"
+></A
+>2.1. Preparing a Search Path</H2
+><P
+>Before doing any library loading, we need to prepare a search path
+      for our libraries, namely JNIWrapper DLL and those we'll use for
+      invoking functions. By default, libraries are located by the
+      <TT
+CLASS="classname"
+>DefaultLibraryLoader</TT
+> singleton instance. This
+      class searches for libraries following the path specified by the
+      <TT
+CLASS="property"
+>java.library.path</TT
+> system property; though, using
+      its <TT
+CLASS="methodname"
+>addPath</TT
+> method, we can add new directories
+      there.</P
+><P
+>All standard Win32 libraries that we will use are on the system
+      PATH, which is automatically added to
+      <TT
+CLASS="property"
+>java.library.path</TT
+>. So we just need to add a search
+      path for the JNIWrapper DLL. (We could copy it to some location on the
+      system PATH, but it is generally considered not a good style, especially
+      for deployed applications.) The DLL is in the <TT
+CLASS="filename"
+>bin</TT
+>
+      folder and since we run only from the current directory, let's use the
+      relative path to it. We'll use the relative paths later to keep the
+      example simpler. So, in our main function, we'll add a line as shown
+      below:</P
+><PRE
+CLASS="programlisting"
+>DefaultLibraryLoader.getInstance().addPath("bin");</PRE
+><P
+>You'll need to configure the library loader in all programs that
+      use JNIWrapper before any native-related activity takes place.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN60"
+></A
+>2.2. Loading Native Code Libraries</H2
+><P
+>Let's get back to our library. To load a library, you should
+      create an object of the <TT
+CLASS="type"
+>com.jniwrapper.Library</TT
+> type
+      specifying the library name. Since <TT
+CLASS="filename"
+>kernel32.dll</TT
+>
+      will be used often in our program, we'll create a field for it and load
+      it to the constructor. Now we need to change our class in the following
+      way (the new code is given in bold):</P
+><PRE
+CLASS="programlisting"
+>    <B
+CLASS="emphasis"
+>private Library _kernel;</B
+>
+    
+    public Buzzer()
+    {
+        <B
+CLASS="emphasis"
+>_kernel = new Library("kernel32");</B
+>
+    } </PRE
+><P
+>There is no need to specify the extension: it is appended
+      automatically. Libraries are loaded when their objects are constructed.
+      You don't have to worry about freeing libraries: if a library object is
+      no longer used, the native library defined by it is unloaded. Now let's
+      compile and run the application to make sure everything is typed
+      correctly and all the libraries are available.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN69"
+></A
+>Chapter 3. Using Simple Types</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In this chapter, we'll make beeping sounds by invoking a native
+    function with simple parameters. Let's put our "beeping" code in a new
+    method called <TT
+CLASS="methodname"
+>buzz</TT
+>.</P
+><P
+>As was mentioned earlier, we'll use the
+    <TT
+CLASS="methodname"
+>Beep</TT
+> function to produce sounds. This function
+    takes two <TT
+CLASS="type"
+>DWORD</TT
+> parameters and returns a <TT
+CLASS="type"
+>BOOL</TT
+>
+    value. We are not really interested in the return value and will ignore
+    it, since this function is unlikely to fail. However, we need to pass
+    values, so we'll create objects for the function parameters:</P
+><PRE
+CLASS="programlisting"
+>    private void buzz()
+    {
+        // Prepare beep parameters: low and high frequencies and beep durations
+            UInt32 low = new UInt32(400);
+            UInt32 high = new UInt32(1000);
+            UInt32 durLow = new UInt32(200);
+            UInt32 durHigh = new UInt32(200);</PRE
+><P
+>We used the standard JNIWrapper's <TT
+CLASS="type"
+>UInt32</TT
+> type which is
+    exactly what <TT
+CLASS="type"
+>DWORD</TT
+> is: a 32-bit unsigned integer. Our method
+    will produce a series of lower and higher frequency beeps, that's why we
+    define two sets of parameters: [<TT
+CLASS="parameter"
+><I
+>low; durLow</I
+></TT
+>] and
+    [<TT
+CLASS="parameter"
+><I
+>high; durHigh</I
+></TT
+>].</P
+><P
+>In JNIWrapper, all numeric types, like <TT
+CLASS="type"
+>Int</TT
+>,
+    <TT
+CLASS="type"
+>SingleFloat</TT
+>, and so on, have constructors that specify the
+    initial value and also have getters and setters for the value. All
+    parameters in JNIWrapper are mutable: they behave like variables. We could
+    use one pair of parameters and modify their values between calls, but it's
+    less illustrative, so let's have two sets.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN86"
+></A
+>Chapter 4. Invoking Functions</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Now that we have the library and parameters, one thing is still
+    missing: the function to invoke. Functions are obtained from the library
+    that exports them. To get a function, you should use the name it is
+    exported with. Luckily, most Win32 API functions are exported with the
+    same names (or almost the same - we will get to this case later) with
+    which they appear in the documentation. To get the
+    <TT
+CLASS="methodname"
+>Beep</TT
+> function, let's use the following
+    code:</P
+><PRE
+CLASS="programlisting"
+>        // Obtain function reference from the library
+        Function beep = _kernel.getFunction("Beep");</PRE
+><P
+>Everything is ready to make beeping sounds. We'll create a small
+    loop in which the <TT
+CLASS="methodname"
+>Beep</TT
+> function is invoked to
+    make high and low frequency beeps five times.</P
+><PRE
+CLASS="programlisting"
+>        // Do the beeping
+        for (int i = 0; i &#60; 5; i++)
+        {
+        beep.invoke(null, high, durHigh);
+        beep.invoke(null, low, durLow);
+        }</PRE
+><P
+>Note that the first argument of the <TT
+CLASS="methodname"
+>invoke</TT
+>
+    method is <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+>. This is to indicate that we do not
+    care about the return value. Later, we can easily add checking for it.
+    Imagine the consequences of incorrectly ignoring the return value in the
+    conventional JNI implementation: to get it later, you would need to modify
+    the native method signature, change the native implementation and Java
+    usages, and rebuild both Java and native code. This is just a simple
+    example of how JNIWrapper can significantly save you development
+    time.</P
+><P
+>Our new method is complete. Let's invoke it from the main method to
+    see how it works:</P
+><PRE
+CLASS="programlisting"
+>    public static void main(String[] args)
+    {
+        // Add JNIWrap.dll directory to library loader search path
+        DefaultLibraryLoader.getInstance().addPath("bin");
+        Buzzer buzzer = new Buzzer();
+        <B
+CLASS="emphasis"
+>buzzer.buzz();</B
+>
+    }</PRE
+><P
+>Compile and run the application. As a result, you should hear an
+    alarm-like sound from the speaker.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN101"
+></A
+>Chapter 5. Using Strings</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Our next goal is to allow the user to run only one instance of the
+    application at a time. Many Java programs try to achieve this by binding a
+    particular TCP/IP socket. This approach does not ensure success because
+    you cannot be absolutely sure the selected socket number is good.</P
+><P
+>Our program will use a different method of creating a named mutex on
+    start and checking for its existence to find out if another instance is
+    running. With a well-chosen name, this method is practically bullet-proof.
+    To create a mutex, we need to specify its name, which is a string.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN105"
+></A
+>5.1. String Types</H2
+><P
+>In Java, we have only one type of strings: the Unicode ones.
+      Native side, however, has both single-byte (<TT
+CLASS="type"
+>char*</TT
+>) and wide
+      (<TT
+CLASS="type"
+>wchar_t*</TT
+>) strings. JNIWrapper supports both types
+      providing two concrete parameter classes:
+      <TT
+CLASS="classname"
+>AnsiString</TT
+> for single-byte strings and
+      <TT
+CLASS="classname"
+>WideString</TT
+> for wide strings. All strings we
+      create in this application will consist only of 7-bit pure ASCII
+      characters, so we'll use <TT
+CLASS="classname"
+>AnsiString</TT
+>s.</P
+><P
+>To make sure that our single-instance mechanism is working
+      properly, we need to make our program keep running for as long as
+      needed. One of the simplest ways to achieve this is to display a message
+      box at the stage where we would like to wait. Of course, we could use
+      JOptionPane here, but it's not in the spirit of this tutorial and
+      besides, it does not produce that cool native notification sound. Let's
+      prepare a method that would allow displaying information or error
+      message box:</P
+><PRE
+CLASS="programlisting"
+>    private void showMessageBox(String message, int flags)</PRE
+><P
+>The first argument here is the message itself, whereas the second
+      one is the flags mask for the <TT
+CLASS="methodname"
+>MessageBox</TT
+>
+      function we are going to invoke. Let's take a closer look at the
+      <TT
+CLASS="methodname"
+>MessageBox</TT
+> function. From the documentation, we
+      can see that it has the following signature:</P
+><PRE
+CLASS="programlisting"
+>    int MessageBox(
+        <B
+CLASS="emphasis"
+>HWND</B
+> hWnd,          // handle to the owner window
+        <B
+CLASS="emphasis"
+>LPCTSTR</B
+> lpText,     // text in the message box
+        <B
+CLASS="emphasis"
+>LPCTSTR</B
+> lpCaption,  // message box title
+        <B
+CLASS="emphasis"
+>UINT</B
+> uType          // message box style
+    );</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN123"
+></A
+>5.2. Creating Mutex and Displaying a Message</H2
+><P
+>We need to create a correct parameter set to invoke this function.
+      The simplest way would be the <TT
+CLASS="type"
+>UINT</TT
+> type as it has an
+      equivalent type in JNIWrapper, i.e. <TT
+CLASS="type"
+>UInt</TT
+>. As far as
+      <TT
+CLASS="type"
+>HWND</TT
+> is concerned, it is a handle and, therefore, a
+      pointer. Generally speaking, pointers are more complex than the things
+      we would like to touch upon in this chapter. Luckily, the data this
+      pointer is pointing to will never be used, so we don't need to fill in
+      this pointer's referenced area with any data. And last, but not least.
+      In our case this pointer is simply <TT
+CLASS="constant"
+>NULL</TT
+>. On our
+      platform, we could use a <TT
+CLASS="type"
+>UInt32</TT
+> pararameter since we know
+      that all pointers are unsigned 32-bit integers, but a more correct way
+      would be to use a <TT
+CLASS="type"
+>Pointer.Void</TT
+> parameter. We'll set its
+      handle value to zero. This corresponds to a C-like conversion from an
+      integer. Whenever you need a constant such as
+      <TT
+CLASS="constant"
+>(HWND)-1</TT
+>, use <TT
+CLASS="type"
+>Pointer.Void</TT
+> specifying
+      the value in the constructor or setter.</P
+><P
+>The rest of the parameters are strings. The <TT
+CLASS="type"
+>LPCTSTR</TT
+>
+      type defines a pointer to a string that is ANSI or Unicode, depending on
+      the build configuration. Behind the scenes, it means that there are two
+      versions for this function for each of the string formats. In Win32 API
+      their names are created from a function name by appending 'A' for the
+      ANSI version or 'W' for Unicode.</P
+><P
+>We would like to use ANSI, so our target function is spelled
+      <TT
+CLASS="methodname"
+>MessageBoxA</TT
+>. The arguments are string pointers,
+      so in order to pass them, we create instances of
+      <TT
+CLASS="classname"
+>AnsiString</TT
+>. Strings in C/C++ are pointers to
+      string data. In JNIWrapper, string parameters actually represent string
+      data which, to become string arguments, need to be pointed to. But when
+      we are calling a function, its string parameters are automagically
+      passed to the underlying function as a pointer to relieve programmers
+      from the burden of creating any extra pointers. Therefore, the string
+      parameters for the <TT
+CLASS="methodname"
+>MessageBoxA</TT
+> function are
+      defined just like <TT
+CLASS="classname"
+>AnsiString</TT
+>.</P
+><P
+>Here's the argument preparation code for our method:</P
+><PRE
+CLASS="programlisting"
+>        Pointer.Void hWnd = new Pointer.Void(0);
+        AnsiString text = new AnsiString(message);
+        AnsiString caption = new AnsiString("Buzzer");
+        UInt uFlags = new UInt(flags);</PRE
+><P
+>To invoke the <TT
+CLASS="methodname"
+>MessageBoxA </TT
+>function, we
+      need another library - <TT
+CLASS="filename"
+>user32.dll</TT
+>. Add the
+      following code in bold to the declarations and constructor:</P
+><PRE
+CLASS="programlisting"
+>    private Library _kernel;
+    <B
+CLASS="emphasis"
+>private Library _user;</B
+>
+    public Buzzer()
+    {
+        _kernel = new Library("kernel32");
+        <B
+CLASS="emphasis"
+>_user = new Library("user32");</B
+>
+        }</PRE
+><P
+>Let's finish the <TT
+CLASS="methodname"
+>showMessage</TT
+>
+      method:</P
+><PRE
+CLASS="programlisting"
+>        Function messageBox = _user.getFunction("MessageBoxA");
+        messageBox.invoke(null, hWnd, text, caption, uFlags);</PRE
+><P
+>Here, we also can safely ignore the return value.</P
+><P
+>For further convenience, we'll create methods to display the error
+      and information message boxes. The methods will specify the required
+      style constants for those message box types.</P
+><PRE
+CLASS="programlisting"
+>    private void message(String message)
+    {
+        showMessageBox(message, 0x30);
+    }
+    private void error(String message)
+    {
+        showMessageBox(message, 0x10);
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN155"
+></A
+>5.3. Passing Mutex Name Parameter</H2
+><P
+>With what we have already learned, it is really easy to write a
+      mutex-based single instance checking part.</P
+><P
+>First, let's create a parameter representing a mutex name:</P
+><PRE
+CLASS="programlisting"
+>    private boolean checkOneInstance()
+    {
+        AnsiString mutexName = new AnsiString("com.jniwrapper.sample.BuzzerMutex");</PRE
+><P
+>Then, let's try to open a mutex with this name:</P
+><PRE
+CLASS="programlisting"
+>        UInt32 desiredAcces = new UInt32(0x1F0001);
+        Bool inheritHandle = new Bool(false);
+        Pointer.Void mutexHandle = new Pointer.Void();
+        Function openMutex = _kernel.getFunction("OpenMutexA");
+        openMutex.invoke(mutexHandle, desiredAcces, inheritHandle, mutexName);</PRE
+><P
+>Here, we are interested in the result. If there is no such mutex,
+      the function returns <TT
+CLASS="constant"
+>NULL</TT
+>, otherwise we'll know
+      that another instance is running and we need to close the new instance.
+      To get the return value, we need to create a variable of the required
+      type and pass it as the first argument to the
+      <TT
+CLASS="methodname"
+>invoke</TT
+> method. After the invocation is
+      complete, the passed parameter contains the return value. Next, we need
+      to test the return value:</P
+><PRE
+CLASS="programlisting"
+>        if (!mutexHandle.isNull())
+        {
+            // Mutex exists - one instance is already running
+            return false;
+        } </PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN166"
+></A
+>5.4. Creating Locking Mutex</H2
+><P
+>Now if the mutex doesn't exist, this instance is the first one and
+      therefore we need to create a locking mutex. Creating is not much
+      different from checking, except for the part where the
+      <TT
+CLASS="constant"
+>NULL</TT
+> result now indicates the error we would like
+      to catch. Here is the rest of the checking method:</P
+><PRE
+CLASS="programlisting"
+>        // Not yet running - lock by creating mutex
+        Pointer.Void mutexAttributes = new Pointer.Void(0);
+        Bool initialOwner = new Bool(false);
+        Function createMutex = _kernel.getFunction("CreateMutexA");
+        createMutex.invoke(mutexHandle, mutexAttributes, initialOwner, mutexName);
+        if (mutexHandle.isNull())
+        {
+            throw new RuntimeException("Mutex creation failed, 
+last error = " + getLastError(true));
+        }
+        return true;
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN171"
+></A
+>5.5. Error Handling</H2
+><P
+>You have probably noticed that the last piece of code references a
+      method that is not yet defined: <TT
+CLASS="methodname"
+>getLastError</TT
+>.
+      It needs to return the last system error code, optionally clearing the
+      error status depending on a boolean parameter. Let's implement it now.
+      We already know all methods and types to write the following simple
+      piece of code:</P
+><PRE
+CLASS="programlisting"
+>    private long getLastError(boolean clear)
+    {
+        UInt32 r = new UInt32();
+        Function getLE = _kernel.getFunction("GetLastError");
+        getLE.invoke(r);
+        long errCode = r.getValue();
+        if (clear)
+        {
+            UInt32 zero = new UInt32(0);
+            Function setLE = _kernel.getFunction("SetLastError");
+            setLE.invoke(null, zero);
+        }
+        return errCode;
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN176"
+></A
+>5.6. Finishing Iteration</H2
+><P
+>We are ready to finish this iteration by adding the following code
+      in bold to the <TT
+CLASS="methodname"
+>main</TT
+> method:</P
+><PRE
+CLASS="programlisting"
+>    public static void main(String[] args)
+    {
+        // Add JNIWrap.dll directory to library loader search path
+        DefaultLibraryLoader.getInstance().addPath("bin");
+        Buzzer buzzer = new Buzzer();
+        <B
+CLASS="emphasis"
+>if (!buzzer.checkOneInstance())
+        {
+            buzzer.error("Buzzer is already running");
+            System.exit(0);
+        }
+        buzzer.message("Buzzer started, click OK to close");</B
+>
+    }</PRE
+><P
+>Compile and run the application. As a result, you should see the
+      "Buzzer started..." message box - don't close it and try to run another
+      instance. Now you should see an error message box saying that the
+      application is already running.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN183"
+></A
+>Chapter 6. Using Callbacks</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In this chapter, let's create a timer to make a sound after some
+    time elapses. We'll use Windows native timers here, so we need a way to
+    have the native code to call Java code. JNIWrapper provides such a
+    capability using the <TT
+CLASS="classname"
+>com.jniwrapper.Callback</TT
+> class.
+    You can create any number of callbacks that can have any parameters and
+    return values.</P
+><P
+>Creating a callback is simple: you need to subclass the
+    <TT
+CLASS="classname"
+>Callback</TT
+> class, define the callback arguments and
+    return value, and implement the <TT
+CLASS="methodname"
+>callback</TT
+> method.
+    Then, you pass an instance of this class as a parameter wherever you need
+    a reference to the callback.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN190"
+></A
+>6.1. Creating a Timer Callback</H2
+><P
+>We are going to use the Windows API
+      <TT
+CLASS="methodname"
+>SetTimer</TT
+> function. It accepts the reference to
+      the <TT
+CLASS="methodname"
+>TimerProc</TT
+> callback function, so we need to
+      implement such a callback. Here's its definition:</P
+><PRE
+CLASS="programlisting"
+>    VOID CALLBACK TimerProc(
+      HWND hwnd,         // handle to window
+      UINT uMsg,         // WM_TIMER message
+      UINT_PTR idEvent,  // timer identifier
+      DWORD dwTime       // current system time
+    );</PRE
+><P
+>After examining the function signature, we can see we already know
+      how to pass any of such types to a function call. Specifying them as
+      callback arguments is no harder. Let's define our callback class as an
+      inner class of our application class so that we can easily call the
+      useful methods defined there:</P
+><PRE
+CLASS="programlisting"
+>    private class TimeOutCallback extends Callback
+    {
+        private Pointer.Void _hwnd = new Pointer.Void();
+        private UInt _msg = new UInt();
+        private UInt _timerID = new UInt();
+        private UInt32 _time = new UInt32();
+        public TimeOutCallback()
+        {</PRE
+><P
+>We have defined the fields for each of our callback parameters.
+      There is no return value, so we do not define any parameter for it. In
+      the constructor, we need to configure our callback by specifying
+      parameters of the callback signature:</P
+><PRE
+CLASS="programlisting"
+>            init(new Parameter[] {
+                _hwnd,
+                _msg,
+                _timerID,
+                _time
+            }, null);
+        }</PRE
+><P
+>The last <TT
+CLASS="constant"
+>null</TT
+> is the <TT
+CLASS="type"
+>void</TT
+> return
+      value. Now, to make this class complete and compilable, we'll implement
+      the <TT
+CLASS="methodname"
+>callback</TT
+> method. We'll make it just a buzz
+      but will add more intelligent code to it later in this chapter:</P
+><PRE
+CLASS="programlisting"
+>        public void callback()
+        {
+            buzz();
+        }
+    }</PRE
+><P
+>The callback created is already usable. Easy, isn't it? Just
+      imagine doing all this stuff using the conventional JNI
+      techniques!</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN206"
+></A
+>6.2. Using a Callback in the Application</H2
+><P
+>Now we need to create a timer and pass the callback reference to
+      be called when the timer elapses. To do this, we'll create a method and
+      call it startTimer. This function requires passing a window handle. We
+      will use the <TT
+CLASS="classname"
+>Wnd</TT
+> class that can obtain a native
+      window handle from any Swing component. In subsequent iterations, we'll
+      get our own window handle without messing up with internal
+      implementation classes. For now, let's create a Java window and use its
+      handle. Add the following code in bold to the class
+      initialization:</P
+><PRE
+CLASS="programlisting"
+>import com.jniwrapper.*;
+import com.jniwrapper.win32.ui.Wnd;
+
+<B
+CLASS="emphasis"
+>import java.awt.*;
+import sun.awt.windows.WToolkit;
+import javax.swing.*;</B
+>
+
+public class Buzzer
+{
+    private Library _kernel;
+    private Library _user;
+
+    <B
+CLASS="emphasis"
+>private Window _window;
+    private static final int TIMER_ID = 1;</B
+>
+
+    public Buzzer()
+    {      
+        _kernel = new Library("kernel32");
+        _user = new Library("user32");
+        <B
+CLASS="emphasis"
+>_window = new JWindow();
+        _window.setVisible(true);</B
+>
+    }</PRE
+><P
+>Please take a look at the new constant: it will be used in the
+      code below. The window will just provide its handle to hook the timer
+      to.</P
+><P
+>Let's implement the <TT
+CLASS="methodname"
+>startTimer</TT
+>
+      method:</P
+><PRE
+CLASS="programlisting"
+>    private void startTimer(long timeout)
+    {
+        Wnd hWnd = new Wnd(_window);
+        UInt eventID = new UInt(TIMER_ID);
+        UInt timeOutVal = new UInt(timeout);
+        UInt result = new UInt();
+        TimeOutCallback timeOutCallback = new TimeOutCallback();
+        Function setTimer = _user.getFunction("SetTimer");
+        setTimer.invoke(result, hWnd, eventID, timeOutVal, timeOutCallback);</PRE
+><P
+>Passing a callback is even more straightforward than its
+      implementation: just create an object and pass it to the function that
+      requires it. It's just like an event listener. Some sanity check and
+      we're done:</P
+><PRE
+CLASS="programlisting"
+>        if (result.getValue() == 0)
+        {
+            throw new RuntimeException("Failed to create a timer, error code = " + getLastError(true));
+        }
+    }</PRE
+><P
+>Before moving on, let's implement the
+      <TT
+CLASS="methodname"
+>stopTimer</TT
+> method to be called from the
+      callback:</P
+><PRE
+CLASS="programlisting"
+>    private void stopTimer(Pointer.Void hwnd, UInt timerID)
+    {
+        Function killTimer = _user.getFunction("KillTimer");
+        killTimer.invoke(null, hwnd, timerID);
+    }</PRE
+><P
+>Here we used JNIWrapper types as parameters, because we already
+      have them in the callback and there is no need to unwrap the values just
+      to wrap them back.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN224"
+></A
+>6.3. Testing Results</H2
+><P
+>Let's test the resulting code. Modify the main method in the
+      following way:</P
+><PRE
+CLASS="programlisting"
+>    public static void main(String[] args)
+    {
+        // Add jniwrap.dll directory to library loader search path
+        DefaultLibraryLoader.getInstance().addPath("bin");
+        Buzzer buzzer = new Buzzer();
+        if (!buzzer.checkOneInstance())
+        {
+            buzzer.error("Buzzer is already running");
+            System.exit(0);
+        }
+        <B
+CLASS="emphasis"
+>buzzer.startTimer(5000);</B
+>
+    }</PRE
+><P
+>Compile the program. If it is already running, there is no control
+      to terminate it. To close the program, just press
+      <TT
+CLASS="keycap"
+><B
+>Ctrl+C</B
+></TT
+> in its console (remember not to use
+      <TT
+CLASS="filename"
+>javaw.exe</TT
+> here or else you'll have to use the Task
+      Manager to stop the buzzing). Run the program. You should hear a regular
+      beeping at 5-second intervals until the program is terminated. This
+      means that the timer we are using is repetitive, so we'll need to stop
+      it when it is no longer needed.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN232"
+></A
+>6.4. Improving Callback Code</H2
+><P
+>Now we'll complete the callback code with a few useful lines. We
+      may want to:</P
+><P
+></P
+><UL
+><LI
+><P
+>Stop the timer.</P
+></LI
+><LI
+><P
+>Notify the user that the timer has elapsed.</P
+></LI
+><LI
+><P
+>Finish the program.</P
+></LI
+></UL
+><P
+>Here's the whole implementation of the
+      <TT
+CLASS="methodname"
+>callback</TT
+> method that does it all:</P
+><PRE
+CLASS="programlisting"
+>        public void callback()
+        {
+            stopTimer(_hwnd, _timerID);
+            buzz();
+            message("Timer has elapsed!");
+            System.exit(0);
+        }</PRE
+><P
+>Note that although our main thread terminates before the timer
+      elapses, the program still lives because of non-daemon AWT threads that
+      keep our window alive.</P
+><P
+>Take a look at the first line of the function. When the callback
+      is invoked, the variables specified at its creation are set to the
+      argument values before the <TT
+CLASS="methodname"
+>callback</TT
+> method is
+      called. We pass two of the arguments to the
+      <TT
+CLASS="methodname"
+>stopTimer</TT
+> function. Our callback does not have
+      a return value; if it had, we would need to assign the return value
+      parameter before leaving the <TT
+CLASS="methodname"
+>callback</TT
+> method.
+      There are no limitations as to what things a callback can do other than
+      those specified for the original callback.</P
+><P
+>Compile and run the application. Five seconds after the start, the
+      program will produce the usual sound, and then display the information
+      message box saying that the timer has elapsed. Closing this message box
+      will terminate the program.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN251"
+></A
+>Chapter 7. Using Structures</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In the previous chapter, we used an implementation-specific class to
+    get the window handle. In this chapter, we are going to get one in a more
+    legitimate way. We'll create a native window and later make it
+    custom-shaped like a splash screen.</P
+><P
+>Creating and managing a window using Windows API requires passing
+    more complex parameters than we have used before, namely structures and
+    pointers. We'll begin with structures.</P
+><P
+>Any window has its event queue and requires some thread to dispatch
+    its events. Messages are placed into the message queue in the form of the
+    MSG structures. Let's examine the contents of this structure and implement
+    it using JNIWrapper. Here is its definition:</P
+><PRE
+CLASS="programlisting"
+>typedef struct tagMSG {
+  HWND   hwnd; 
+  UINT   message; 
+  WPARAM wParam; 
+  LPARAM lParam; 
+  DWORD  time; 
+  POINT  pt; 
+} MSG, *PMSG;</PRE
+><P
+>One of the MSG structure members is a structure itself:
+    <TT
+CLASS="parameter"
+><I
+>POINT pt</I
+></TT
+>. Its layout is as follows:</P
+><PRE
+CLASS="programlisting"
+>typedef struct tagPOINT { 
+  LONG x; 
+  LONG y; 
+} POINT, *PPOINT;</PRE
+><P
+>This one is really simple - it looks like a good starting point to
+    learn how to create structures in JNIWrapper. Structures can be
+    implemented by creating an instance of the
+    <TT
+CLASS="classname"
+>com.jniwrapper.Structure</TT
+> class and initilazing them
+    with objects representing fields. Most of them, however, are often reused
+    and so it is usually better (and more readable) to create a subclass for
+    each structure required. We'll choose the second approach:</P
+><PRE
+CLASS="programlisting"
+>    private static class POINT extends Structure
+    {
+        public LongInt _x = new LongInt();
+        public LongInt _y = new LongInt();</PRE
+><P
+>First, we created a variable for each structure member. These
+    variables are used for holding actual member data and for accessing it.
+    Next, the structure must be initialized by defining its layout. Members
+    are passed to the <TT
+CLASS="methodname"
+>init</TT
+> method in the order they
+    appear in the native-side structure declaration. Optionally, the structure
+    alignment can be specified, but it is not needed here since all Windows
+    API structures have the default alignment (of 1). Here is the rest of the
+    code for this structure:</P
+><PRE
+CLASS="programlisting"
+>        public POINT()
+        {
+            init(new Parameter[] {_x, _y});
+        }
+    }</PRE
+><P
+>The <TT
+CLASS="type"
+>POINT</TT
+> structure is ready. Using the same principle,
+    let's create a class for the <TT
+CLASS="type"
+>MSG</TT
+> structure:</P
+><PRE
+CLASS="programlisting"
+>    private static class MSG extends Structure
+    {
+        Pointer.Void _hwnd = new Pointer.Void();
+        UInt _message = new UInt();
+        UInt32 _wParam = new UInt32();
+        UInt32 _lParam = new UInt32();
+        UInt32 _time = new UInt32();
+        POINT _pt = new POINT();
+
+        public MSG()
+        {
+            init(new Parameter[]{_hwnd, _message, _wParam, _lParam, _time, _pt});
+        }
+    }</PRE
+><P
+>Note that defining a member of some complex type (structure) is no
+    different from defining any member of simple ones. Uniformity is one of
+    the JNIWrapper's main design goals.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN271"
+></A
+>Chapter 8. Using Pointers</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To demonstrate the use of a pointer in JNIWrapper, let's implement
+    the event loop for our program. We'll do this before creating a window and
+    doing all other preparation stuff, because using a pointer here is the
+    simplest and most straightforward way. In fact, the only missing part will
+    be the window handle, so let's assume that it is already stored in the
+    <TT
+CLASS="varname"
+>_hSplash</TT
+> variable defined in the following way:</P
+><PRE
+CLASS="programlisting"
+>    private Pointer.Void _hSplash;</PRE
+><P
+>Add the above line to the declaration section of the class
+    file.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN277"
+></A
+>8.1. Creating a Window Message Loop</H2
+><P
+>We'll implement the message loop in the
+      <TT
+CLASS="methodname"
+>run</TT
+> method of our program. The loop consists of
+      sequential invocation of three API functions:
+      <TT
+CLASS="function"
+>GetMessage</TT
+>, <TT
+CLASS="function"
+>TranslateMessage</TT
+>
+      and <TT
+CLASS="function"
+>DispatchMessage</TT
+>. However, instead of taking the
+      MSG structure as their argument, they all require
+      <TT
+CLASS="structname"
+>LPMSG</TT
+>, i.e. a pointer to that structure.</P
+><P
+>In JNIWrapper, pointers are similar to any other type. To create a
+      pointer, you need to create an instance of the
+      <TT
+CLASS="classname"
+>com.jniwrapper.Pointer</TT
+> class. Each pointer should
+      point to some other parameter called a referenced object. Whenever a
+      pointer is written or read, its referenced object is also written or
+      read, respectively.</P
+><P
+>Let's create a pointer to the MSG structure:</P
+><PRE
+CLASS="programlisting"
+>    private void run()
+    {
+        Function getMessage = _user.getFunction("GetMessageA", null);
+        Function translateMessage = _user.getFunction("TranslateMessage", null);
+        Function dispatchMessage = _user.getFunction("DispatchMessageA", null);
+        <B
+CLASS="emphasis"
+><TT
+CLASS="keycap"
+><B
+>MSG msg = new MSG();</B
+></TT
+>
+        Pointer msgPointer = new Pointer(msg);</B
+></PRE
+><P
+>The code related to the pointer creation is marked bold. In this
+      example, <TT
+CLASS="varname"
+>msgPointer</TT
+> is a pointer and
+      <TT
+CLASS="varname"
+>msg</TT
+> is its referenced object. In the previous code we
+      used the <TT
+CLASS="classname"
+>Pointer.Void</TT
+> class instead of pointers,
+      because we did not care for the referenced object and did not need to
+      provide one. In this case, we need to provide the MSG structure so we
+      need to use the real pointer. The rest of this function code uses the
+      created pointer just as any other parameter:</P
+><PRE
+CLASS="programlisting"
+>        Bool result = new Bool();
+        for (;;)
+        {
+            getMessage.invoke(result, msgPointer, _hSplash, new UInt32(0), 
+                               new UInt32(0));
+            if (!result.getValue())
+            {
+                break;
+            }
+            translateMessage.invoke(null, msgPointer);
+            dispatchMessage.invoke(null, msgPointer);
+        }
+    }</PRE
+><P
+>Although there is no need for us to access or modify data in the
+      <TT
+CLASS="type"
+>msg</TT
+> structure, we could easily do so.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN298"
+></A
+>8.2. Pointers and Strings</H2
+><P
+>Now that we learned all the techniques, we can go into the gory
+      details of creating a window. First off, we will define the most complex
+      structure in this example: the equivalent of Windows API WNDCLASS
+      structure. We have already seen that any type can become a structure
+      member equally easily. This structure will be another example: it will
+      hold a callback reference. Add this class to your code:</P
+><PRE
+CLASS="programlisting"
+>    private static class WndClass extends Structure
+    {
+        private UInt32 _style = new UInt32();
+        private Callback _lpfnWndProc;
+        private Int32 _cbClsExtra = new Int32();
+        private Int32 _cbWndExtra = new Int32();
+        private Pointer.Void _hInstance = new Pointer.Void();
+        private Pointer.Void _hIcon = new Pointer.Void();
+        private Pointer.Void _hCursor = new Pointer.Void();
+        private Pointer.Void _hbrBackground = new Pointer.Void();
+        <B
+CLASS="emphasis"
+>private AnsiString _lpszClassName = new AnsiString();</B
+>
+
+        public WndClass(Callback windowProc, String className, 
+                        Pointer.Void bgBrushHandle)
+        {
+            _style.setValue(3); // CS_HREDRAW | CS_VREDRAW
+            _lpfnWndProc = windowProc;
+            _lpszClassName.setValue(className);
+            _cbClsExtra.setValue(0);
+            _cbWndExtra.setValue(0);
+            _hInstance.setValue(0);
+            _hIcon.setValue(0);
+            _hCursor.setValue(0);
+            _hbrBackground.setValue(bgBrushHandle.getValue());
+            init(new Parameter[] {_style, _lpfnWndProc, _cbClsExtra, 
+                 _cbWndExtra, _hInstance, _hIcon, _hCursor, 
+                 _hbrBackground, new Pointer.Void(0), 
+                 <B
+CLASS="emphasis"
+>new Pointer(_lpszClassName)</B
+>});
+        }
+    }</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN304"
+></A
+>8.3. Using String Values in Structures</H2
+><P
+>Take a look at the initialization of the
+      <TT
+CLASS="varname"
+>_lpszClassName</TT
+> field:</P
+><PRE
+CLASS="programlisting"
+>init(new Parameter[] {... <B
+CLASS="emphasis"
+>new Pointer(_lpszClassName)</B
+>});</PRE
+><P
+>When defining structures that contain strings, you should always
+      remember that there can be two types of them: pointers to character data
+      and character arrays. To distinguish between the two, look at the member
+      definition. Ones defined as <TT
+CLASS="varname"
+>char *name</TT
+> are pointers
+      and others defined as <TT
+CLASS="varname"
+>char name[20]</TT
+> are arrays. In
+      function calls, strings are always passed as pointers, so string
+      parameters are automatically converted. But in structures, there is no
+      way to know, so you should explicitly specify how the string is stored.
+      If it is a pointer, a <TT
+CLASS="classname"
+>Pointer</TT
+> instance must be
+      passed as the corresponding structure member. If it is an array, you
+      should create a string with the maximum length equal to that of the
+      expected character array and pass that parameter itself as the structure
+      member. In this case, we have a pointer to characters version.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN314"
+></A
+>Chapter 9. Final Touch</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Now we are ready to finish the application. To do this, we need to
+    implement a window procedure callback, register a window class, create a
+    window, shape and center it, and define a window painting method. There is
+    nothing special in any of these tasks so you can just take a look at the
+    final code provided with this tutorial. After running it, you should see a
+    small round window (on top of all other windows), in ten seconds the
+    computer should make a beeping sound and pop up a message box saying that
+    the timer has elapsed. Of course, the single instance rule is still
+    enforced.</P
+><P
+>The tutorial is over. By now you learned everything you need to
+    start successfully using JNIWrapper in your applications.</P
+></DIV
+></DIV
+><P></P></td></tr></tbody></table><table valign="top" border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td><td bgcolor=#A9BAD1 width="100%" align=center><font face ="Verdana, Tahoma,  Sans-Serif" size=3 color=white><b>Copyright &copy; 2002-2012 TeamDev Ltd.</b></font></td><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></BODY
+></HTML
+>

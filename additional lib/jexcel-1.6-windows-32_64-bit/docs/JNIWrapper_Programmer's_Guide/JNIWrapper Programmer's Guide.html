@@ -1,0 +1,4508 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML
+><HEAD
+><TITLE
+>JNIWrapper Programmer's Guide</TITLE
+><style type="text/css"><!--
+.note {border: 1px solid white; background-color: white; padding: 0pt;}
+.important {border: 1px solid white; background-color: white; padding: 0pt;}
+.note table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important table {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.note td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.important td {border: 1px solid white; background-color: white; padding: 5px; vertical-align: middle;}
+.TOC { font-family: Verdana, Sans-Serif; font-size: 12px;}
+.filename { font-family: courier, monospace; font-size: 14px;}
+.parameter {FONT-WEIGHT: bold;}
+.methodname { font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.classname { color: #204E80; font-family: courier, monospace; font-size: 14px; FONT-WEIGHT: bold;}
+.programlisting{border: 1px solid #AEBDCC; background-color: #F3F5F7; padding: 5pt; FONT-FAMILY:  courier, monospace; FONT-SIZE: 12px}
+.title{color: white; text-align: center; border: 1pt solid #7B8798; background-color: #A9BAD1; padding: 5pt; FONT-FAMILY:  Verdana, Sans-Serif; FONT-SIZE: 22px}
+FONT {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+TD {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+BODY {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+P {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 12px}
+H1 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 22px; FONT-WEIGHT: bold;}
+H2 {FONT-FAMILY: Verdana, Sans-Serif; FONT-SIZE: 18px; FONT-WEIGHT: bold;}--></style
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#204E80"
+VLINK="#204E80"
+ALINK="#204E89" background="images/bg.png"><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td
+><table border="0" cellpadding="1" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#788598"
+><table border="0" cellpadding="30" cellspacing="0" width="100%"><tbody><tr><td bgcolor="#ffffff"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><P></P><H1
+CLASS="title"
+><A
+NAME="AEN1"
+></A
+>JNIWrapper Programmer's Guide</H1
+><HR size=1 noshadow color=#0066CC
+><SPAN
+CLASS="releaseinfo"
+>Version: 3.8.4<BR></SPAN
+><SPAN
+CLASS="date"
+>Last Updated: November 08, 2012<BR></SPAN
+><P
+CLASS="copyright"
+>Copyright &copy; 2002-2012 TeamDev Ltd. </P
+> </DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+></B><P></P><B>Table of Contents</B><HR size=1 noshadow color=#0066CC
+></DT
+><DT
+>1. <A
+HREF="#AEN8"
+>Introduction</A
+></DT
+><DD
+><DL
+><DT
+>1.1. <A
+HREF="#AEN15"
+>About This Guide</A
+></DT
+><DT
+>1.2. <A
+HREF="#AEN20"
+>New in This Version</A
+></DT
+><DT
+>1.3. <A
+HREF="#AEN26"
+>Related Documents</A
+></DT
+><DT
+>1.4. <A
+HREF="#AEN47"
+>About JNIWrapper</A
+></DT
+><DD
+><DL
+><DT
+>1.4.1. <A
+HREF="#AEN52"
+>Technical Advantages</A
+></DT
+><DT
+>1.4.2. <A
+HREF="#AEN79"
+>New in This Release</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>2. <A
+HREF="#AEN87"
+>Getting Started</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="#AEN89"
+>System Requirements</A
+></DT
+><DT
+>2.2. <A
+HREF="#AEN119"
+>Package Contents</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="#AEN147"
+>Configuring JNIWrapper</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="#AEN150"
+>Library JAR File</A
+></DT
+><DT
+>3.2. <A
+HREF="#AEN154"
+>Native Code Library</A
+></DT
+><DT
+>3.3. <A
+HREF="#AEN172"
+>License File</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="#AEN200"
+>Working with Native Libraries and Functions</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="#AEN202"
+>Finding Native Libraries</A
+></DT
+><DT
+>4.2. <A
+HREF="#AEN216"
+>Using <TT
+CLASS="keycap"
+><B
+>DefaultLibraryLoader</B
+></TT
+></A
+></DT
+><DT
+>4.3. <A
+HREF="#AEN229"
+>Loading Native Libraries</A
+></DT
+><DT
+>4.4. <A
+HREF="#AEN241"
+>Getting Functions from a Native Library</A
+></DT
+><DD
+><DL
+><DT
+>4.4.1. <A
+HREF="#AEN252"
+>Managing Library's Global Variables</A
+></DT
+></DL
+></DD
+><DT
+>4.5. <A
+HREF="#AEN260"
+>Calling Conventions</A
+></DT
+><DD
+><DL
+><DT
+>4.5.1. <A
+HREF="#AEN265"
+>Calling Conventions on Windows</A
+></DT
+><DT
+>4.5.2. <A
+HREF="#AEN270"
+>Calling Conventions on Linux/Mac OS X</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>5. <A
+HREF="#AEN274"
+>Passing Parameters to/from Native Code</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="#AEN279"
+>Primitive Types</A
+></DT
+><DD
+><DL
+><DT
+>5.1.1. <A
+HREF="#AEN287"
+>Mappings of Native Types to JNIWrapper Classes</A
+></DT
+></DL
+></DD
+><DT
+>5.2. <A
+HREF="#AEN438"
+>Structures and Unions</A
+></DT
+><DD
+><DL
+><DT
+>5.2.1. <A
+HREF="#AEN447"
+>Setting Structure Alignment</A
+></DT
+><DT
+>5.2.2. <A
+HREF="#AEN452"
+>Setting an Active Union Member</A
+></DT
+></DL
+></DD
+><DT
+>5.3. <A
+HREF="#AEN458"
+>Pointers</A
+></DT
+><DD
+><DL
+><DT
+>5.3.1. <A
+HREF="#AEN475"
+>Function Pointers</A
+></DT
+><DT
+>5.3.2. <A
+HREF="#AEN489"
+>ArithmeticalPointer Class</A
+></DT
+><DT
+>5.3.3. <A
+HREF="#Pointer_Casting"
+>Casting Pointers</A
+></DT
+></DL
+></DD
+><DT
+>5.4. <A
+HREF="#AEN512"
+>Arrays</A
+></DT
+><DD
+><DL
+><DT
+>5.4.1. <A
+HREF="#AEN543"
+>Pointers to Array Contents</A
+></DT
+><DT
+>5.4.2. <A
+HREF="#AEN554"
+>Controlling Memory Allocation for Arrays</A
+></DT
+></DL
+></DD
+><DT
+>5.5. <A
+HREF="#Strings_Type"
+>Strings</A
+></DT
+><DD
+><DL
+><DT
+>5.5.1. <A
+HREF="#AEN573"
+>Str Class</A
+></DT
+><DT
+>5.5.2. <A
+HREF="#AEN580"
+>StringArray Class</A
+></DT
+></DL
+></DD
+><DT
+>5.6. <A
+HREF="#AEN585"
+>Enumerations</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="#AEN592"
+>Calling Native Functions</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="#AEN602"
+>Calling Conventions</A
+></DT
+><DD
+><DL
+><DT
+>6.1.1. <A
+HREF="#AEN615"
+>A Quick Way to Call a Function</A
+></DT
+></DL
+></DD
+><DT
+>6.2. <A
+HREF="#AEN646"
+>Using Callbacks</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="#AEN685"
+>Working with Multithreading</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="#AEN688"
+>Parameters</A
+></DT
+><DT
+>7.2. <A
+HREF="#AEN692"
+>Functions</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="#Code_Generation_Utility"
+>Code Generator for JNIWrapper</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="#AEN698"
+>Overview</A
+></DT
+><DT
+>8.2. <A
+HREF="#AEN701"
+>Running Code Generator for JNIWrapper</A
+></DT
+><DT
+>8.3. <A
+HREF="#AEN727"
+>Specifying Input Parameters and Options</A
+></DT
+><DT
+>8.4. <A
+HREF="#AEN740"
+>Using Type Replacement Table</A
+></DT
+><DT
+>8.5. <A
+HREF="#AEN744"
+>Namespaces and Package Naming</A
+></DT
+><DT
+>8.6. <A
+HREF="#AEN747"
+>Supported Types</A
+></DT
+><DT
+>8.7. <A
+HREF="#AEN767"
+>Known Limitations</A
+></DT
+><DT
+>8.8. <A
+HREF="#AEN787"
+>Example</A
+></DT
+></DL
+></DD
+><DT
+>9. <A
+HREF="#AEN799"
+>Using AWT Native Interface</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="#AEN804"
+>Using JAWT Support</A
+></DT
+><DT
+>9.2. <A
+HREF="#AEN814"
+>Accessing Native Control's Data</A
+></DT
+><DT
+>9.3. <A
+HREF="#AEN823"
+>Getting HWND of a Window</A
+></DT
+><DT
+>9.4. <A
+HREF="#AEN844"
+>JAWT Support in Different JDK Versions</A
+></DT
+></DL
+></DD
+><DT
+>10. <A
+HREF="#Using_JNIWrapper_in_JWS_Applications"
+>Using JNIWrapper in Java Web Start Applications</A
+></DT
+><DT
+>11. <A
+HREF="#AEN876"
+>Using JNIWrapper in Applets</A
+></DT
+><DT
+>12. <A
+HREF="#AEN914"
+>Using JNIWrapper in Native Executable Archives</A
+></DT
+><DT
+>13. <A
+HREF="#AEN935"
+>Using JNIWrapper in Servlets</A
+></DT
+><DT
+>14. <A
+HREF="#AEN948"
+>Support</A
+></DT
+><DD
+><DL
+><DT
+>14.1. <A
+HREF="#AEN964"
+>Reporting Problems</A
+></DT
+><DT
+>14.2. <A
+HREF="#AEN971"
+>Troubleshooting</A
+></DT
+></DL
+></DD
+><DT
+>15. <A
+HREF="#AEN980"
+>Where to Get a New Version</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN8"
+></A
+>Chapter 1. Introduction</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In the few years since its first release, the
+    Java<sup
+>TM</sup
+> programming language has grown immensely to
+    become a popular platform. Many developers working on different platforms
+    find their own advantages in using Java technology. One of them is, of
+    course, the "write once, run anywhere" ability allowing developers to
+    write software on one platform and run it on another.</P
+><P
+>Sometimes, however, Java programs have to interact with native code.
+    This is well justified for such reasons as performance, a lack of features
+    for platform integration in the Java platform or the need of legacy
+    software interoperability. To solve this problem, Java Native Interface
+    (JNI) was introduced in the Java platform, allowing programmers to write
+    native code pieces and integrate them into their Java programs. The main
+    difficulty arising from such an approach is that native code is completely
+    disjoint from Java code in terms of writing, browsing, debugging and
+    maintenance.</P
+><P
+>In this document, we are introducing
+    JNIWrapper<sup
+>TM</sup
+> - the product that allows developers to
+    interface native code while retaining full control of the application on
+    the Java side at any level.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN15"
+></A
+>1.1. About This Guide</H2
+><P
+>This guide introduces JNIWrapper<sup
+>TM</sup
+>, describes
+      its design goals, concepts and principles, provides the requirements for
+      using the product as well as sufficient information you need to know
+      before starting to work with the product.</P
+><P
+>This document covers all platform versions of JNIWrapper. In cases
+      where functions treat a particular platform in a specific way, or
+      specific configuration settings are needed, these are marked
+      accordingly.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN20"
+></A
+>1.2. New in This Version</H2
+><P
+>New in this version (3.0) of the Programmer's Guide:</P
+><A
+NAME="AEN23"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+>Added: <A
+HREF="#Code_Generation_Utility"
+>Chapter 8</A
+>.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN26"
+></A
+>1.3. Related Documents</H2
+><P
+>The documents provided on the Documents page at the JNIWrapper
+      area at TeamDev site (<A
+HREF="http://www.teamdev.com"
+TARGET="_top"
+>http://www.teamdev.com</A
+>) are
+      intended to help you understand and effectively use of the JNIWrapper
+      technology.</P
+><P
+>To make your learning curve shorter and smoother, we suggest that
+      you read the documentation in the following order:</P
+><P
+></P
+><UL
+><LI
+><P
+>You can start with the current <I
+CLASS="emphasis"
+>Programmer's
+          Guide</I
+> document describing the ideas and basics of the
+          proposed software.</P
+></LI
+><LI
+><P
+>If you plan to develop your own software effectively, proceed
+          from this <I
+CLASS="emphasis"
+>Programmer's Guide</I
+> to
+          <I
+CLASS="emphasis"
+>JNIWrapper Tutorial</I
+>, which provides
+          step-by-step instructions with code samples.</P
+></LI
+><LI
+><P
+>Each version of JNIWrapper is supplied with updated
+          <I
+CLASS="emphasis"
+>Release Notes</I
+>. To receive the up-to-date
+          version of specific information, be sure to check the
+          <I
+CLASS="emphasis"
+>Release Notes</I
+> section inside
+          <TT
+CLASS="filename"
+>Readme.txt</TT
+> file before installing
+          JNIWrapper.</P
+></LI
+><LI
+><P
+>You can also find helpful information in the
+          <I
+CLASS="emphasis"
+>Frequently Asked Questions</I
+> document, which we
+          regularly update based on the questions we get from our users. The
+          document can be accessed online at the JNIWrapper site.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN47"
+></A
+>1.4. About JNIWrapper</H2
+><P
+>Java<sup
+>TM</sup
+> is a very powerful platform allowing
+      programmers to develop state-of-the-art software. It is, however,
+      designed to run on a variety of different platforms and therefore does
+      not include every feature of every platform. Certain basic things like
+      creating a symbolic link under Linux or operating with registry items
+      under Windows&reg; are not supported in Java<sup
+>TM</sup
+>.
+      Programmers willing to do this are forced to write a native library and
+      classes interfacing with it, then debug the code using two different
+      debuggers (Java- and native-side). These are sometimes difficult and
+      always very time-consuming tasks. All of them can be avoided by using
+      JNIWrapper - a Java library for calling native library functions. With
+      JNIWrapper, you can extensively use the potential of the underlying
+      platform (like tray icons or custom shape splash screens) with only a
+      single native library, having the full control over the program flow on
+      the Java side.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN52"
+></A
+>1.4.1. Technical Advantages</H3
+><P
+>JNIWrapper has a number of technical advantages over the
+        competitors. The most important of them are:</P
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: "
+><P
+><B
+CLASS="emphasis"
+>Comprehensive native function
+            invocation support</B
+></P
+><P
+>JNIWrapper supports both <TT
+CLASS="methodname"
+>stdcall</TT
+>
+            and <TT
+CLASS="methodname"
+>cdecl</TT
+> calling conventions and all
+            complex C types including structures and unions. Callbacks are
+            fully supported with any parameter and return types and both
+            calling conventions. For unexpected cases, you can create your own
+            types taking full control over parameter behavior.</P
+></LI
+><LI
+STYLE="list-style-type: "
+><P
+><B
+CLASS="emphasis"
+>Automatic resource
+            management</B
+><P
+></P
+><UL
+><LI
+STYLE="list-style-type: "
+><P
+>All resources allocated by JNIWrapper components are
+                  released automatically when no longer required. You can
+                  treat JNIWrapper variables as ordinary objects that can be
+                  picked up by Java garbage collector.</P
+></LI
+><LI
+STYLE="list-style-type: "
+><P
+>JNIWrapper objects are also safe with regard to
+                  finalizers: all resources are guaranteed to be available
+                  during finalization.</P
+></LI
+></UL
+></P
+></LI
+><LI
+STYLE="list-style-type: "
+><P
+><B
+CLASS="emphasis"
+>High performance</B
+></P
+><P
+>This has always been our priority. JNIWrapper has been
+            specially tuned for performance, particularly in cases where large
+            amounts of data are involved in the interactions.</P
+></LI
+><LI
+STYLE="list-style-type: "
+><P
+><B
+CLASS="emphasis"
+>Minimum behind-the-scenes
+            operation</B
+></P
+><P
+>You should always be able to see and understand what is
+            happening when they work with native-side data. This helps both to
+            develop and debug complex interactions between Java and native
+            code.</P
+></LI
+></UL
+><P
+>The product is extensively used in the projects carried out by
+        our company, which ensures its efficiency, reliability, future
+        support, and improvement.</P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN79"
+></A
+>1.4.2. New in This Release</H3
+><P
+>For detailed information about the changes in the current
+        version, check the <TT
+CLASS="filename"
+>Readme.txt</TT
+> inside the
+        JNIWrapper package.</P
+><P
+>The JNIWrapper changes history is also available online
+        at:</P
+><A
+NAME="AEN84"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.teamdev.com/jniwrapper/whats_new.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jniwrapper/whats_new.jsf</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN87"
+></A
+>Chapter 2. Getting Started</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN89"
+></A
+>2.1. System Requirements</H2
+><P
+>The following are general requirements to run JNIWrapper on the
+      following supported platforms:</P
+><P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="emphasis"
+>Windows</B
+><P
+></P
+><UL
+><LI
+><P
+>OS: Windows 9x, Me, NT 4.0, 2000, XP and Vista</P
+></LI
+><LI
+><P
+>Java: Java 2 SDK/JRE 1.3.x and later. For CodeGen GUI,
+                the preferred JDK is 1.4.2. or later.</P
+></LI
+></UL
+></P
+></LI
+><LI
+><P
+><B
+CLASS="emphasis"
+>Linux</B
+><P
+></P
+><UL
+><LI
+><P
+>OS: Red Hat Linux 7.2, 9.0; Mandrake Linux 9.1, 9.2,
+                10.0; Mandriva 2005 LE; WhiteBox Linux; Gentoo Linux (in
+                general, all distros on kernel 2.4.x and kernel 2.6.x)</P
+></LI
+><LI
+><P
+>Java: Java 2 SDK/JRE 1.4.x</P
+></LI
+></UL
+></P
+></LI
+><LI
+><P
+><B
+CLASS="emphasis"
+>Mac OS X</B
+></P
+><P
+></P
+><UL
+><LI
+><P
+>OS: Mac OS X 10.3 (Panther) and later</P
+></LI
+></UL
+><P
+></P
+><UL
+><LI
+><P
+>Java: Java 2 SDK/JRE 1.4.x</P
+></LI
+></UL
+></LI
+></UL
+><P
+>There are no specific memory or other hardware requirements for
+      developing an application based on JNIWrapper.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN119"
+></A
+>2.2. Package Contents</H2
+><P
+>The JNIWrapper package consists of the following main files
+      required for work:</P
+><P
+></P
+><UL
+><LI
+><P
+>Library JAR file -
+          <TT
+CLASS="filename"
+>jniwrap-&#60;version&#62;.jar</TT
+>, where
+          <I
+CLASS="emphasis"
+>&#60;version&#62;</I
+> is the product version, for
+          example "3.0".</P
+></LI
+><LI
+><P
+>Native code library <P
+></P
+><UL
+><LI
+><P
+>for Windows - <TT
+CLASS="filename"
+>jniwrap.dll </TT
+></P
+></LI
+><LI
+><P
+>for Linux - <TT
+CLASS="filename"
+>libjniwrap.so</TT
+></P
+></LI
+><LI
+><P
+>for Mac OS X -
+                <TT
+CLASS="filename"
+>libjniwrap.jnilib</TT
+></P
+></LI
+></UL
+></P
+></LI
+><LI
+><P
+>License file <P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>jniwrap.lic</TT
+></P
+></LI
+></UL
+></P
+></LI
+></UL
+><P
+>All the files need to be placed in the appropriate locations.
+      Please see the section "Configuring Software" for more details about the
+      product installation instructions. The package may also contain other
+      files providing some useful information for the you, for example the
+      <TT
+CLASS="filename"
+>Readme.txt </TT
+>file.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN147"
+></A
+>Chapter 3. Configuring JNIWrapper</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>JNIWrapper consists of three main files required for the software
+    functioning: a JAR file, native code library, and a license file. The
+    following sections describe where each file should be located. No other
+    configuration is required.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN150"
+></A
+>3.1. Library JAR File</H2
+><P
+>The JNIWrapper JAR file should be located in the program class
+      path. Due to the limitations of the Java native library loading
+      mechanism, it is not recommended to load JNIWrapper in custom class
+      loaders, unless you are sure that it will be loaded in only one such
+      class loader.</P
+><P
+>The library file can also be placed in the boot class path or in
+      the extension directory of Java runtime, but this is not
+      required.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN154"
+></A
+>3.2. Native Code Library</H2
+><P
+>The JNIWrapper native code library is loaded using the standard
+      Java native code loading mechanism. There are no known problems with
+      placing the native code library file on a mapped drive or even using it
+      from the network share using a UNC path. <DIV
+CLASS="important"
+><P
+></P
+><TABLE
+CLASS="important"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="images/important.gif"
+HSPACE="5"
+ALT="Important"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Do not rename the library file, or else it will not be
+          loaded.</P
+></TD
+></TR
+></TABLE
+></DIV
+></P
+><P
+>Even though the native code library can be placed virtually
+      anywhere, its actual location should be determined considering the fact
+      that Java code must find the library to load. It can be placed somewhere
+      within the program library search path (value of the
+      <TT
+CLASS="property"
+>java.library.path</TT
+> system property, which is by
+      default equal to the value of the system variable PATH on Windows or
+      LD_LIBRARY_PATH on Linux).</P
+><P
+>Alternatively, you can add a search path to the default library
+      loader used by JNIWrapper or even write a custom one that searches for
+      native code in a predefined location. Using a default path may be
+      preferable for development and library loader as a much better way for
+      distributing a complete application.</P
+><P
+>Since version 3.0 it is possible to keep native libraries within a
+      JAR file. JNIWrapper will automatically locate and install a library on
+      demand.</P
+><P
+>You may want to install the native code library into the
+      directories on the default system path, for example:</P
+><P
+></P
+><UL
+><LI
+><P
+>on Windows - the root of Windows installation or
+          Windows\System32</P
+></LI
+><LI
+><P
+>on Linux - &#60;java_home&#62;/lib/i386 or
+          &#60;java_home&#62;/jre/lib/i386</P
+></LI
+><LI
+><P
+>on Mac OS X - /usr/lib</P
+></LI
+></UL
+><P
+>Note that this requires having appropriate access rights on the
+      Windows NT/2000/XP, Linux and Mac OS X systems. Installing the native
+      code library by using this way may be convenient, but is not a required
+      procedure.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN172"
+></A
+>3.3. License File</H2
+><P
+>Placing the license file is very simple: it should be located in
+      the same folder where the native JNIWrapper library
+      (<TT
+CLASS="filename"
+>jniwrap.dll</TT
+> file) resides.</P
+><DIV
+CLASS="important"
+><P
+></P
+><TABLE
+CLASS="important"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="images/important.gif"
+HSPACE="5"
+ALT="Important"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Do not rename the license file, or else it will not be
+        recognized.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Also, there is one universal way for redistribution of the runtime
+      license file. You will just need to save this file to your application's
+      JAR file, into its <TT
+CLASS="filename"
+>META-INF</TT
+> subfolder. For example,
+      if you have some application called
+      <TT
+CLASS="filename"
+>&#60;application_name&#62;.jar</TT
+>, the
+      <TT
+CLASS="filename"
+>jniwrap.lic</TT
+> file should be located in the following
+      folder:</P
+><PRE
+CLASS="programlisting"
+>    &#60;application_name&#62;.jar
+        \META-INF
+            jniwrap.lic</PRE
+><P
+>You may appear to have several licenses for JNIWrapper for
+      different platforms supported. In this case, you need to put all the
+      license key files as described above but make sure there is no file name
+      conflict. JNIWrapper accepts multiple license files named like shown
+      below:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>jniwrap.lic</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>jniwrap.lic1</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>jniwrap.lic2</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="keycap"
+><B
+>...</B
+></TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>jniwrap.lic999</TT
+></P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN200"
+></A
+>Chapter 4. Working with Native Libraries and Functions</H1
+><HR size=1 noshadow color=#0066CC
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN202"
+></A
+>4.1. Finding Native Libraries</H2
+><P
+>JNIWrapper accesses native libraries by name using library
+      loaders. Library loaders are responsible for finding and loading a
+      library by its name. You can use the supplied implementation of a
+      path-based library loader or create your own.</P
+><P
+>The latter approach requires implementation of the
+      <TT
+CLASS="interfacename"
+>com.jniwrapper.LibraryLoader</TT
+> interface.
+      This interface defines two methods:
+      <TT
+CLASS="methodname"
+>findLibrary()</TT
+> for finding a file containing the
+      required library by name, and <TT
+CLASS="methodname"
+>loadLibrary()</TT
+> for
+      loading the library (by calling <TT
+CLASS="methodname"
+>System.load</TT
+>),
+      also by name.</P
+><P
+>Suppose you have implemented a library loader called
+      <TT
+CLASS="methodname"
+>MyLibraryLoader</TT
+>. To make JNIWrapper look for
+      the libraries using this loader, you can write something like
+      this:</P
+><PRE
+CLASS="programlisting"
+>    Library.setDefaultLibraryLoader(new MyLibraryLoader());</PRE
+><P
+>Remember that the default loader specified this way is also used
+      for loading the JNIWrapper native library.</P
+><P
+>Alternatively, you may use a custom loader to load a specific
+      library only:</P
+><PRE
+CLASS="programlisting"
+>    myLibrary.load(new MyLibraryLoader());</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN216"
+></A
+>4.2. Using <TT
+CLASS="keycap"
+><B
+>DefaultLibraryLoader</B
+></TT
+></H2
+><P
+>JNIWrapper comes with a convenient default implementation of the
+      <TT
+CLASS="interfacename"
+>LibraryLoader</TT
+> interface:
+      <TT
+CLASS="interfacename"
+>DefaultLibraryLoader</TT
+>. It looks for the
+      libraries in a set of directories (path). The initial search path
+      includes all directories from the <TT
+CLASS="property"
+>java.library.path</TT
+>
+      system property.</P
+><P
+>New directories can be added to the search path using the
+      <TT
+CLASS="methodname"
+>addPath()</TT
+> method.<TT
+CLASS="interfacename"
+>&#13;      DefaultLibraryLoader</TT
+> is a singleton and is also the one
+      JNIWrapper uses by default.</P
+><P
+>If using the default path with some additions is sufficient, then
+      adding directories to the search path is the only configuration needed.
+      For example, if native libraries (or the JNIWrapper native code) are to
+      be looked for in the <TT
+CLASS="filename"
+>bin</TT
+> directory relative to the
+      program working directory, the following line should be added to the
+      JNIWrapper initialization part of your program:</P
+><PRE
+CLASS="programlisting"
+>    DefaultLibraryLoader.getInstance().addPath("bin");</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN229"
+></A
+>4.3. Loading Native Libraries</H2
+><P
+>Loading of libraries does not require special attention, if only
+      one library loader is used, i.e. when the necessary library is found and
+      loaded using the loader set by the
+      <TT
+CLASS="methodname"
+>setDefaultLibraryLoader()</TT
+> method (or an
+      instance of the <TT
+CLASS="classname"
+>DefaultLibraryLoader </TT
+>class, which
+      is the initial value of that property).</P
+><P
+>If a custom library loader should be used, an explicit call to the
+      library's <TT
+CLASS="methodname"
+>load()</TT
+> method should be made before
+      any function is loaded from that library.</P
+><P
+>Take a look at these examples.</P
+><P
+>Using one library loader:</P
+><PRE
+CLASS="programlisting"
+>    Library kernel32 = new Library("kernel32");
+    // Use kernel32 here</PRE
+><P
+>Using a custom library loader:</P
+><PRE
+CLASS="programlisting"
+>    Library customLib = new Library("myCustomLib");
+    LibraryLoader myCustomLoader = new MyCustomLibraryLoader();
+    customLib.load(myCustomLoader);
+    // Use customLib here</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN241"
+></A
+>4.4. Getting Functions from a Native Library</H2
+><P
+>Functions are represented by instances of the
+      <TT
+CLASS="classname"
+>com.jniwrapper.Function</TT
+> class. A function is
+      always part of some library and therefore, cannot be instantiated on its
+      own. To get a function from the library, the
+      <TT
+CLASS="methodname"
+>getFunction()</TT
+> method should be used. For
+      example:</P
+><PRE
+CLASS="programlisting"
+>    Function getLastError = kernel32.getFunction("GetLastError");</PRE
+><P
+>Please note that some compilers may mangle function names to
+      include argument types or sizes. This version of JNIWrapper performs
+      search only by the exact name, not by mangled names. Therefore, if you
+      need to invoke a function with such a name, you should specify the full
+      mangled name. For example:</P
+><PRE
+CLASS="programlisting"
+>    Function myFunc = myLibrary.getFunction("_myFunc@4");</PRE
+><P
+>Most libraries, however, export nice unmangled names. You can find
+      out an exported function name by using tools such as
+      <I
+CLASS="emphasis"
+>dumpbin</I
+> or <I
+CLASS="emphasis"
+>Dependency
+      Checker</I
+>.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN252"
+></A
+>4.4.1. Managing Library's Global Variables</H3
+><P
+>Some global variable called <TT
+CLASS="varname"
+>_data</TT
+> is declared
+        in the native library. To find a global variable on the Win32
+        platform, we can use the following example:</P
+><PRE
+CLASS="programlisting"
+>extern "C" __declspec (dllexport) int* _data = new int(123);</PRE
+><P
+>To retrieve a value of the variable in the library, we can use
+        the <TT
+CLASS="methodname"
+>Library.getVariable()</TT
+> method. The sample
+        code below shows how it can be done:</P
+><PRE
+CLASS="programlisting"
+> // load library
+ Library SAMPLE_LIB = new Library("Library_Name");
+
+ Int result = new Int();
+
+ // get a variable pointer
+ SAMPLE_LIB.getVariable("_data", new Pointer(result));
+
+ // read a variable value
+ long variableValue = result.getValue();</PRE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN260"
+></A
+>4.5. Calling Conventions</H2
+><P
+>There are two widespread calling conventions:
+      <TT
+CLASS="methodname"
+>cdecl</TT
+> used in most C/C++ programs and
+      <TT
+CLASS="methodname"
+>stdcall</TT
+> used, for example, in Pascal. Calling
+      convention is a function property since a library can export functions
+      that use different calling conventions. Use your library documentation
+      to find out which calling convention is used by the functions you are
+      going to invoke.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN265"
+></A
+>4.5.1. Calling Conventions on Windows</H3
+><P
+>Most Windows&reg; API functions use the
+        <TT
+CLASS="methodname"
+>stdcall</TT
+> calling convention. This is the
+        default convention used by JNIWrapper. If the function you need to
+        call uses a different calling convention, you should set it in the
+        function object. For example:</P
+><PRE
+CLASS="programlisting"
+>    cdeclFunction.setCallingConvention(Function.CDECL_CALLING_CONVENTION);</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN270"
+></A
+>4.5.2. Calling Conventions on Linux/Mac OS X</H3
+><P
+>The majority of libraries on Linux use the
+        <TT
+CLASS="methodname"
+>cdecl</TT
+> calling convention. This is the default
+        calling convention on Linux.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN274"
+></A
+>Chapter 5. Passing Parameters to/from Native Code</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In JNIWrapper, parameters are passed to and from native code using
+    <TT
+CLASS="classname"
+>com.jniwrapper.Parameter</TT
+> objects. These objects
+    behave like variables of different types depending on the actual subclass
+    used.</P
+><P
+>All parameters are mutable, which means that you can change any
+    value at any time. All parameters can be shared across function calls,
+    i.e. one can pass the result of one function call directly to another
+    without creating a new object.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN279"
+></A
+>5.1. Primitive Types</H2
+><P
+>JNIWrapper provides parameter classes for all the primitive types
+      available in the native program: signed and unsigned integers of
+      different sizes, floating point values, single-byte and wide characters,
+      etc. Related types usually have a common superclass or implement a
+      common interface.</P
+><P
+>All simple types have a no-argument constructor that initializes a
+      parameter to the default value (usually zero or equivalent), a
+      constructor with the initial value and a copying constructor. They also
+      have appropriately typed <TT
+CLASS="methodname"
+>getValue()</TT
+> and
+      <TT
+CLASS="methodname"
+>setValue()</TT
+> methods. Take a look at the example
+      of using the <TT
+CLASS="parameter"
+><I
+>DoubleFloat </I
+></TT
+>parameter:</P
+><PRE
+CLASS="programlisting"
+>    DoubleFloat d1 = new DoubleFloat(1.2345);
+    DoubleFloat d2 = new DoubleFloat(d1);
+    d1.setValue(9.876);
+    System.out.println(d2.getValue());</PRE
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN287"
+></A
+>5.1.1. Mappings of Native Types to JNIWrapper Classes</H3
+><P
+>Below is given a table of the mappings for most commonly used
+        data types along with some comments. For more information, visit
+        <A
+HREF="http://www.teamdev.com/jniwrapper/nativeTypes.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jniwrapper/nativeTypes.jsf</A
+></P
+><DIV
+CLASS="table"
+><A
+NAME="AEN291"
+></A
+><P
+><B
+>Table 5-1. Mappings of Native Types to JNIWrapper Classes</B
+></P
+><TABLE
+BORDER="1"
+BGCOLOR="#F3F5F7"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>Native Type (C/C++)</TH
+><TH
+WIDTH="25%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+>JNIWrapper type</TH
+><TH
+WIDTH="62%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+>Comments</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Boolean
+                Types</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>bool</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Bool(1 byte), IntBool(4 bytes)</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Character
+                Types</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>char</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Char</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>wchar_t</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>WideChar</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>uchar *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Char, UInt8</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Integer
+                Types</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>short</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>ShortInt</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>The unsigned types are represented by prefixing U to
+                the type name. For example, the unsigned <TT
+CLASS="type"
+>int</TT
+> (or
+                unsigned) type is <TT
+CLASS="type"
+>UInt</TT
+>.</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>int</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Int</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>There are also types for predefined-width integers:
+                <TT
+CLASS="type"
+>Int8</TT
+>, <TT
+CLASS="type"
+>Int16</TT
+>, <TT
+CLASS="type"
+>Int32</TT
+> and
+                <TT
+CLASS="type"
+>Int64</TT
+>, they also have the unsigned
+                variants.</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>long</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>LongInt</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Floating-point
+                Types</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>float</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>SingleFloat</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>double</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>DoubleFloat</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>long double</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>LongDouble</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>Long double is the same as double (8-byte
+                floating-point value) on the Win32 platform.</TD
+></TR
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Pointer Types (not
+                arrays)</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>void *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Pointer.Void</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>const</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Pointer.Const</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>Use <TT
+CLASS="classname"
+>Pointer.Const</TT
+> if the
+                referenced object is not to be modified by the calling
+                function.</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>type *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Pointer</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>To create a pointer to the value (variable) of a known
+                type, use the <TT
+CLASS="classname"
+>Pointer</TT
+> class. For
+                example: <TT
+CLASS="varname"
+>int *i;</TT
+> is <TT
+CLASS="varname"
+>Pointer i =
+                new Pointer(new Int());</TT
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>type *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>Pointer.OutOnly</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>Use <TT
+CLASS="classname"
+>Pointer.OutOnly</TT
+> if the
+                referenced object is not to be read by the calling
+                function.</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>char *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>AnsiString</TT
+></TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>wchar_t *</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>WideString</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="3"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><B
+CLASS="literal"
+>Arrays</B
+></TD
+></TR
+><TR
+><TD
+WIDTH="12%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>&#60;c primitive type&#62;[n]</TT
+></TD
+><TD
+WIDTH="25%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><TT
+CLASS="type"
+>PrimitiveArray(&#60;corresponding JNIWrapper
+                type&#62;.class, n);</TT
+></TD
+><TD
+WIDTH="62%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+>&nbsp;</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+> <H4
+CLASS="section"
+><A
+NAME="AEN434"
+></A
+>5.1.1.1. Mappings for Windows API Types</H4
+><P
+>Windows API includes many data types which are not listed here
+          (for example, DWORD, HANDLE). If you need to use one of such types,
+          use Windows-specific documentation such as MSDN to find out the
+          actual C type that corresponds to it (for example, LPSTR corresponds
+          to char*), and use the relevant JNIWrapper type for the argument.
+          You can also check the online Windows Data Types table available at
+          <A
+HREF="http://www.teamdev.com/winpack/windowsTypes.jsf"
+TARGET="_top"
+>http://www.teamdev.com/winpack/windowsTypes.jsf</A
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN438"
+></A
+>5.2. Structures and Unions</H2
+><P
+>JNIWrapper supports C-like structures and unions. Like in C, the
+      structure and union definitions are similar. Both provide a constructor
+      that takes an array of parameters defining the structure or union
+      contents.</P
+><P
+>If you want to create a reusable Java class for a structure or
+      unions, you can use a protected no-argument constructor and initialize
+      the content by calling the <TT
+CLASS="methodname"
+>init</TT
+> method. This
+      method is provided for convenience, because class fields are initialized
+      after the superclass constructor is invoked and therefore, cannot be
+      used as constructor arguments. The structure and union member values are
+      accessed by directly querying the parameters specified in the
+      constructor for their values. For example:</P
+><PRE
+CLASS="programlisting"
+>/*
+Structure definition in C:
+struct SomeStruct
+{
+        int a;
+        char b;
+        double c;
+}
+*/
+Int intField = new Int();
+Char charField = new Char();
+DoubleFloat doubleField = new DoubleFloat();
+
+struct = new Structure(new Parameter[] {intField, charField, doubleField});
+doubleField.setValue(10); // set struct.a value to 10
+// invoke some code that modifies the structure here
+System.out.println(doubleField); // prints new value of struct.c</PRE
+><P
+>To learn how to use linked structures, open:</P
+><P
+><TT
+CLASS="filename"
+>&#60;jniwrapper-3.x-win32.zip&#62;/samples/src/LinkedStructureSample.java</TT
+></P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN447"
+></A
+>5.2.1. Setting Structure Alignment</H3
+><P
+>Structures can be defined with different alignments. The
+        structure alignment is specified in the constructor (or in the call to
+        the <TT
+CLASS="methodname"
+>init </TT
+>method). Here is the example of a
+        reusable structure definition that supports different
+        alignments:</P
+><PRE
+CLASS="programlisting"
+>private static class TestStruct extends Structure {
+    public Int _int = new Int();
+    public Int8 _int8 = new Int8();
+    public Int16 _int16 = new Int16();
+    public Int32 _int32 = new Int32();
+    public Int64 _int64 = new Int64();
+    public LongInt _long = new LongInt();
+
+    public TestStruct() {
+        init(new Parameter[] {
+            _int, _int8, _int16, _int32, _int64, _long
+        });
+    }
+
+    public TestStruct(short alignment) {
+        init(new Parameter[] {
+                _int, _int8, _int16, _int32, _int64, _long
+            }, alignment);
+    }
+}</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN452"
+></A
+>5.2.2. Setting an Active Union Member</H3
+><P
+>Unlike C, in JNIWrapper you need to define the active union
+        member explicitly using the<TT
+CLASS="methodname"
+> setActiveMember()</TT
+>
+        method. However, this can be done after the function call where the
+        union data was modified. Take a look at the following examples of the
+        union usage:</P
+><PRE
+CLASS="programlisting"
+>union = new Union(new Parameter[] {intField, charField, stringField, structField});
+union.setActiveMember(stringField);
+stringField.setValue(STRING_VALUE);
+func1.invoke(result, union);
+// ...
+func2.invoke(union, (Parameter[])null);
+union.setActiveMember(structField, true);
+assertEquals(X_VALUE, structField.getX());</PRE
+><P
+>Structures and unions can consist of any simple or complex
+        members that are JNIWrapper parameters. In the above example, one of
+        the union members is a structure.</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN458"
+></A
+>5.3. Pointers</H2
+><P
+>JNIWrapper supports C-like pointers to all the defined types. You
+      can create a pointer by instantiating the
+      <TT
+CLASS="classname"
+>com.jniwrapper.Pointer</TT
+> class. Pointers should
+      always refer to some object. For example:</P
+><PRE
+CLASS="programlisting"
+>Pointer pInt = new Pointer(new Int());</PRE
+><P
+>A pointer automatically allocates memory for its referenced
+      object; it handles reads and writes requiring the referenced object to
+      read or write its data when the pointer itself is read or written. Thus,
+      after any native function call, all the parameters are updated even if
+      they are referenced by several nested pointers. For example:</P
+><PRE
+CLASS="programlisting"
+>Int value = new Int();
+Pointer ppInt = new Pointer(new Pointer(value));
+
+// invoke func(int **i) passing ppInt as a parameter
+func.invoke(null, ppInt);
+System.out.println(value) // value is updated!</PRE
+><P
+>In cases where the referenced object is read-only or write-only,
+      one can use the <TT
+CLASS="classname"
+>Pointer.Const</TT
+> or
+      <TT
+CLASS="classname"
+>Pointer. OutOnly</TT
+> types, respectively. Note,
+      however, that using these classes cannot enforce the read-only or
+      write-only policy on the native function which may still access the data
+      inappropriately. It is recommended that these classes are only used for
+      performance improvements.</P
+><P
+>JNIWrapper supports pointers that refer to undefined values
+      (<TT
+CLASS="type"
+>void* </TT
+>in C) through the
+      <TT
+CLASS="classname"
+>Pointer.Void</TT
+> class. Use this class when you do
+      not care about the actual referenced object and do not need to allocate
+      the memory a pointer points to. For example, if you need a constant
+      <TT
+CLASS="constant"
+>(HWND)-1</TT
+> you can use the following
+      construct:</P
+><PRE
+CLASS="programlisting"
+>Pointer.Void HWND_TOPMOST = new Pointer.Void(-1);</PRE
+><P
+><TT
+CLASS="classname"
+>Pointer.Void</TT
+> is not a pointer. It doesn't
+      have a referenced object and it is not assignable to and from any other
+      kind of pointer. The name of the type only reflects the fact that this
+      parameter always has the same size as a platform-dependent
+      pointer.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN475"
+></A
+>5.3.1. Function Pointers</H3
+><P
+>Another capability of the <TT
+CLASS="classname"
+>Pointer.Void</TT
+>
+        class is that it can also be used to represent a function pointer and
+        to call the function it points to. The
+        <TT
+CLASS="methodname"
+>asFunction()</TT
+> method returns a function object
+        that can be used to invoke a function that a given pointer points
+        to.</P
+><P
+>Consider the following example. A native library provides a
+        function to install a callback that returns an old callback function
+        pointer:</P
+><PRE
+CLASS="programlisting"
+>typedef void (*PCallbackType)(int);
+PCallbackType installCallback(PCallbackType);</PRE
+><P
+>One can install a hook to monitor the callback invocation in the
+        following way:</P
+><PRE
+CLASS="programlisting"
+>// Field declaration
+Pointer.Void myOldCallback;
+// ...
+// Callback installation code
+installCallback.invoke(myOldCallback, new HookCallback());</PRE
+><P
+>and later inside the <TT
+CLASS="classname"
+>HookCallback</TT
+>
+        class:</P
+><PRE
+CLASS="programlisting"
+>protected void callback() {
+    // do some hook stuff
+    myOldCallback.asFunction().invoke(null, intParam);
+}</PRE
+><P
+>To create an object callable from native code, use the
+        <TT
+CLASS="classname"
+>Callback</TT
+> class.</P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN489"
+></A
+>5.3.2. ArithmeticalPointer Class</H3
+><P
+>Limited pointer arithmetics is supported through the
+        <TT
+CLASS="classname"
+>ArithmeticalPointer</TT
+> class. This pointer also
+        manages one referenced object, but also accommodates an offset from
+        its initial value. Such a pointer can be used for passing to the
+        functions such as <TT
+CLASS="function"
+>strtok</TT
+> that offset a pointer to
+        iterate through data. Note that the referenced object cannot be
+        changed and is always read and written at its initial offset.</P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="Pointer_Casting"
+></A
+>5.3.3. Casting Pointers</H3
+><P
+>A typed pointer represented by an instance of the
+        <TT
+CLASS="classname"
+>Pointer</TT
+> class can be cast to an un-typed (i.e.
+        void) pointer represented by an instance of the
+        <TT
+CLASS="classname"
+>Pointer.Void</TT
+> class and vice versa. The
+        following code demonstrates casting the instance of the
+        <TT
+CLASS="classname"
+>Pointer.Void</TT
+> class to the instance of the
+        <TT
+CLASS="classname"
+>Pointer</TT
+> class:</P
+><PRE
+CLASS="programlisting"
+>  // retrieve the pointer somewhere
+  Pointer.Void handle = getHandle();
+
+  // prepare the data pointer, assuming that it points to an integer value
+  Int data = new Int();
+  Pointer dataPtr = new Pointer(data);
+
+  // cast the pointers
+  handle.asTypedPointer(dataPtr); </PRE
+><P
+>After the last operation, the <TT
+CLASS="varname"
+>data</TT
+> variable
+        obtains the value which the <TT
+CLASS="varname"
+>handle</TT
+> pointer points
+        to.</P
+><P
+>Casting an instance of the <TT
+CLASS="classname"
+>Pointer</TT
+> class
+        to an instance of the <TT
+CLASS="classname"
+>Pointer.Void</TT
+> class is
+        done as shown on the sample below:</P
+><PRE
+CLASS="programlisting"
+>  // create typed pointer
+  Int data = new Int(123);
+  Pointer dataPtr = new Pointer(data);
+
+  // create void pointer
+  Pointer.Void handle = new Pointer.Void();
+
+  // cast the pointers
+  dataPtr.asVoidPointer(handle);</PRE
+><P
+>After the last operation, the <TT
+CLASS="varname"
+>handle</TT
+> pointer
+        will have the same address as the <TT
+CLASS="varname"
+>dataPtr</TT
+>
+        pointer.</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN512"
+></A
+>5.4. Arrays</H2
+><P
+>JNIWrapper supports two types of arrays:</P
+><DIV
+CLASS="procedure"
+><OL
+TYPE="1"
+><LI
+><P
+>Primitive arrays that are made up of primitive values, such as
+          integers or characters.</P
+></LI
+><LI
+><P
+>Complex arrays that can consist of elements of any implemented
+          type.</P
+></LI
+></OL
+></DIV
+><P
+>You can use complex arrays to store primitive values, but the
+      primitive arrays are more efficient for this purpose.</P
+><P
+>Arrays are represented by the instance of
+      <TT
+CLASS="classname"
+>com.jniwrapper.PrimitiveArray</TT
+> and
+      <TT
+CLASS="classname"
+>com.jniwrapper.ComplexArray</TT
+> for the primitive and
+      complex arrays, respectively. Arrays are represented by
+      <TT
+CLASS="type"
+>PrimitiveArray</TT
+> and <TT
+CLASS="type"
+>ComplexArray</TT
+> types
+      parametrized by parameters that represent the actual type. For
+      example:</P
+><PRE
+CLASS="programlisting"
+>int i[10];  </PRE
+><P
+>is</P
+><PRE
+CLASS="programlisting"
+>PrimitiveArray i = new PrimitiveArray(Int.class, 10);</PRE
+><P
+>The main difference between the two types of arrays is that a
+      primitive array is a plain data block that contains sequential data of a
+      given type, while a complex array is a sequential storage of elements of
+      any complexity that are all read and written whenever an array is read
+      or written, respectively. This means that an array of pointers cannot be
+      implemented as a primitive array because the referenced objects will not
+      be written or read when needed. <TT
+CLASS="type"
+>PrimitiveArray</TT
+> can be only
+      of primitive types (<TT
+CLASS="type"
+>int</TT
+>, <TT
+CLASS="type"
+>char</TT
+>,
+      <TT
+CLASS="type"
+>float</TT
+>) and not of arrays, pointers, structures, etc.
+      <TT
+CLASS="type"
+>ComplexArray</TT
+> has no restriction on its element type.</P
+><P
+>Sometimes arrays can be specified as pointers in function
+      signature, for example:</P
+><PRE
+CLASS="programlisting"
+>void foo(int *arg);</PRE
+><P
+>But if the actual value is a pointer to some number of integers,
+      use array as a parameter.</P
+><P
+>The simplest method of creating an array is using a constructor
+      specifying a sample parameter and array size. Note that the array's
+      member type should be correctly cloneable. For example, to create an
+      array of bytes, you can use the following construct:</P
+><PRE
+CLASS="programlisting"
+>PrimitiveArray val = new PrimitiveArray(new Int8(), 256);</PRE
+><P
+>Another method of creating an array is using a Java array of
+      parameters that should constitute it. This is achieved by using a
+      constructor taking a <TT
+CLASS="methodname"
+>Parameter[]</TT
+> argument. Both
+      primitive and complex arrays can be created this way. Here is an example
+      of creating an array of pointers to integers:</P
+><PRE
+CLASS="programlisting"
+>Parameter[] members = new Parameter[10];
+for(int i = 0; i &#60; 10; i++) {
+        members[i] = new Pointer(new Int(i));
+}
+ComplexArray result = new ComplexArray(members);</PRE
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN543"
+></A
+>5.4.1. Pointers to Array Contents</H3
+><P
+>When using arrays you should always remember that sometimes
+        arrays are stored or passed to functions not as plain data, but as a
+        pointer to the array contents. The most typical case is when an array
+        argument or member is defined as a pointer to type (e.g.
+        <TT
+CLASS="type"
+>double*</TT
+>). In this case, the actual passed parameter
+        should be a <TT
+CLASS="methodname"
+>Pointer</TT
+>. For example:</P
+><PRE
+CLASS="programlisting"
+>/*
+C declaration:
+struct s
+{
+        int size;
+        double *data;
+}
+*/
+Int intMember = new Int(50);
+PrimitiveArray arrayMember = new PrimitiveArray(DoubleFloat.class, 50);
+Structure s = new Structure(new Parameter[] {intMember,
+        new <B
+CLASS="emphasis"
+>Pointer</B
+>(arrayMember)});</PRE
+><P
+>If in the previous example, the second member is declared as
+        <TT
+CLASS="methodname"
+>double data[50]</TT
+> (predefined size array), the
+        pointer wrapper should not be used.</P
+><P
+>The same rule applies for passing arrays to a function call. For
+        example:</P
+><PRE
+CLASS="programlisting"
+> /*
+ C declaration:
+ double foo(double* data, int elementsCount);
+ */
+
+ Function foo = library.getFunction("foo");
+ DoubleFloat result = new DoubleFloat();
+ int count = 50;
+ PrimitiveArray array = new PrimitiveArray(DoubleFloat.class, count);
+ foo.invoke(result, new Pointer(array), new Int(count); </PRE
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN554"
+></A
+>5.4.2. Controlling Memory Allocation for Arrays</H3
+><P
+>In most cases, the array sizes are known or may be computed
+        before a call is made. There are cases, however, when defining an
+        array size before a function call is not possible or not efficient. In
+        these cases, the array that is passed by a pointer is either resized
+        to accommodate all the data or allocated altogether by the callee. In
+        the first case, the caller is usually still responsible for memory
+        deallocation, while in the second case, the memory management is most
+        likely the responsibility of the callee. The common thing in both
+        cases is that the called function returns the new size of the array as
+        one of the results of the call.</P
+><P
+>JNIWrapper supports both ways of required memory management by
+        using special array pointers -
+        <TT
+CLASS="methodname"
+>ResizingPointer</TT
+> and
+        <TT
+CLASS="methodname"
+>ExternalArrayPointer</TT
+>. Each of these pointers
+        does not read the array it points to after the function call. The
+        array should be read after the call is complete using the
+        <TT
+CLASS="methodname"
+>readArray(int count) </TT
+>method of the pointer.
+        For example:</P
+><PRE
+CLASS="programlisting"
+>PrimitiveArray myArray = new PrimitiveArray(Int8.class, length);
+
+Int16 len = new Int16(length);
+ResizingPointer pArray = new ResizingPointer( myArray);;
+Function func = getFunction("myFunction");
+func.invoke(null, pArray, new Pointer(len));
+
+length = (short)len.getValue();
+pArray.readArray(length);
+// use myArray here</PRE
+><P
+>The rule of thumb for choosing the correct pointer is as
+        follows: if you want JNIWrapper to manage the memory allocated for the
+        array, use <TT
+CLASS="methodname"
+>ResizingPointer</TT
+>; if you do not
+        need the memory management for the array memory, use
+        <TT
+CLASS="methodname"
+>ExternalArrayPointer</TT
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="Strings_Type"
+></A
+>5.5. Strings</H2
+><P
+>Strings in JNIWrapper are character arrays of a predefined size
+      with convenience methods for getting and setting string values as zero
+      terminated strings. JNIWrapper supports two types of strings:
+      single-byte, or ANSI strings, and Unicode strings.</P
+><P
+>All strings are defined with the maximum length that a string
+      value can occupy. It is illegal to set a string parameter value to the
+      value longer than its maximum length. Passing a string argument to a
+      function that writes more data than is allocated may result in an error
+      just like in the native programs. On the other hand, strings are safe in
+      the way that the data is parsed until the terminating zero (of
+      appropriate length) is found or the maximum string length is reached.
+      Therefore, even a bad string without a terminating zero will not cause
+      memory access failures in your program. Here are the examples of string
+      usage:</P
+><PRE
+CLASS="programlisting"
+>AnsiString s = new AnsiString("Hello, World!");
+WideString s2 = new WideString(20);
+s2.setValue("Goodbye, World!");</PRE
+><P
+>Similar to arrays, strings in native code can be both pointers to
+      string data and character arrays themselves. When using strings as
+      structure members, use the same guidelines to determine whether a
+      pointer wrapper should be used. When passing strings as function
+      arguments, however, strings are always passed as pointers and JNIWrapper
+      does pointer wrapping automatically. You should remember though that
+      wrapping is just a convenience feature and passing a <TT
+CLASS="type"
+>char**
+      </TT
+>will require creating a <TT
+CLASS="methodname"
+>new Pointer(new Pointer(new
+      AnsiString()))</TT
+>.</P
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN573"
+></A
+>5.5.1. Str Class</H3
+><P
+>The <TT
+CLASS="classname"
+>Str</TT
+> class unifies different ways of
+        working with native string data. Instances of the class work with ANSI
+        or Unicode characters depending on the Unicode support available in
+        the underlying operating system. If Unicode is supported, this class
+        works as <TT
+CLASS="classname"
+>WideString</TT
+>, otherwise as
+        <TT
+CLASS="classname"
+>AnsiString</TT
+>. You can also create
+        <TT
+CLASS="classname"
+>Str</TT
+> instances that work specifically with ANSI
+        or Unicode. Using this class would give the code that is easier to
+        read, refactor and maintain.</P
+></DIV
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN580"
+></A
+>5.5.2. StringArray Class</H3
+><P
+>The <TT
+CLASS="classname"
+>StringArray</TT
+> class provides
+        functionality for working with native double zero terminated string
+        data. When not explicitly defined, the type of characters depends on
+        the Unicode support of an operating system under which the code is
+        being executed. To set the required character type, use the
+        <TT
+CLASS="classname"
+>StringArray(boolean unicode)</TT
+>
+        constructor.</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN585"
+></A
+>5.6. Enumerations</H2
+><P
+>A C enumeration type (for example <TT
+CLASS="classname"
+>enum a {first,
+      second, third}</TT
+>) can be substituted by an integer parameter,
+      for example <TT
+CLASS="classname"
+>Int</TT
+> class (or any other integer
+      parameter). In this case, new <TT
+CLASS="classname"
+>Int(0)</TT
+> corresponds
+      to 'first', new <TT
+CLASS="classname"
+>Int(1)</TT
+> corresponds to 'second'
+      and so on.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN592"
+></A
+>Chapter 6. Calling Native Functions</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Native functions are called using the
+    <TT
+CLASS="methodname"
+>invoke()</TT
+> method of the
+    <TT
+CLASS="classname"
+>Function</TT
+> class. The arguments and return value are
+    specified using variables of the <TT
+CLASS="type"
+>Parameter</TT
+> type. There are
+    several overloaded versions of the <TT
+CLASS="methodname"
+>invoke()</TT
+>
+    method, but the idea and argument structure is similar: the first argument
+    is <I
+CLASS="emphasis"
+>always</I
+> a holder for the return value and the rest
+    are arguments in the order they appear in the function declaration.</P
+><P
+>When a function is called, all passed parameters are passed to it
+    and then the return value is stored in its placeholder. It is allowed to
+    pass <TT
+CLASS="parameter"
+><I
+>null</I
+></TT
+> instead of the return value parameter, in
+    which case it will be ignored, but it is allowed for primitive types only.
+    Doing this when the return value is not of a primitive type may result in
+    an error, because memory must be allocated by the function caller if the
+    function return value is big and there is no way to allocate appropriate
+    structure automatically without knowing the actual return value type.
+    There are no restrictions on the argument or return value types as long as
+    they are what a function expects.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN602"
+></A
+>6.1. Calling Conventions</H2
+><P
+>If you are going to use a calling convention that differs from the
+      default one used by JNIWrapper, the calling convention must be set
+      before a native function is first called. Failure to do so will result
+      in an error. Here is a complete example of calling a function:</P
+><PRE
+CLASS="programlisting"
+>Function sprintf =
+        new Library("msvcrt").getFunction("sprintf");
+sprintf.setCallingConvention(
+        Function.CDECL_CALLING_CONVENTION);
+AnsiString result_buffer = new AnsiString();
+sprintf.invoke(
+        null,
+        result_buffer,
+        new AnsiString("Hello, %s!"),
+        new AnsiString("World"));
+System.out.println("result = " + result_buffer.getValue());
+//Output: result = Hello, World!</PRE
+><P
+>This example shows that there is no problem with calling functions
+      even with variable argument number.</P
+><P
+>JNIWrapper checks that stack is left in consistent state after the
+      function is called and handles most of the failures by throwing a Java
+      exception.</P
+><P
+>All exceptions descend from
+      <TT
+CLASS="classname"
+>com.jniwrapper.FunctionExecutionException</TT
+>.</P
+><P
+>These error or information messages from JNIWrapper can be
+      disabled by adding the special category for JNIWrapper classes to your
+      <TT
+CLASS="filename"
+>log4j</TT
+> configuration file:</P
+><PRE
+CLASS="programlisting"
+>log4j.category.com.jniwrapper=FATAL</PRE
+><P
+>Also, it can be configured programmatically:</P
+><PRE
+CLASS="programlisting"
+>Category jniwrapper = Category.getInstance("com.jniwrapper");
+jniwrapper.setLevel(Level.FATAL);</PRE
+><DIV
+CLASS="section"
+> <H3
+CLASS="section"
+><A
+NAME="AEN615"
+></A
+>6.1.1. A Quick Way to Call a Function</H3
+><P
+>The <TT
+CLASS="classname"
+>Function</TT
+> class provides a shortcut
+        way to call a function from a library without creating
+        <TT
+CLASS="classname"
+>Library</TT
+> and <TT
+CLASS="classname"
+>Function</TT
+>
+        instances: the <TT
+CLASS="methodname"
+>call()</TT
+> method. To use it,
+        write the following:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN622"
+></A
+><P
+><B
+>Table 6-1. </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#F3F5F7"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_win32small.png"
+ALIGN="center"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Function.call("user32.dll", "MessageBeep", retVal, new UInt(1));              </PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_linuxsmall.png"
+ALIGN="center"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Function.call("/lib/libc.so.6", "printf", null, new AnsiString("Hello, World!\n"));</PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_applesmall.png"
+ALIGN="center"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Function.call("/usr/lib/libSystem.dylib", "printf", null, new AnsiString("Hello, World!\n"));</PRE
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>This will load a library using the default loader, look up a
+        function and invoke it using the default calling convention.</P
+><P
+>It is not recommended to use the <TT
+CLASS="methodname"
+>call()</TT
+>
+        method when your program makes a lot of native function calls, because
+        it is more resource intensive. However, it is perfectly fine to use it
+        in simple cases like getting the current directory.</P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN646"
+></A
+>6.2. Using Callbacks</H2
+><P
+>Callback is a user-defined function that is called by the library
+      code at the appropriate time. Callbacks can have arguments and return a
+      value. JNIWrapper supports callbacks with any kind of arguments and
+      return values, as well as <TT
+CLASS="methodname"
+>stdcall</TT
+> and
+      <TT
+CLASS="methodname"
+>cdecl</TT
+> calling conventions. Callbacks are
+      represented by subclasses of the
+      <TT
+CLASS="classname"
+>com.jniwrapper.Callback</TT
+> class.</P
+><P
+>Passing a callback as an argument is no different from passing any
+      other value: you just need to put an instance of the
+      <TT
+CLASS="classname"
+>Callback</TT
+> class as the corresponding argument. For
+      example:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN654"
+></A
+><P
+><B
+>Table 6-2. </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#F3F5F7"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_win32small.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>final class EnumWindowsProc extends Callback
+// ...
+EnumWindowsProc enumWindowsProc = new EnumWindowsProc();
+Function.call("user32.dll", "EnumWindows", retVal,
+enumWindowsProc, new Int32(57));             </PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_linuxsmall.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>class MyComparator extends Callback
+// ...
+Function.call("/lib/libc.so.6", "qsort", null,
+dataPointer, new Int(size), new Int(memberLen), new MyComparator()); </PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_applesmall.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>class MyComparator extends Callback
+// ...
+Function.call("/usr/lib/libSystem.dylib", "qsort", null,
+dataPointer, new Int(size), new Int(memberLen), new MyComparator()); </PRE
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>When a callback is no longer needed, you should explicitly free
+      the resources associated with it by invoking its
+      <TT
+CLASS="methodname"
+>dispose()</TT
+> method. This is the only case in
+      JNIWrapper where resources are to be explicitly freed, because some
+      types of the callback objects may have no references from code and still
+      be active, for example a window procedure callback instance may be
+      created once when the window class is registered and remain active
+      during the entire program lifecycle.</P
+><P
+>To implement a callback, you need to subclass the
+      <TT
+CLASS="classname"
+>Callback</TT
+> class implementing the
+      <TT
+CLASS="methodname"
+>callback()</TT
+> abstract method. The callback
+      arguments and return value are specified in the constructor (by calling
+      either the superclass constructor with parameters or <TT
+CLASS="methodname"
+>init()
+      </TT
+>method). The order of parameters is following: first go the
+      arguments of a callback, and then a return value. Calling convention
+      should also be set in the constructor if it is different from the
+      default one .</P
+><P
+>When the <TT
+CLASS="methodname"
+>callback()</TT
+> method is invoked,
+      argument parameters contain the values of the passed arguments; after
+      the <TT
+CLASS="methodname"
+>callback()</TT
+> method is complete, the value of
+      the return value parameter is returned to the caller. Here is an example
+      of a callback that takes an integer argument and returns its value
+      incremented by one:</P
+><PRE
+CLASS="programlisting"
+>/*
+C callback declaration:
+int callback(int);
+*/
+private static class IncIntCallback extends Callback {
+    private Int _arg = new Int();
+    private Int _result = new Int();
+
+    public IncIntCallback() {
+        init(new Parameter[] {_arg}, _result);
+    }
+
+    public void callback() {
+        _result.setValue(_arg.getValue() + 1);
+    }
+}</PRE
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN685"
+></A
+>Chapter 7. Working with Multithreading</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>JNIWrapper was designed with threading in mind and is already
+    successfully used in a multithreaded environment. The following sections
+    describe JNIWrapper components in terms of thread safety.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN688"
+></A
+>7.1. Parameters</H2
+><P
+>Parameters in JNIWrapper are not synchronized because
+      synchronizing at this level is very inefficient, and performance was a
+      high-priority goal in JNIWrapper development. Therefore, access to the
+      parameter data should be enclosed in synchronization blocks if there is
+      a possibility for more than one thread to access the data at a time. If
+      you have only one parameter that is shared between threads, you can
+      synchronize on that object's monitor:</P
+><PRE
+CLASS="programlisting"
+>Int32 sharedInt = new Int32();
+// ...
+// First thread
+synchronized(sharedInt) {
+    someFunction.invoke(sharedInt);
+}
+// ...
+// Second thread
+synchronized(sharedInt) {
+    if (sharedInt.getValue() == 10)
+        System.out.println("Value is set to 10");
+// ...</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN692"
+></A
+>7.2. Functions</H2
+><P
+>Function invocation in JNIWrapper is completely thread-safe. If
+      the called function is thread-safe, any number of threads may invoke it
+      concurrently at any time. No synchronization is required and/or
+      performed, and calls are executed fully concurrently as if invoking
+      simple Java methods.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="Code_Generation_Utility"
+></A
+>Chapter 8. Code Generator for JNIWrapper</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>In the new version of JNIWrapper 3.0 we have added a new Code
+    Generator application. Its main goal is to provide a convenient and
+    efficient way to generate Java wrappers for custom C types such as
+    structures, unions, callbacks, etc.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN698"
+></A
+>8.1. Overview</H2
+><P
+>The Code Generator for JNIWrapper allows you to select C code
+      containing the required C types and generate the corresponding Java
+      wrappers for them. This code can be either in a C header file or in a
+      fragment of code, which can be inserted from the clipboard or just typed
+      as text. The resulting Java classes (Java wrappers for C types) are
+      saved to the specified folder.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN701"
+></A
+>8.2. Running Code Generator for JNIWrapper</H2
+><P
+>The application can be started by the appropriate file from the
+      <TT
+CLASS="filename"
+>bin</TT
+> directory of JNIWrapper installation. The table
+      below shows what file should be executed (depending on the platform) to
+      start the applicaiton:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN705"
+></A
+><P
+><B
+>Table 8-1. </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#F3F5F7"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_win32small.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Codegen.bat</PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_linuxsmall.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Codegen-linux.sh</PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_applesmall.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>Codegen-macosx.sh</PRE
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>This application does not provide command-line mode.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN727"
+></A
+>8.3. Specifying Input Parameters and Options</H2
+><P
+>The application provides an ability to specify various options for
+      code generation. These options can be divided into the following three
+      categories:</P
+><P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="emphasis"
+>Input parameters</B
+> specify the
+          input C source code in which the necessary types are defined. It can
+          be a C header file, a folder that contains C headers files or a
+          fragment of C code.</P
+></LI
+><LI
+><P
+><B
+CLASS="emphasis"
+>Generation parameters</B
+> specify
+          the set of types to generate wrappers for, their names and base
+          types respectively.</P
+></LI
+><LI
+><P
+><B
+CLASS="emphasis"
+>Output parameters</B
+> specify the
+          destination folder to save all generated Java files to and the root
+          package name for all generated classes.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN740"
+></A
+>8.4. Using Type Replacement Table</H2
+><P
+>The Code Generator application imports all types that are defined
+      in the specified source and builds a correspondence table: every
+      imported C type is mapped to the corresponding type from the JNIWrapper
+      library. The application provides an ability to change the name of a
+      particular type as well as its base type (the parent type from the
+      JNIWrapper library), in case this type was not recognized by the C
+      parser.</P
+><P
+>Also, it is possible to define a set of types to be generated: you
+      can just select the necessary types in the appropriate table.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN744"
+></A
+>8.5. Namespaces and Package Naming</H2
+><P
+>The destination root package (which can be specified in the
+      options) is actually a root for other subpackages automatically
+      generated by the application. Also, it is possible to give a custom
+      package name to each type (resulting class) individually.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN747"
+></A
+>8.6. Supported Types</H2
+><P
+>The current version of the application supports the following C
+      types:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="type"
+>struct</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="type"
+>union</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>callback</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="type"
+>enum</TT
+></P
+></LI
+><LI
+><P
+>types that are defined or redefined using the
+          <TT
+CLASS="type"
+>typedef</TT
+> keyword</P
+></LI
+></UL
+><P
+>Also, the application supports generation of pointers and
+      arrays.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN767"
+></A
+>8.7. Known Limitations</H2
+><P
+>The current version of the application does not recognize the
+      following C preprocessor directives:</P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="type"
+>#include</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="type"
+>#define</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="type"
+>#if</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="type"
+>#error</TT
+></P
+></LI
+></UL
+><P
+>The inline functions (for example "void GetData() { return;}"
+      should not be present in the C code either.</P
+><P
+>Nester pointer types (for example: typedef int** PPInt) are not
+      supported yet and they are processed as usual single pointers.</P
+><P
+>Also, please keep in mind that the application just parses the
+      given C code, but does not validate it anyhow. Therefore, before giving
+      some C code to this application, make sure that code is compilable and
+      valid.</P
+><P
+>To generate a more complete set of wrappers, we recommend you to
+      precompile the input C code with a C-compiler first, and then give the
+      resulting file to the Code Generator application. This step will help
+      you eliminate all unresolved dependencies.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN787"
+></A
+>8.8. Example</H2
+><P
+>Suppose you need to create a wrapper for the following C
+      structure:</P
+><PRE
+CLASS="programlisting"
+>struct Sample {
+  int a;
+  float b;
+};</PRE
+><P
+>which is used in the following C function:</P
+><PRE
+CLASS="programlisting"
+>void sample(Sample* structure);</PRE
+><P
+>The Code Generator application will generate the following
+      <TT
+CLASS="filename"
+>Sample.java</TT
+> wrapper for this C structure:</P
+><PRE
+CLASS="programlisting"
+>public class Sample extends Structure {
+  private Int _a = new Int();
+  private SingleFloat _b = new SingleFloat();
+  public Sample() {
+    init(new Parameter[] {_a, _b});
+  }
+  ...
+}</PRE
+><P
+>Then, this generated <TT
+CLASS="filename"
+>Sample.java</TT
+> file should
+      be included to the project and compiled. And the function call can be as
+      follows:</P
+><PRE
+CLASS="programlisting"
+>Library lib = ...; // library that contains 'sample' function
+Function sample = lib.getFunction("sample");
+Sample sample = new Sample();
+function.invoke(null, new Pointer(sample));</PRE
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN799"
+></A
+>Chapter 9. Using AWT Native Interface</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>Java<sup
+>TM</sup
+> includes the cross-platform standard
+    windowing library called Abstract Window Toolkit(AWT). One of the design
+    principles of the AWT was to include only the features that can be
+    implemented on all platforms targeted for Java<sup
+>TM</sup
+>.
+    This imposed some limitations on the windowing interface features. To help
+    you access the native controls that stand behind the AWT, the AWT native
+    interface (JAWT) was introduced. JNIWrapper also supports this interface
+    so that you don't need to write native code to access the JAWT
+    features.</P
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN804"
+></A
+>9.1. Using JAWT Support</H2
+><P
+>On the native side, all the JAWT functionality can be accessed
+      through several structures defined in the
+      <TT
+CLASS="filename"
+>include/jawt.h</TT
+> file in the JDK directory. The root
+      structure - <TT
+CLASS="methodname"
+>JAWT</TT
+> - is available from the
+      <TT
+CLASS="function"
+>GetAWT</TT
+> function. JNIWrapper provides the
+      <TT
+CLASS="classname"
+>com.jniwrapper.jawt.JAWT</TT
+> class that implements
+      all the functionality available through the JAWT structure. The
+      <TT
+CLASS="classname"
+>JAWT_DrawingSurface</TT
+> and
+      <TT
+CLASS="classname"
+>JAWT_DrawingSurfaceInfo</TT
+> classes correspond to the
+      structures with the same names in the <TT
+CLASS="filename"
+>jawt.h</TT
+> file
+      and provide the same functionality.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN814"
+></A
+>9.2. Accessing Native Control's Data</H2
+><P
+>The most common use of the JAWT interface is to get a handle of
+      the native control that corresponds to a given component. This data is
+      returned in the platform-dependent structure pointed to by the
+      <TT
+CLASS="methodname"
+>platformInfo</TT
+> member of the<TT
+CLASS="structname"
+>&#13;      jawt_DrawingSurfaceInfo</TT
+> structure. The contents of this
+      structure are defined in the <TT
+CLASS="filename"
+>jawt_md.h</TT
+> file in the
+      <TT
+CLASS="filename"
+>include/&#60;platform&#62;/</TT
+> directory of the JDK
+      installation. The correct structure needs to be passed to the
+      constructor of the <TT
+CLASS="classname"
+>JAWT_DrawingSurfaceInfo</TT
+> class.
+      A sample structure for Win32 is shown below:</P
+><PRE
+CLASS="programlisting"
+>public class Win32DSI extends Structure
+{
+    private Pointer.Void _handle = new Pointer.Void();
+    private Pointer.Void _hdc = new Pointer.Void();
+    private Pointer.Void _hpalette = new Pointer.Void();
+
+    public Win32DSI()
+    {
+     init(new Parameter[]{_handle, _hdc, _hpalette},
+            (short) 8);
+    }
+    /**
+     * Returns target component handle (either window or
+     * bitmap handle).
+     */
+    public Pointer.Void getHandle()
+    {
+        return _handle;
+    }
+
+    /**
+     * Returns DC handle. This handle should be used for
+     * drawing instead of handles returned * from
+     * &#60;code&#62;GetDC&#60;/code&#62; or &#60;code&#62;BeginPaint&#60;/code&#62;.
+     */
+    public Pointer.Void getHdc()
+    {
+        return _hdc;
+    }
+
+    /**
+     * Returns palette handle.
+     */
+    public Pointer.Void getHpalette()
+    {
+        return _hpalette;
+    }
+}</PRE
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN823"
+></A
+>9.3. Getting HWND of a Window</H2
+><P
+>Below is given an example of a code snippet that gets a Win32
+      window handle of an AWT window. It is very similar to the C-code
+      required to do the same thing.</P
+><PRE
+CLASS="programlisting"
+>JAWT_DrawingSurface ds = JAWT.getDrawingSurface(window);
+ds.lock();
+Win32DSI win32DSI = new Win32DSI();
+JAWT_DrawingSurfaceInfo dsi = new JAWT_DrawingSurfaceInfo(win32DSI);
+Pointer pDsi = new Pointer(dsi);
+ds.getDrawingSurfaceInfo(pDsi);
+int result = (int) win32DSI.getHandle().getValue();
+ds.freeDrawingSurfaceInfo(pDsi);
+ds.unlock();
+JAWT.freeDrawingSurface(ds);
+return result;</PRE
+><P
+>In the table below you can see how to create the wrappers for Java
+      windows on different platforms:</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN828"
+></A
+><P
+><B
+>Table 9-1. </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#F3F5F7"
+CELLSPACING="0"
+CELLPADDING="4"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_win32small.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>// Using Wnd class from WinPack library
+JFrame window = new JFrame();
+window.setVisible(true); //a Java window should be visible
+Wnd wnd = new Wnd(window);</PRE
+></TD
+></TR
+><TR
+><TD
+WIDTH="9%"
+ALIGN="CENTER"
+VALIGN="MIDDLE"
+><IMG
+SRC="images/os_applesmall.png"
+ALIGN="right"></TD
+><TD
+WIDTH="91%"
+ALIGN="LEFT"
+VALIGN="MIDDLE"
+><PRE
+CLASS="programlisting"
+>// Using NSWindow class from MacPack library
+JFrame window = new JFrame();
+window.setVisible(true); // a Java window should be visible
+NSWindow wnd = new NSWindow(window);</PRE
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN844"
+></A
+>9.4. JAWT Support in Different JDK Versions</H2
+><P
+>When programming using the JAWT interface, you should keep in mind
+      that JAWT is a relatively new technology. It was introduced only in JDK
+      1.3 with limited functionality, has had many improvements in JDK 1.4,
+      and JAWT is intended to completely replace such native-related functions
+      as <TT
+CLASS="function"
+>sun.awt.windows.
+      WToolkit.getNativeWindowHandleFromComponent</TT
+>. For JDK 1.3, you
+      should expect very limited support for JAWT. For example, the argument
+      of the <TT
+CLASS="methodname"
+>getDrawingSurface()</TT
+> method can only be a
+      <TT
+CLASS="classname"
+>java.awt.Canvas</TT
+>. JDK 1.4 introduced new
+      functions, such as AWT locking and unlocking, as well as extended the
+      capabilities of the existing functions.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="Using_JNIWrapper_in_JWS_Applications"
+></A
+>Chapter 10. Using JNIWrapper in Java Web Start Applications</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>This section describes the way of deploying your applications that
+    use JNIWrapper with the help of Java Web Start (JWS).</P
+><P
+>One of the major requirements for any JWS application is that all
+    its resources are located inside signed JAR files. Although JAR files can
+    be signed multiple times, JWS does not accept files with more than one
+    signature. It is also mandatory that all application JAR files are signed
+    with the same signature.</P
+><P
+>All JNIWrapper libraries are supplied already signed and signing
+    them with a new signature makes them unacceptable for JWS. Fortunately,
+    there is a simple solution. The main idea is to use the
+    <TT
+CLASS="markup"
+>&#60;extension&#62;</TT
+> tag in the <TT
+CLASS="filename"
+>.jnlp</TT
+>
+    file and to create two different <TT
+CLASS="filename"
+>.jnlp</TT
+> files for your
+    application. One <TT
+CLASS="filename"
+>.jnlp</TT
+> file should contain your
+    application files and the other - JNIWrapper resources. This technique is
+    demonstrated in the example below. The first file is the application
+    <TT
+CLASS="filename"
+>.jnlp</TT
+> file (<TT
+CLASS="filename"
+>demo.jnlp</TT
+>):</P
+><PRE
+CLASS="programlisting"
+>&#60;?xml version="1.0" encoding="utf-8"?&#62;
+&#60;jnlp spec="1.0+" codebase="http://www.teamdev.com/" href="demo.jnlp"&#62;
+  &#60;information&#62;
+    &#60;title&#62;WinPack Demo Application&#60;/title&#62;
+    &#60;vendor&#62;TeamDev Ltd.&#60;/vendor&#62;
+    &#60;description&#62;WinPack Demo Application&#60;/description&#62;
+    &#60;description kind="short"&#62;The demo of WinPack library&#60;/description&#62;
+    &#60;offline-allowed/&#62;
+  &#60;/information&#62;
+  &#60;security&#62;
+      &#60;all-permissions/&#62;
+  &#60;/security&#62;
+  &#60;resources&#62;
+    &#60;j2se version="1.3+" initial-heap-size="64m"/&#62;
+    &#60;property name="sun.java2d.noddraw" value="true"/&#62;
+    &#60;jar href="demo.jar"/&#62;&#60;!-- demo.jar is your jar file signed with your own signature--&#62;
+    &#60;extension name="jnw" href="jnw.jnlp"/&#62;
+  &#60;/resources&#62;
+  &#60;component-desc/&#62;
+  &#60;application-desc main-class="com.jniwrapper.win32.samples.demo.WinPackSet"/&#62;
+&#60;/jnlp&#62;</PRE
+><P
+>The <TT
+CLASS="markup"
+>&#60;extension&#62;</TT
+> tag above makes the reference
+    to the other <TT
+CLASS="filename"
+>jnw.jnlp</TT
+> file which is declared in the
+    following way:</P
+><PRE
+CLASS="programlisting"
+>&#60;?xml version="1.0" encoding="utf-8"?&#62;
+&#60;jnlp spec="1.0+" codebase="http://www.teamdev.com/" href="jnw.jnlp"&#62;
+  &#60;information&#62;
+    &#60;title&#62;JNIWrapper resources&#60;/title&#62;
+    &#60;vendor&#62;TeamDev Ltd.&#60;/vendor&#62;
+    &#60;description&#62;JNIWrapper Application&#60;/description&#62;
+    &#60;description kind="short"&#62;JNIWrapper Application&#60;/description&#62;
+    &#60;offline-allowed/&#62;
+  &#60;/information&#62;
+  &#60;security&#62;
+      &#60;all-permissions/&#62;
+  &#60;/security&#62;
+  &#60;resources os="Windows"&#62;
+    &#60;nativelib href="jniwraplib.jar"/&#62;
+  &#60;/resources&#62;
+  &#60;resources&#62;
+    &#60;jar href="jniwrap.jar"/&#62;
+    &#60;jar href="winpack.jar"/&#62;
+  &#60;/resources&#62;
+  &#60;component-desc/&#62;
+&#60;/jnlp&#62;</PRE
+><P
+>The second <TT
+CLASS="filename"
+>jnw.jnlp</TT
+> file represents the
+    JNIWrapper resource bundle for redistribution as part of another JWS
+    application. The <TT
+CLASS="filename"
+>jniwraplib.jar</TT
+> package should only
+    include one file:<TT
+CLASS="filename"
+> jniwrap.dll</TT
+>.</P
+><P
+>After you've configured the <TT
+CLASS="filename"
+>.jnlp</TT
+> files, place
+    them to your Web site and create a link to your main
+    <TT
+CLASS="filename"
+>.jnlp</TT
+> file that will also download JNIWrapper
+    resources by the reference.</P
+><DIV
+CLASS="important"
+><P
+></P
+><TABLE
+CLASS="important"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="images/important.gif"
+HSPACE="5"
+ALT="Important"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The license file for JNIWrapper should be placed to the
+      <TT
+CLASS="filename"
+>META-INF</TT
+> folder of your application JAR
+      file.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN876"
+></A
+>Chapter 11. Using JNIWrapper in Applets</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To use JNIWrapper in applets, follow these instructions:</P
+><DIV
+CLASS="procedure"
+><OL
+TYPE="1"
+><LI
+><P
+>Copy <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> to the folder of a web
+        server computer where the applet resides (it is recommended, but you
+        can place <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> to some other folder on the
+        web server).</P
+></LI
+><LI
+><P
+>Prepend the following code to the
+        <TT
+CLASS="methodname"
+>init()</TT
+> method of the applet:</P
+><PRE
+CLASS="programlisting"
+>// passes the instance of the current object as parameter
+AppletHelper.getInstance().init(this); </PRE
+><P
+>This call downloads <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> from the
+        web server and copies it to the Windows <TT
+CLASS="filename"
+>system32</TT
+>
+        folder in the client's computer. The presence of
+        <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> on the client side is required,
+        otherwise the applet will not work.</P
+><P
+>If you copied <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> to a folder with
+        no residing applet, you should provide JNIWrapper library URL, for
+        example:</P
+><PRE
+CLASS="programlisting"
+>AppletHelper.getInstance().init("http://applets.com/native/jniwrap.dll");</PRE
+></LI
+><LI
+><P
+>Prepend the following code to the method to start the applet
+        method:</P
+><PRE
+CLASS="programlisting"
+>AppletHelper.getInstance().start();</PRE
+><P
+>This call starts NativeResourceCollector thread of
+        JNIWrapper.</P
+></LI
+><LI
+><P
+>Append the following code to the method to stop the applet
+        method:</P
+><PRE
+CLASS="programlisting"
+>AppletHelper.getInstance().stop();</PRE
+><P
+>This call stops NativeResourceCollector thread of
+        JNIWrapper.</P
+></LI
+><LI
+><P
+>The license file (<TT
+CLASS="filename"
+>jniwrap.lic</TT
+>) can be
+        included into any JAR file of a JWS application, into the
+        <TT
+CLASS="filename"
+>META-INF</TT
+> subfolder.</P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>application.jar</TT
+> should be signed and should
+        reference the JNIWrapper library(s) in its manifest file by setting
+        the class path variable. Signing JNIWrapper libraries is not necessary
+        as they are already signed.</P
+></LI
+></OL
+></DIV
+><P
+>The sample build file that prepares an applet library is shown
+    below:</P
+><PRE
+CLASS="programlisting"
+>&#60;project name="Applet Sample" default="build" basedir="."&#62;
+ &#60;property name="certificate" value=".keystore"/&#62;
+ &#60;property name="licenseFile" value="jniwrap.lic"/&#62;
+ &#60;property name="appletClasses" value="classes"/&#62;
+ &#60;target name="build"&#62;
+  &#60;jar destfile="sample.jar"&#62;
+   &#60;fileset dir="${appletClasses}" includes="AppletSample.class"/&#62;
+   &#60;manifest&#62;
+    &#60;attribute name="Class-Path" value="jniwrap-2.5.jar"/&#62;
+   &#60;/manifest&#62;
+   &#60;zipfileset file="${licenseFile}" prefix="META-INF" /&#62;
+  &#60;/jar&#62;
+  &#60;signjar jar="sample.jar" alias="your_alias" keystore="${certificate}"
+                    storepass="your_storepass" keypass="your_keypass" /&#62;
+ &#60;/target&#62;
+&#60;/project&#62;</PRE
+><P
+>Below is given the applet usage sample:</P
+><PRE
+CLASS="programlisting"
+>&#60;html&#62;
+&#60;body&#62;&#60;h1&#62;Applet Sample&#60;/h1&#62;
+&#60;p&#62;
+ &#60;applet docbase="http://your_url" code="AppletSample.class" width="400" height="300" archive="sample.jar"/&#62;
+&#60;/body&#62;
+&#60;/html&#62;</PRE
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN914"
+></A
+>Chapter 12. Using JNIWrapper in Native Executable Archives</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To demonstrate how to make a native executable file (which uses
+    JNIWrapper) using JBuilderX "Archive Builder" utility, we have prepared
+    the following algorithm:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Remove all the signatures from JNIWrapper libraries you are
+        going to use in your application. To do this, delete
+        <TT
+CLASS="filename"
+>JNIWRAPP.DSA</TT
+> and <TT
+CLASS="filename"
+>JNIWRAPP.SF</TT
+>
+        files from the <TT
+CLASS="filename"
+>META-INF</TT
+> subfolder in JNIWrapper
+        JAR-libraries (such as <TT
+CLASS="filename"
+>jniwrapper-3.0.jar</TT
+>). This
+        is necessary because "Archive Builder" does not correctly copy JAR's
+        signatures and manifest files to the resulting archive.</P
+></LI
+><LI
+><P
+>Copy the JNIWrapper runtime license file
+        (j<TT
+CLASS="filename"
+>niwrap.lic</TT
+>) to the
+        <TT
+CLASS="filename"
+>META-INF</TT
+> subfolder of the JNIWrapper library (for
+        instance, <TT
+CLASS="filename"
+>jniwrapper-3.0.jar\META-INF\</TT
+>).</P
+></LI
+><LI
+><P
+>Select the "Always include all classes and resources" option in
+        the "Dependencies" section. This is necessary because "Archive
+        Builder" does not correctly track the dependencies.</P
+></LI
+><LI
+><P
+>Make an executable library.</P
+></LI
+></OL
+><P
+>To run the created executable file, you need to place the
+    <TT
+CLASS="filename"
+>jniwrap.dll</TT
+> library in the same folder.</P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN935"
+></A
+>Chapter 13. Using JNIWrapper in Servlets</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>If you're going to use JNIWrapper in a web application, just place
+    the <TT
+CLASS="filename"
+>jniwrap.dll</TT
+>, <TT
+CLASS="filename"
+>jniwrap.lic</TT
+> and
+    <TT
+CLASS="filename"
+>jniwrap.jar</TT
+> files in the appropriate web server
+    catalog within the program library search path. For example, if you use
+    the Tomcat web server, you can place the files in:</P
+><PRE
+CLASS="programlisting"
+>$TOMCAT_HOME/webapps/MyApp/WEB-INF/lib</PRE
+><P
+>but not in</P
+><P
+><PRE
+CLASS="programlisting"
+>$TOMCAT_HOME/common/lib</PRE
+></P
+><P
+>Also, in a servlet you can add WEB-INF/lib directory to the path
+    using the following code:</P
+><P
+><PRE
+CLASS="programlisting"
+>DefaultLibraryLoader.getInstance().addPath(this.getServletContext().getRealPath("/") + "WEB-INF/lib");</PRE
+></P
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN948"
+></A
+>Chapter 14. Support</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>If you have any problems or questions regarding JNIWrapper, please
+    check the documents listed below. The answer to your question may already
+    be there:</P
+><P
+></P
+><UL
+><LI
+><P
+>Installation instructions</P
+></LI
+><LI
+><P
+>Programmer's Guide</P
+></LI
+><LI
+><P
+>Frequently Asked Questions (FAQ) page at:</P
+><P
+><A
+HREF="http://www.teamdev.com/jniwrapper/faq.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jniwrapper/faq.jsf</A
+></P
+></LI
+></UL
+><P
+>If none of the above resources contain the required information,
+    please e-mail us at:</P
+><A
+NAME="AEN961"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="mailto:jniwrapper-support@teamdev.com"
+TARGET="_top"
+>jniwrapper-support@teamdev.com</A
+></P
+></BLOCKQUOTE
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN964"
+></A
+>14.1. Reporting Problems</H2
+><P
+>If you find any bugs, please submit the issue to us using a
+      special report form on the TeamDev integrated customer support and
+      troubleshooting center at:</P
+><A
+NAME="AEN967"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://support.teamdev.com/forms/reportForm.jsf"
+TARGET="_top"
+>http://support.teamdev.com/forms/reportForm.jsf</A
+></P
+></BLOCKQUOTE
+><P
+>The form will help you provide all necessary information.</P
+></DIV
+><DIV
+CLASS="section"
+> <H2
+CLASS="section"
+><A
+NAME="AEN971"
+></A
+>14.2. Troubleshooting</H2
+><P
+>To find a solution to your problem, please visit the
+      Troubleshooting page at:</P
+><A
+NAME="AEN974"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.teamdev.com/jniwrapper/tshoot.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jniwrapper/tshoot.jsf</A
+></P
+></BLOCKQUOTE
+><P
+>This page is regularly updated using information from support
+      requests.</P
+><P
+>If you didn't find a solution, please e-mail us at <A
+HREF="mailto:jniwrapper-support@teamdev.com"
+TARGET="_top"
+>jniwrapper-support@teamdev.com</A
+>
+      or report the problem as described in the previous section.</P
+></DIV
+></DIV
+><DIV
+CLASS="chapter"
+> <P></P><H1
+><A
+NAME="AEN980"
+></A
+>Chapter 15. Where to Get a New Version</H1
+><HR size=1 noshadow color=#0066CC
+><P
+>To get the latest version of JNIWrapper, please visit:</P
+><A
+NAME="AEN983"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><A
+HREF="http://www.teamdev.com/jniwrapper/downloads.jsf"
+TARGET="_top"
+>http://www.teamdev.com/jniwrapper/downloads.jsf</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+><P></P></td></tr></tbody></table><table valign="top" border="0" cellpadding="10" cellspacing="0" width="100%"><tbody><tr><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td><td bgcolor=#A9BAD1 width="100%" align=center><font face ="Verdana, Tahoma,  Sans-Serif" size=3 color=white><b>Copyright &copy; 2002-2012 TeamDev Ltd.</b></font></td><td  bgcolor=white><img src=images/clear.gif width=10 height=10></td></tr></table></td></tr></tbody></table></td></tr></tbody></table></BODY
+></HTML
+>

@@ -1,0 +1,20 @@
+Installing License File(s)
+
+--------------------------
+The JExcel library requires valid license file(s): jexcel.lic, comfyj.lic and jniwrap.lic.
+
+If you purchased the product the license was sent to you by email.
+
+If you are evaluating our product, you need an evaluation license. To get the 
+evaluation license you need to check the option "Include 30-day evaluation key"
+during product download on the product page (http://www.teamdev.com/jexcel/ ).
+
+If you have checked this option, the download package contains an evaluation
+license. The license file(s) are located in "bin" directory of the product 
+package.
+
+License file(s) has to be installed in the same directory as the native code 
+library or in the META-INF subfolder of any jar library from the  application's
+classpath.
+
+Do NOT rename the license file or it will not be recognized. 
